@@ -29,9 +29,10 @@ class Signup extends Component {
             <CenterCard363>
                 <div className='card'>
                 <h4 className="card-header">
-                    Sign Up
+                    Create Your Revieweer Account
                 </h4>
-                    <div className="card-body">
+                <img srs=''/>
+                <div className="card-body">
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                     <div className="form-group">
                         <label>First name:</label>
