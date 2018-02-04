@@ -23,6 +23,10 @@ body {
             outline: none;
             border: none;
         }
+        .dropdown-menu{
+            right: 10px;
+            left: -100px;
+        }
     }
     .row{
         margin: 0px 0px;

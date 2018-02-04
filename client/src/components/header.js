@@ -5,10 +5,17 @@ import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
     renderSignButton(){
-        if (this.props.isLoggedIn){
+        if (this.props.isLoggedIn && this.props.profile){
             return (
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/signout">Sign out</NavLink>
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {this.props.profile.name.first}
+                    </a>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <NavLink className="dropdown-item" to="/account">Account</NavLink>
+                    <div className="dropdown-divider"></div>
+                    <NavLink className="dropdown-item" to="/signout">Log out</NavLink>
+                    </div>
                 </li>
             )
         }else{
@@ -36,9 +43,6 @@ class Header extends Component {
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/explore">Explore</NavLink>
                         </li>
-                        {this.props.isLoggedIn && <li className="nav-item">
-                            <NavLink className="nav-link" to="/account">Account</NavLink>
-                        </li>}
                     </ul>
                     <ul className="navbar-nav">
                         {this.renderSignButton()}
@@ -49,9 +53,10 @@ class Header extends Component {
     }
 }
 
-function mapStateToProps({auth}){
+function mapStateToProps({auth, user}){
     return {
-        isLoggedIn: auth.authenticated
+        isLoggedIn: auth.authenticated,
+        profile: user.profile
     }
 }
 
