@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {reduxForm, Field} from 'redux-form';
 import {connect} from 'react-redux';
+import { Link } from 'react-router-dom';
+
 import {signUserUp} from '../../actions';
 import CenterCard363 from '../centerCard363';
 
@@ -31,7 +33,7 @@ class Signup extends Component {
                 <h4 className="card-header">
                     Create Your Revieweer Account
                 </h4>
-                <img srs=''/>
+                <img src='https://raw.githubusercontent.com/amazingandyyy/revieweer/master/assets/logo-sm.png?token=AHhU9OpdQNvrzw1l_lzWDzXLfKL1Biusks5af9sIwA%3D%3D' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
                 <div className="card-body">
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                     <div className="form-group">
@@ -87,6 +89,9 @@ class Signup extends Component {
                             required/>
                     </div>
                     {this.renderAlert()}
+                    <div style={{'paddingTop': '20px'}}>
+                        <Link to='/signin' className="btn btn-link btn-block">Already had an account? signin here</Link>
+                    </div>
                     <div style={{'paddingTop': '30px'}}>
                         <button type="submit" className="btn btn-lg btn-light btn-block">Sign Up</button>
                     </div>

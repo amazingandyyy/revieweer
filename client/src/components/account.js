@@ -19,7 +19,7 @@ class Account extends Component {
     let {status, profile} = this.props;
     return (
       <CenterCard363>
-        <div className='card border-secondary'>
+        <div className='card'>
         <h4 className="card-header">
           Account
         </h4>
@@ -45,7 +45,7 @@ class Account extends Component {
     const {submitting, dirty} = this.props;
     if(this.state.editting){
       return (<div className="form-group">
-        <button disabled={!dirty} type="submit" className="btn-lg btn btn-light btn-block">Save Change</button>
+        <button disabled={!dirty} type="submit" className="btn-lg btn btn-success btn-block">Save Change</button>
         <button disabled={submitting} className="btn-lg btn btn-secondary btn-block" onClick={this.cancelForm.bind(this)}>Cancel</button>
       </div>)
     }else{
