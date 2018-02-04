@@ -11,7 +11,7 @@ require('dotenv').config();
 const app = express();
 
 // DB Setup
-const MONGOURL = process.env.MONGODB_URI || 'mongodb://localhost/auth';
+const MONGOURL = process.env.MONGODB_URI || 'mongodb://localhost/revieweer';
 
 if(!process.env.JWT_SECRET){
     mongoose.connect(MONGOURL, err => {

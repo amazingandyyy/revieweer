@@ -5,6 +5,15 @@ body {
       padding-top: 30px;
     }
     nav {
+        .nav-link{
+            opacity: 0.8;
+            &.active{
+                opacity: 1;
+                font-weight: 500;
+                color: #F5A623;
+            }
+        }
+        
         .navbar-toggler {
             outline: none;
             border: none;   
@@ -18,6 +27,49 @@ body {
     }
     button.btn{
         cursor: pointer;
+    }
+    
+    .btn.btn-dark.early-access{
+        transition: .1s all ease-in-out;
+        overflow: hidden;
+        position: relative;
+        height: 50px;
+        width: 160px;
+    
+        &.go-dashboard:hover {
+            color: #F5A623;
+        }
+    
+        span.btn-tag {
+            transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
+            position: absolute;
+            left: 25px;
+            top: 8px;
+        }
+        span.login-hint {
+            transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
+            position: absolute;
+            right: 25px;
+            bottom: -50px;
+        }
+    
+        &:hover{
+            span.btn-tag {
+                transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
+                position: absolute;
+                left: 25px;
+                top: -30px;
+            }
+            span.login-hint {
+                color: #F5A623;
+                transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
+                position: absolute;
+                right: 25px;
+                bottom: 8px;
+            }
+        }
+        
+    
     }
 }
 
