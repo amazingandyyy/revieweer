@@ -5,21 +5,12 @@ import { Link } from 'react-router-dom';
 
 import {signUserIn} from '../../actions';
 import CenterCard363 from '../centerCard363';
+
 class Signin extends Component {
-    renderAlert(){
-        if(this.props.errorMsg) {
-            return (
-                <div className="alert alert-warning">
-                    <strong>Oops! </strong>{this.props.errorMsg}
-                </div>
-            )
-        }
-    }
     handleFormSubmit(d) {
         this.props.signUserIn(d)
     }
     render() {
-        // console.log('this.props;: ', this.props);
         const {handleSubmit} = this.props;
         return (
                 <CenterCard363>
@@ -52,12 +43,11 @@ class Signin extends Component {
                                     required
                                     />
                             </div>
-                            {this.renderAlert()}
-                            <div style={{'paddingTop': '20px'}}>
-                                <Link to='/signup' className="btn btn-link btn-block">Dont have an account yet? signup here</Link>
-                            </div>
                             <div style={{'paddingTop': '30px'}}>
                                 <button type="submit" className="btn btn-lg btn-light btn-block">Sign in</button>
+                            </div>
+                            <div style={{'paddingTop': '20px'}}>
+                                <Link to='/signup' className="btn btn-link btn-block">Dont have an account yet? signup here</Link>
                             </div>
                         </form>
                         </div>

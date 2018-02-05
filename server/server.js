@@ -1,34 +1,26 @@
-
 import express from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import routers from './routes';
 
-require('dotenv').config();
+import routers from './routes';
+import config from './config';
+
 const app = express();
 
 // DB Setup
-const MONGOURL = process.env.MONGODB_URI || 'mongodb://localhost/revieweer';
-
-if(!process.env.JWT_SECRET){
-    mongoose.connect(MONGOURL, err => {
-        console.error(err || `[WARNING] Connected to MongoDB: ${MONGOURL} with a explicited jwt_secret ---> please create a .env file and set a implicited JWT_SECRET`);
-    });
-}else{
-    mongoose.connect(MONGOURL, err => {
-        console.log(err || `Connected to MongoDB: ${MONGOURL}`);
-    });
-    mongoose.Promise = global.Promise;
-}
+mongoose.connect(config.mongoose.uri, err => {
+    console.log(err || `Connected to MongoDB: ${config.mongoose.uri}`);
+});
+mongoose.Promise = global.Promise;
 
 // App Setup
 app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', routers);
 
 app.use((err, req, res, next) => {

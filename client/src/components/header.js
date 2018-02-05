@@ -5,11 +5,12 @@ import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
     renderSignButton(){
-        if (this.props.isLoggedIn && this.props.profile){
+        const {isLoggedIn, profile} = this.props;
+        if (isLoggedIn && profile.name){
             return (
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {this.props.profile.name.first}
+                        {profile.name.first}
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <NavLink className="dropdown-item" to="/account">Account</NavLink>
@@ -53,10 +54,10 @@ class Header extends Component {
     }
 }
 
-function mapStateToProps({auth, user}){
+function mapStateToProps({auth, profile}){
     return {
         isLoggedIn: auth.authenticated,
-        profile: user.profile
+        profile: profile
     }
 }
 

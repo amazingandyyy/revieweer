@@ -10,11 +10,12 @@ import Welcome from './components/welcome';
 import Explore from './components/explore';
 import Account from './components/account';
 import Signin from './components/auth/signin';
-import Signup from './components/auth/signup';
+import SignupWithEmail from './components/auth/signupWithEmail';
+import SignupVerification from './components/auth/signupVerification';
 import Signout from './components/auth/signout'
 import RequireAuth from './components/auth/require_auth';
 import reducers from './reducers';
-import { AUTH_USER } from './actions/types';
+import { AUTH_USER } from './redux/auth';
 
 import '../style/style.scss'
 
@@ -34,8 +35,9 @@ ReactDOM.render(
           <Route exact path="/" component= {Welcome} />
           <Route path="/explore" component= {Explore} />
           <Route path="/account" component= {RequireAuth(Account)} />
+          <Route path="/signup" component= {SignupWithEmail} />
+          <Route path="/signupVerification" component= {SignupVerification} />
           <Route path="/signin" component= {Signin} />
-          <Route path="/signup" component= {Signup} />
           <Route path="/signout" component= {Signout} />
         </Switch>
       </App>

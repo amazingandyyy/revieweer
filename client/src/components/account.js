@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
-import {tryConnect, getUserProfile, updateUserProfile} from '../actions';
+import {serverConnect, getUserProfile, updateUserProfile} from '../actions';
 import CenterCard363 from './centerCard363';
 
 class Account extends Component {
@@ -12,7 +12,7 @@ class Account extends Component {
     }
   }
   componentWillMount() {
-    this.props.tryConnect();
+    this.props.serverConnect();
     this.props.getUserProfile();
   }
   render() {
@@ -117,23 +117,23 @@ class Account extends Component {
   }
 }
 
-function mapStateToProps({auth, user}) {
-  return user.profile?{
-      status: auth.status,
-      profile: user.profile,
+function mapStateToProps({server, profile}) {
+  return profile.name?{
+      status: server.connection,
+      profile: profile,
       initialValues: {
-        email: user.profile.email,
-        firstName: user.profile.name.first,
-        lastName: user.profile.name.last
+        email: profile.email,
+        firstName: profile.name.first,
+        lastName: profile.name.last
       },
-      updateProfileFailMsg: user.updateProfileFailMsg
+      updateProfileFailMsg: profile.updateProfileFailMsg
   }:{
-    status: auth.status,
-    profile: user.profile
+    status: server.connection,
+    profile: profile
   }
 }
 
 
-export default connect(mapStateToProps, {tryConnect, getUserProfile, updateUserProfile})(reduxForm({
+export default connect(mapStateToProps, {serverConnect, getUserProfile, updateUserProfile})(reduxForm({
   form: 'profileUpdate',
 })(Account));
