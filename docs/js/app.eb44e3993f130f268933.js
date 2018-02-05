@@ -3372,7 +3372,7 @@ function authReducer(state = INITIAL_STATE, action) {
 
 
 let request = __WEBPACK_IMPORTED_MODULE_0_axios___default.a.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: "api.revieweer.com" || 'http://localhost:8000',
   "Access-Control-Allow-Origin": "*"
 });
 

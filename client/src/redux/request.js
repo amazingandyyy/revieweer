@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 let request = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: process.env.SERVERURI || 'http://localhost:8000',
   "Access-Control-Allow-Origin": "*"
 });
 
