@@ -37,7 +37,7 @@ class Signin extends Component {
                                 name="email"
                                 component="input"
                                 className={`form-control form-control-lg ${(emailStateError)?'is-invalid':''}`}
-                                placeholder="email@email.com"
+                                placeholder="sample@mail.com"
                             />
                         </div>
                         <div className="form-group">
@@ -59,7 +59,7 @@ class Signin extends Component {
                             <button type="submit" className="btn btn-lg btn-light btn-block">Sign in</button>
                         </div>
                         <div style={{'paddingTop': '20px'}}>
-                            <Link to='/signup' className="btn btn-link btn-block">Dont have an account yet? signup here</Link>
+                            <Link to='/signup' className="btn btn-link btn-block">Haven't had an account? signup now</Link>
                         </div>
                     </form>
                     </div>

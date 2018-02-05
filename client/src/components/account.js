@@ -5,13 +5,11 @@ import {serverConnect, getUserProfile, updateUserProfile} from '../actions';
 import CenterCard363 from './centerCard363';
 
 class Account extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
       editting: false
     }
-  }
-  componentWillMount() {
     this.props.serverConnect();
     this.props.getUserProfile();
   }

@@ -25,17 +25,6 @@ class SignupVerification extends Component {
             loading: false
         })
     }
-    renderAlert(error) {
-        let errorMsg = error || this.props.errorMsg
-        if (this.props.errorMsg) {
-            return (
-                <div className='alert alert-warning'>
-                    <strong>Oops!
-                    </strong> {errorMsg}
-                </div>
-            )
-        }
-    }
     handleFormSubmit(data) {
         const {token, address} = qs.decode(this.context.router.history.location.search.split('?')[1]);
         data.email = address
@@ -111,7 +100,6 @@ class SignupVerification extends Component {
                         placeholder='your password again'
                         required/>
                 </div>
-                {this.renderAlert()}
                 <div style={{'paddingTop': '30px'}}>
                     <button type='submit' className='btn btn-lg btn-light btn-block'>Sign Up</button>
                 </div>
@@ -140,10 +128,10 @@ function validate(formProps) {
     return errors;
 }
 
-function mapStateToProps({auth, state}) {
+function mapStateToProps({signupVerification}) {
+    const { emailTokenGood } = signupVerification;
     return {
-        errorMsg: auth.error,
-        emailTokenGood: state.emailTokenGood
+        emailTokenGood
     }
 }
 

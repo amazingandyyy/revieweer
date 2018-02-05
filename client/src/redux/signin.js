@@ -11,13 +11,8 @@ export function signUserIn(data) {
   return function (dispatch) {
     request
       .post(`/signin`, data)
-      .then(({
-        data
-      }) => {
-        dispatch({type: AUTH_USER})
-        const {token} = data;
-        localStorage.setItem('auth_jwt_token', token);
-        window.location = '/#account';
+      .then((res) => {
+        dispatch({type: AUTH_USER, payload: res.data.token});
       })
       .catch(({
         response

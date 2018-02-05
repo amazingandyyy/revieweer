@@ -4,7 +4,7 @@ import config from '../config';
 export default {
     generateToken: function (user) {
         const createdAt = Math.round(Date.now() / 1000);
-        const expiredAt = Math.round(Date.now() / 1000 + 1 * 60 * 60); // in 1 hours
+        const expiredAt = Math.round(Date.now() / 1000 + 1 * 60 * 60); // in 1 hour
         const payload = {
             sub: user.id,
             iat: createdAt,

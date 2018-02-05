@@ -4,20 +4,15 @@ import config from '../config';
 
 export default {
   signupWithEmail: (req, res, next) => {
-    const {
-      email
-    } = req.body;
-    if (!email) return res.status(422).send('You must provide email.');
+    const { email } = req.body;
+    (!email)? next('You Must Provide Email.'):
     User.findOne({
       email: email
-    }).then(existingUser => {
-      if (existingUser) return res.status(422).send('Email is in use.');
-      const {
-        URIDomain
-      } = config;
-      console.log(URIDomain);
+    }).then(user => {
+      if (user) return next('403:Email is in use.');
+      const { URIDomain } = config;
       const deepLink = `${URIDomain}#signupVerification?token=${token.generateTokenWithEmail(email)}&address=${email}`;
-      res.send(deepLink);
+      res.send({email, link: deepLink});
     }).catch(next);
   },
   verifyEmailToken: (req, res, next) => {

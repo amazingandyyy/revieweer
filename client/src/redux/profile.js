@@ -14,7 +14,9 @@ export function getUserProfile() {
                     payload: res.data
                 })
             })
-            .catch(error => console.log(error.response.data));
+            .catch(error => {
+                console.log(error.response.data)
+            });
     }
 }
 
