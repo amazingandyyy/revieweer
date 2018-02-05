@@ -11,14 +11,15 @@ export function signUserIn(data) {
   return function (dispatch) {
     request
       .post(`/signin`, data)
-      .then((res) => {
+      .then(res => {
         dispatch({type: AUTH_USER, payload: res.data.token});
       })
-      .catch(({
-        response
-      }) => {
-        const message = response.data;
-        const status = response.status;
+      .catch(err => {
+        let message, status;
+        if(err.response){
+          message = err.response.data;
+          status = err.response.status;
+        }
         switch (status) {
           case 404:
             dispatch({
@@ -39,6 +40,10 @@ export function signUserIn(data) {
             })
             break
           default:
+            dispatch({
+              type: SIGNIN_NORMAL_ERROR,
+              payload: 'Server Is Temporarily Down'
+            })
             break;
         }
       });

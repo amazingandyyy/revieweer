@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { signupWithEmail, signupWithEmailReset } from '../../actions';
-import CenterCard363 from '../centerCard363';
+import CenterCard121 from '../CenterCard121';
 
 class SignupWithEmail extends Component {
     constructor(){
@@ -36,14 +36,17 @@ class SignupWithEmail extends Component {
     }
     render() {
         return (
-            <CenterCard363>
+            <CenterCard121>
                 <div className='card'>
-                <img src='../../assets/logo-sm.png' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
+                <h4 className="card-header">
+                    Request Your Early Access
+                </h4>
+                <img src='/assets/logo-sm.png' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
                 <div className="card-body">
                     {this.renderForm()}
                 </div>
                 </div>
-            </CenterCard363>
+            </CenterCard121>
         );
     }
     renderForm(){

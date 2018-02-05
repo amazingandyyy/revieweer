@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import qs from 'querystring';
 
 import {signUserUp,verifyEmailToken} from '../../actions';
-import CenterCard363 from '../centerCard363';
+import CenterCard121 from '../CenterCard121';
 
 class SignupVerification extends Component {
     constructor(){
@@ -37,14 +37,14 @@ class SignupVerification extends Component {
     render() {
         const {emailTokenGood} = this.props;
         return (
-            <CenterCard363>
+            <CenterCard121>
                 <div className={emailTokenGood?'card border-success':'card border-warning'}>
-                <img src='../../assets/logo-sm.png' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
+                <img src='/assets/logo-sm.png' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
                 <div className='card-body'>
                 {this.renderLoading()}
                 </div>
                 </div>
-            </CenterCard363>
+            </CenterCard121>
         );
     }
     renderLoading(){

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {signUserIn,signinReset} from '../../actions';
-import CenterCard363 from '../centerCard363';
+import CenterCard121 from '../CenterCard121';
 
 class Signin extends Component {
     componentWillMount(){
@@ -20,12 +20,12 @@ class Signin extends Component {
     render() {
         const {handleSubmit, emailStateError, passwordError, normalError, signinReset} = this.props;
         return (
-            <CenterCard363>
+            <CenterCard121>
                 <div className='card'>
                 <h4 className="card-header">
                     Signin Your Revieweer
                 </h4>
-                    <img src='../../assets/logo-sm.png' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
+                    <img src='/assets/logo-sm.png' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
                     <div className="card-body">
                     <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signinReset}>
                         <div className="form-group">
@@ -64,7 +64,7 @@ class Signin extends Component {
                     </form>
                     </div>
                 </div>
-            </CenterCard363>
+            </CenterCard121>
         );
     }
 }

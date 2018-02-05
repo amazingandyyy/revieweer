@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
 import {serverConnect, getUserProfile, updateUserProfile} from '../actions';
-import CenterCard363 from './centerCard363';
+import CenterCard121 from './CenterCard121';
 
 class Account extends Component {
   constructor(props){
@@ -16,7 +16,7 @@ class Account extends Component {
   render() {
     let {status, profile} = this.props;
     return (
-      <CenterCard363>
+      <CenterCard121>
         <div className='card'>
         <h4 className="card-header">
           Account
@@ -26,7 +26,7 @@ class Account extends Component {
           {profile && this.renderProfileForm()}
         </div>
         </div>
-      </CenterCard363>
+      </CenterCard121>
     );
   }
   handleFormSubmit(d){

@@ -1,4 +1,5 @@
 import request from './request';
+import { UNAUTH_USER } from './auth';
 
 const GET_USER_PROFILE = 'GET_USER_PROFILE';
 const UPDATE_USER_PROFILE_GOOD = 'UPDATE_USER_PROFILE_GOOD';
@@ -15,6 +16,7 @@ export function getUserProfile() {
                 })
             })
             .catch(error => {
+                dispatch({ type: UNAUTH_USER })
                 console.log(error.response.data)
             });
     }
