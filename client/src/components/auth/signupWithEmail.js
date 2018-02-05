@@ -36,7 +36,7 @@ class SignupWithEmail extends Component {
                 <h4 className="card-header">
                     What your email address
                 </h4>
-                <img src='https://raw.githubusercontent.com/amazingandyyy/revieweer/master/assets/logo-sm.png?token=AHhU9OpdQNvrzw1l_lzWDzXLfKL1Biusks5af9sIwA%3D%3D' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
+                <img src='../../assets/logo-sm.png' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
                 <div className="card-body">
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                     <div className="form-group">

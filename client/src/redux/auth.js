@@ -3,6 +3,7 @@ import request from './request';
 export const AUTH_USER = 'AUTH_USER';
 const UNAUTH_USER = 'UNAUTH_USER';
 const AUTH_ERROR = 'AUTH_ERROR';
+
 const CHECK_EMAIL_TOKEN_GOOD = 'CHECK_EMAIL_TOKEN_GOOD';
 const CHECK_EMAIL_TOKEN_BAD = 'CHECK_EMAIL_TOKEN_BAD';
 
@@ -18,25 +19,6 @@ export function signupWithEmail(email) {
             .catch(error => {
                 console.log(error.response.data)
                 dispatch({type: AUTH_ERROR, payload: 'This email is in use.'})
-            });
-    }
-}
-
-export function signUserIn(data) {
-    return function (dispatch) {
-        // Submit email/password to server
-        request
-            .post(`/signin`, data)
-            .then(res => {
-                dispatch({type: AUTH_USER})
-                const token = res.data.token;
-                localStorage.setItem('auth_jwt_token', token);
-                window.location = '/#account';
-            })
-            .catch(error => {
-                // no user found
-                // password is wrong
-                
             });
     }
 }

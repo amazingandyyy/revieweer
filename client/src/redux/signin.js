@@ -1,0 +1,78 @@
+import request from './request';
+import { AUTH_USER } from './auth';
+const SIGNIN_USER_NOT_FOUND = 'SIGNIN_USER_NOT_FOUND';
+const SIGNIN_PASSWORD_FAIL = 'SIGNIN_PASSWORD_FAIL';
+const SIGNIN_NORMAL_ERROR = 'SIGNIN_NORMAL_ERROR';
+const SIGNIN_RESET = 'SIGNIN_RESET';
+
+export const signinReset = () => (dispatch) => dispatch({type: SIGNIN_RESET});
+
+export function signUserIn(data) {
+  return function (dispatch) {
+    request
+      .post(`/signin`, data)
+      .then(({
+        data
+      }) => {
+        dispatch({type: AUTH_USER})
+        const {token} = data;
+        localStorage.setItem('auth_jwt_token', token);
+        window.location = '/#account';
+      })
+      .catch(({
+        response
+      }) => {
+        const message = response.data;
+        const status = response.status;
+        switch (status) {
+          case 404:
+            dispatch({
+              type: SIGNIN_USER_NOT_FOUND,
+              payload: message
+            })
+            break
+          case 403:
+            dispatch({
+              type: SIGNIN_PASSWORD_FAIL,
+              payload: message
+            })
+            break
+          case 500:
+            if (typeof message == 'string') dispatch({
+              type: SIGNIN_NORMAL_ERROR,
+              payload: message
+            })
+            break
+          default:
+            break;
+        }
+      });
+  }
+}
+
+let INITIAL_STATE = {
+  emailStateError: null,
+  passwordError: null,
+  normalError: null
+}
+
+export function signinReducer(state = INITIAL_STATE, action) {
+  switch (action.type) {
+    case SIGNIN_USER_NOT_FOUND:
+      return { ...state,
+        emailStateError: action.payload
+      }
+    case SIGNIN_PASSWORD_FAIL:
+      return { ...state,
+        passwordError: action.payload
+      }
+    case SIGNIN_NORMAL_ERROR:
+      return { ...state,
+        normalError: action.payload
+      }
+    case SIGNIN_RESET:
+      return INITIAL_STATE
+    default:
+      return state
+  }
+}

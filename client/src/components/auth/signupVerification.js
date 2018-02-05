@@ -50,7 +50,7 @@ class SignupVerification extends Component {
         return (
             <CenterCard363>
                 <div className={emailTokenGood?'card border-success':'card border-warning'}>
-                <img src='https://raw.githubusercontent.com/amazingandyyy/revieweer/master/assets/logo-sm.png?token=AHhU9OpdQNvrzw1l_lzWDzXLfKL1Biusks5af9sIwA%3D%3D' style={{'margin': '20px auto 0px', 'transform': 'scale(0.6)'}}/>
+                <img src='../../assets/logo-sm.png' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
                 <div className='card-body'>
                 {this.renderLoading()}
                 </div>
