@@ -13,8 +13,12 @@ body {
     padding-bottom: 50px; }
   body .card {
     margin: 0px;
-    border-radius: 0px;
-    border: 1px solid rgba(0, 0, 0, 0.125); }
+    padding-bottom: 30px;
+    border-radius: 0.5rem;
+    border: 3px solid rgba(0, 0, 0, 0.03); }
+    body .card .card-bottom-balancer {
+      width: 50px;
+      margin: 30px auto; }
     @media (max-width: 543px) {
       body .card {
         marginTop: -1px;
