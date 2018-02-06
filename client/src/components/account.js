@@ -1,17 +1,19 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
 import {serverConnect, getUserProfile, updateUserProfile} from '../actions';
 import CenterCard121 from './CenterCard121';
 
-class Account extends Component {
+class Account extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       editting: false
     }
     this.props.serverConnect();
-    this.props.getUserProfile();
+    if (localStorage.getItem('auth_jwt_token')){
+      this.props.getUserProfile();
+    }
   }
   render() {
     let {status, profile} = this.props;
@@ -115,7 +117,7 @@ class Account extends Component {
   }
 }
 
-function mapStateToProps({server, profile}) {
+function mapStateToProps({server, profile, auth}) {
   return profile.name?{
       status: server.connection,
       profile: profile,
@@ -124,10 +126,12 @@ function mapStateToProps({server, profile}) {
         firstName: profile.name.first,
         lastName: profile.name.last
       },
-      updateProfileFailMsg: profile.updateProfileFailMsg
-  }:{
-    status: server.connection,
-    profile: profile
+      updateProfileFailMsg: profile.updateProfileFailMsg,
+      isLoggedin: auth.authentication
+    }:{
+      status: server.connection,
+      profile: profile,
+      isLoggedin: auth.authentication
   }
 }
 

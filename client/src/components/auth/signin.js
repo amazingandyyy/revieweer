@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import {signUserIn,signinReset} from '../../actions';
 import CenterCard121 from '../CenterCard121';
+import RevieweerLogo from '../logo';
 
 class Signin extends Component {
     componentWillMount(){
@@ -22,10 +23,10 @@ class Signin extends Component {
         return (
             <CenterCard121>
                 <div className='card'>
-                <h4 className="card-header">
-                    Signin Your Revieweer
-                </h4>
-                    <img src='/assets/logo-sm.png' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
+                    <h4 className="card-header">
+                        Signin Your Revieweer
+                    </h4>
+                    <RevieweerLogo />
                     <div className="card-body">
                     <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signinReset}>
                         <div className="form-group">
@@ -38,6 +39,7 @@ class Signin extends Component {
                                 component="input"
                                 className={`form-control form-control-lg ${(emailStateError)?'is-invalid':''}`}
                                 placeholder="sample@mail.com"
+                                required
                             />
                         </div>
                         <div className="form-group">
@@ -50,6 +52,7 @@ class Signin extends Component {
                                 component="input"
                                 className={`form-control form-control-lg ${(passwordError)?'is-invalid':''}`}
                                 placeholder="password"
+                                required
                             />
                         </div>
                         {normalError && <div className='alert alert-warning'>
@@ -59,9 +62,10 @@ class Signin extends Component {
                             <button type="submit" className="btn btn-lg btn-light btn-block">Sign in</button>
                         </div>
                         <div style={{'paddingTop': '20px'}}>
-                            <Link to='/signup' className="btn btn-link btn-block">Haven't had an account? signup now</Link>
+                            <Link to='/signup' className="btn btn-link btn-block">Don't have an account? Request early access here.</Link>
                         </div>
                     </form>
+                    <div className='card-bottom-balancer'></div>
                     </div>
                 </div>
             </CenterCard121>

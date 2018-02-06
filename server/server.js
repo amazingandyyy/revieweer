@@ -24,7 +24,7 @@ app.use(errorHandler);
 
 function errorHandler (err, req, res, next) {
     const error = ((typeof err) == 'string')?err.split(':'):err;
-    console.log('err', err)
+    console.log('errrrr', err)
     let [statusCode, msg] = (error.length > 1)?error:[500, err];
     (res.headersSent)?next(msg):res.status(statusCode).send(msg);
 }

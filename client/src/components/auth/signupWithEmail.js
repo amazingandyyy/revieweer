@@ -1,13 +1,14 @@
-import React, {Component} from 'react';
-import {reduxForm, Field} from 'redux-form';
-import {connect} from 'react-redux';
+import React from 'react';
+import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import { signupWithEmail, signupWithEmailReset } from '../../actions';
 import CenterCard121 from '../CenterCard121';
+import RevieweerLogo from '../logo';
 
-class SignupWithEmail extends Component {
+class SignupWithEmail extends React.Component {
     constructor(){
         super();
     }
@@ -18,7 +19,7 @@ class SignupWithEmail extends Component {
         this.props.signupWithEmailReset();
     }
     componentDidUpdate(){
-        console.log(this.context.router);
+        // console.log(this.context.router);
     }
     renderAlert(error) {
         let errorMsg = error || this.props.errorMsg
@@ -41,7 +42,7 @@ class SignupWithEmail extends Component {
                 <h4 className="card-header">
                     Request Your Early Access
                 </h4>
-                <img src='/assets/logo-sm.png' style={{'margin': '10px auto', 'transform': 'scale(0.6)'}}/>
+                <RevieweerLogo />
                 <div className="card-body">
                     {this.renderForm()}
                 </div>
@@ -53,7 +54,7 @@ class SignupWithEmail extends Component {
         const {handleSubmit,emailStateError,signupWithEmailReset,emailSentTo, submitting} = this.props;
         if(emailSentTo && emailSentTo.length > 1){
             return(<div className='alert alert-success'>
-                <h4 className="alert-heading">Awesome! Check Email!</h4>
+                <h4 className="alert-heading">Awesome!</h4>
                 Aww yeah, registration email is sent to <b>{emailSentTo}</b>
                 <hr/>Please check your inbox or trash/junk box. The verification may be expired in 60 minutes.
             </div>)
@@ -73,7 +74,7 @@ class SignupWithEmail extends Component {
                 </div>
                 {this.renderAlert()}
                 <div style={{'paddingTop': '30px'}}>
-                    <button type="submit" disabled={submitting} className="btn btn-lg btn-light btn-block">Send Me Registration Email</button>
+                    <button type="submit" disabled={submitting} className="btn btn-lg btn-light btn-block">Verify My Email</button>
                 </div>
                 <div style={{'paddingTop': '20px'}}>
                     <Link to='/signin' className="btn btn-link btn-block">Already have an account? signin here</Link>

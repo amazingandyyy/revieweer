@@ -1,5 +1,6 @@
 export const AUTH_USER = 'AUTH_USER';
 export const UNAUTH_USER = 'UNAUTH_USER';
+export const PROMPT_TO_SIGNIN = 'PROMPT_TO_SIGNIN';
 
 export function signUserOut() {
     return function (dispatch) {
@@ -19,7 +20,6 @@ export function authReducer(state = INITIAL_STATE, action) {
             if(action.payload){
                 localStorage.setItem('auth_jwt_token', action.payload);
             }
-            window.location = '/#account';
             return { ...state,
                 authenticated: true
             }
@@ -29,7 +29,10 @@ export function authReducer(state = INITIAL_STATE, action) {
             return { ...state,
                 authenticated: false
             }
+        case PROMPT_TO_SIGNIN:
+            window.location = '/#signin';
+            return state;
         default:
-            return state
+            return state;
     }
 }

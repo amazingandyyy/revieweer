@@ -15,22 +15,23 @@ export function signupWithEmail(email) {
               console.log('link:', res.data);
               dispatch({ type: SIGNUP_EMAIL_SENT, payload: res.data.email })
           })
-          .catch(({
-            response
-          }) => {
-            const message = response.data;
-            const status = response.status;
-            switch (status) {
-              case 403:
-                dispatch({
-                  type: SIGNUP_EMAIL_IS_IN_USE,
-                  payload: message
-                })
-                break
-              default:
-                break;
+          .catch((err) => {
+            console.log(err)
+            if(err.response){
+              const message = err.response.data;
+              const status = err.response.status;
+              switch (status) {
+                case 403:
+                  dispatch({
+                    type: SIGNUP_EMAIL_IS_IN_USE,
+                    payload: message
+                  })
+                  break
+                default:
+                  break;
               }
-            });
+            }
+          });
   }
 }
 

@@ -11,7 +11,8 @@ export default {
     }).then(user => {
       if (user) return next('403:Email is in use.');
       const { URIDomain } = config;
-      const deepLink = `${URIDomain}#signupVerification?token=${token.generateTokenWithEmail(email)}&address=${email}`;
+      const tokenn = token.generateTokenWithEmail(email);
+      const deepLink = `${URIDomain}#signupVerification?token=${tokenn}&address=${email}`;
       res.send({email, link: deepLink});
     }).catch(next);
   },

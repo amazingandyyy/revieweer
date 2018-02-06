@@ -13,6 +13,7 @@ export function signUserIn(data) {
       .post(`/signin`, data)
       .then(res => {
         dispatch({type: AUTH_USER, payload: res.data.token});
+        window.location = '/#account';
       })
       .catch(err => {
         let message, status;

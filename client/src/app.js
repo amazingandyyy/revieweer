@@ -15,18 +15,16 @@ import SignupVerification from './components/auth/signupVerification';
 import Signout from './components/auth/signout'
 import RequireAuth from './components/auth/require_auth';
 import reducers from './reducers';
-import { AUTH_USER } from './redux/auth';
+import { serverConnect } from './actions';
 
 import '../style/style.scss'
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers)
-const token = localStorage.getItem('auth_jwt_token');
 
 // if we have a token, consider the user to be signed in
-if (token) {
-  store.dispatch({type: AUTH_USER})
-}
+serverConnect()(store.dispatch);
+
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter hashType="noslash">
