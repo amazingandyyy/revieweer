@@ -7,8 +7,8 @@ export function serverConnect(){
     request
         .get(`/api`)
         .then(res => {
+            dispatch({ type: AUTH_USER, payload: localStorage.getItem('auth_jwt_token') })
             dispatch({ type: TRY_CONNECT_SERVER, payload: res.data })
-            dispatch({ type: AUTH_USER })
         })
         .catch(error => {
             console.log(error);

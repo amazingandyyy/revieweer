@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
 import { NavLink } from 'react-router-dom';
+import {getUserProfile} from '../actions';
 
 class Header extends Component {
+    componentDidMount(){
+        this.props.getUserProfile();
+    }
     renderSignButton(){
         const {isLoggedIn, profile} = this.props;
         if (isLoggedIn && profile.name){
@@ -61,4 +64,4 @@ function mapStateToProps({auth, profile}){
     }
 }
 
-export default connect(mapStateToProps, actions)(Header)
+export default connect(mapStateToProps, {getUserProfile})(Header)

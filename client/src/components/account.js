@@ -10,10 +10,10 @@ class Account extends React.Component {
     this.state = {
       editting: false
     }
+  }
+  componentWillMount(){
     this.props.serverConnect();
-    if (localStorage.getItem('auth_jwt_token')){
-      this.props.getUserProfile();
-    }
+    this.props.getUserProfile();
   }
   render() {
     let {status, profile} = this.props;
@@ -92,7 +92,7 @@ class Account extends React.Component {
             name="email"
             component="input"
             className="form-control form-control-lg"
-            placeholder="sample@email.com"
+            placeholder="your email adddress"
             required
             />
       </div>

@@ -15,15 +15,12 @@ import SignupVerification from './components/auth/signupVerification';
 import Signout from './components/auth/signout'
 import RequireAuth from './components/auth/require_auth';
 import reducers from './reducers';
-import { serverConnect } from './actions';
 
 import '../style/style.scss'
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers)
 
-// if we have a token, consider the user to be signed in
-serverConnect()(store.dispatch);
 
 ReactDOM.render(
   <Provider store={store}>

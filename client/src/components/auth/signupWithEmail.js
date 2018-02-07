@@ -40,7 +40,7 @@ class SignupWithEmail extends React.Component {
             <CenterCard121>
                 <div className='card'>
                 <h4 className="card-header">
-                    Request Your Early Access
+                    Join
                 </h4>
                 <RevieweerLogo />
                 <div className="card-body">
@@ -54,30 +54,30 @@ class SignupWithEmail extends React.Component {
         const {handleSubmit,emailStateError,signupWithEmailReset,emailSentTo, submitting} = this.props;
         if(emailSentTo && emailSentTo.length > 1){
             return(<div className='alert alert-success'>
-                <h4 className="alert-heading">Awesome!</h4>
-                Aww yeah, registration email is sent to <b>{emailSentTo}</b>
-                <hr/>Please check your inbox or trash/junk box. The verification may be expired in 60 minutes.
+                <h4 className="alert-heading">Almost there!</h4>
+                Verification email is sent to <b>{emailSentTo}</b>
+                <hr/>Please check your inbox or trash/junk box. The activation code will be expired in 60 minutes...
             </div>)
         }else{
             return(<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signupWithEmailReset}>
                 <div className="form-group">
                     <label>
-                        Email(username): {emailStateError&&<span className='danger-hint'>{emailStateError}</span>}
+                        {emailStateError&&<span className='danger-hint'>{emailStateError}</span>}
                     </label>
                     <Field
                         type= 'email'
                         name="email"
                         component="input"
                         className={`form-control form-control-lg ${(emailStateError)?'is-invalid':''}`}
-                        placeholder="sample@mail.com"
+                        placeholder="your email adddress"
                     />
                 </div>
                 {this.renderAlert()}
-                <div style={{'paddingTop': '30px'}}>
-                    <button type="submit" disabled={submitting} className="btn btn-lg btn-light btn-block">Verify My Email</button>
+                <div>
+                    <button type="submit" disabled={submitting} className="btn btn-lg btn-light btn-block">Create</button>
                 </div>
                 <div style={{'paddingTop': '20px'}}>
-                    <Link to='/signin' className="btn btn-link btn-block">Already have an account? signin here</Link>
+                    <Link to='/signin' className="btn btn-link btn-block">Have an account? signin here</Link>
                 </div>
             </form>)
         }

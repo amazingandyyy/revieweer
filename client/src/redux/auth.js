@@ -14,7 +14,7 @@ let INITIAL_STATE = {
     authenticated: null
 }
 
-export function authReducer(state = INITIAL_STATE, action) {
+export function authReducer(state=INITIAL_STATE, action) {
     switch (action.type) {
         case AUTH_USER:
             if(action.payload){
@@ -24,6 +24,7 @@ export function authReducer(state = INITIAL_STATE, action) {
                 authenticated: true
             }
         case UNAUTH_USER:
+            console.log('UNAUTH_USER')
             window.location = '/#';
             localStorage.removeItem('auth_jwt_token');
             return { ...state,

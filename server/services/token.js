@@ -24,9 +24,7 @@ export default {
         return jwt.encode(payload, config.jwt_secret_email);
     },
     verifyToken: function (token, cb) {
-        console.log('Token', token);
         if(!token) {
-            console.log('nooooo')
             return cb(new Error('Token is needed'));
         }
         const decode = jwt.decode(token, config.jwt_secret)

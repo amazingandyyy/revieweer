@@ -24,7 +24,7 @@ class Signin extends Component {
             <CenterCard121>
                 <div className='card'>
                     <h4 className="card-header">
-                        Signin Your Revieweer
+                        Welcome
                     </h4>
                     <RevieweerLogo />
                     <div className="card-body">
@@ -38,7 +38,7 @@ class Signin extends Component {
                                 name="email"
                                 component="input"
                                 className={`form-control form-control-lg ${(emailStateError)?'is-invalid':''}`}
-                                placeholder="sample@mail.com"
+                                placeholder="adddress"
                                 required
                             />
                         </div>
@@ -62,7 +62,7 @@ class Signin extends Component {
                             <button type="submit" className="btn btn-lg btn-light btn-block">Sign in</button>
                         </div>
                         <div style={{'paddingTop': '20px'}}>
-                            <Link to='/signup' className="btn btn-link btn-block">Don't have an account? Request early access here.</Link>
+                            <Link to='/signup' className="btn btn-link btn-block">Don't have an account? Signup here.</Link>
                         </div>
                     </form>
                     <div className='card-bottom-balancer'></div>
