@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const common = require('./webpack.common.js');
 
@@ -11,5 +12,14 @@ module.exports = merge(common, {
                 'SERVERURI': JSON.stringify('api.revieweer.com')
             }
         }),
+        // new UglifyJsPlugin({
+        //     sourceMap: true,
+        //     uglifyOptions: {
+        //       ecma:8,  
+        //       compress: {
+        //         warnings: false
+        //       }
+        //     }
+        //   })
     ]
 })

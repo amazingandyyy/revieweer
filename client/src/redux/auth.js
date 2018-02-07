@@ -11,7 +11,7 @@ export function signUserOut() {
 }
 
 let INITIAL_STATE = {
-    authenticated: false
+    authenticated: null
 }
 
 export function authReducer(state = INITIAL_STATE, action) {

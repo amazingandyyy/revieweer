@@ -16,8 +16,8 @@ export default {
                   error: 'middleware User not found!!!'
               });
           }
-          delete user.password;
-          req.user = user;
+          req.user = Object.assign({}, user._doc);
+          delete req.user.password;
           next();
         })
     })
