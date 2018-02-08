@@ -11,12 +11,14 @@ export function signUserOut() {
 }
 
 let INITIAL_STATE = {
-    authenticated: null
+    authenticated: true
 }
 
 export function authReducer(state=INITIAL_STATE, action) {
+    console.log(state);
     switch (action.type) {
         case AUTH_USER:
+            console.log(AUTH_USER);
             if(action.payload){
                 localStorage.setItem('auth_jwt_token', action.payload);
             }
@@ -25,7 +27,6 @@ export function authReducer(state=INITIAL_STATE, action) {
             }
         case UNAUTH_USER:
             console.log('UNAUTH_USER')
-            window.location = '/#';
             localStorage.removeItem('auth_jwt_token');
             return { ...state,
                 authenticated: false
