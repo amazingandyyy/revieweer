@@ -26,6 +26,8 @@ const userSchema = new mongoose.Schema({
             default: false
         }
     }
+}, {
+    timestamps: true
 })
 
 userSchema.pre('save', function (next){

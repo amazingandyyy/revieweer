@@ -4,7 +4,11 @@ import mongoose from 'mongoose';
 const productSchema = new mongoose.Schema({
     title: String,
     link: String,
-    buyers : []
+    buyers : [],
+    images: String,
+    screenshots: String,
+    seller: String,
+    endTime: Date // millisecond
 })
 
 // Export the model
