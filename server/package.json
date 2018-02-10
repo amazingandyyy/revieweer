@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "babel-watch server.js",
     "start": "npm run dist/serser.js",
-    "resolve": "babel-watch ./controllers/resolver.js"
+    // "testing": "babel-watch ./controllers/itemLookUp.js"
   },
   "author": "amazingandyyy",
   "license": "MIT",
@@ -21,7 +21,8 @@
     "express": "^4.16.2",
     "jwt-simple": "^0.5.1",
     "mongoose": "^4.7.4",
-    "qs": "^6.5.1"
+    "qs": "^6.5.1",
+    "request": "^2.83.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
