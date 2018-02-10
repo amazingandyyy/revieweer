@@ -3,8 +3,13 @@ import mongoose from 'mongoose';
 // Define the model
 const productSchema = new mongoose.Schema({
     title: String,
+    keyword: String,
     link: String,
-    buyers : [],
+    buyers : [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'User',
+        unique: true
+    }],
     images: String,
     screenshots: String,
     seller: String,

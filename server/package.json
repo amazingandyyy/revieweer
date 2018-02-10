@@ -4,18 +4,24 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "babel-watch server.js"
+    "dev": "babel-watch server.js",
+    "start": "npm run dist/serser.js",
+    "resolve": "babel-watch ./controllers/resolver.js"
   },
   "author": "amazingandyyy",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.17.1",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.15.2",
+    "cheerio": "^1.0.0-rc.2",
     "cors": "^2.8.1",
+    "crypto-js": "^3.1.9-1",
     "dotenv": "^2.0.0",
     "express": "^4.16.2",
     "jwt-simple": "^0.5.1",
-    "mongoose": "^4.7.4"
+    "mongoose": "^4.7.4",
+    "qs": "^6.5.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

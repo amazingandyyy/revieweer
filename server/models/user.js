@@ -4,12 +4,32 @@ import bcrypt from 'bcrypt-nodejs';
 // Define the model
 const userSchema = new mongoose.Schema({
     name: {
-        first: String,
-        last: String,
-    },
+        first: {
+          type: String,
+          validate: {
+            validator: function (name) {
+              return name.length > 2;
+            },
+            message: 'Name must be longer than 2 characters.'
+          },
+          required: [true, 'first name is required.']
+        },
+        last: {
+          type: String,
+          validate: {
+            validator: function (name) {
+              return name.length > 2;
+            },
+            message: 'Name must be longer than 2 characters.'
+          }
+        }
+      },
     email: {
         type: String,
         unique: true,
+        required: [
+            true, 'Email is required.'
+        ],
         lowercase: true
     },
     emailVerified: {
