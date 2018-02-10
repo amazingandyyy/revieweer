@@ -62,7 +62,7 @@ class Signin extends Component {
                             <button type="submit" className="btn btn-lg btn-light btn-block">Sign in</button>
                         </div>
                         <div style={{'paddingTop': '20px'}}>
-                            <Link to='/signup' className="btn btn-link btn-block">Don't have an account? Signup here.</Link>
+                            <Link to='/signup' className="btn btn-link btn-block">{"Don't have an account? Signup here."}</Link>
                         </div>
                     </form>
                     <div className='card-bottom-balancer'></div>

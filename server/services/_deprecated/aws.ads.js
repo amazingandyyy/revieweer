@@ -1,7 +1,6 @@
 import hmacSHA256 from 'crypto-js/hmac-sha256';
 import base64 from 'crypto-js/enc-base64';
 import axios from 'axios';
-import qs from 'qs';
 
 class ADS {
   constructor(initOptions){
@@ -40,9 +39,9 @@ class ADS {
     }).join("&");
     // AWSAccessKeyId=AKIAIAOHXIHGOHSC4TJA&AssociateTag=revieweer-20&ItemId=B01J24C0TI&Operation=ItemLookup&ResponseGroup=Images%252CItemAttributes%252COffers%252CReviews&Service=AWSECommerceService&Timestamp=2018-02-10T07%3A37%3A41.694Z&Version=2013-08-01
     // Service=AWSECommerceService&Operation=ItemLookup&SubscriptionId=AKIAIAOHXIHGOHSC4TJA&AssociateTag=revieweer-20&ItemId=B01J24C0TI&IdType=ASIN&ResponseGroup=Images,ItemAttributes,Offers,Reviews
-    let query = [method, options.base, options.endpoint, paramsString];
     let queryString = 'AWSAccessKeyId=AKIAIAOHXIHGOHSC4TJA&AssociateTag=revieweer-20&IdType=ASIN&ItemId=B01J24C0TI&Operation=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers%2CReviews&Service=AWSECommerceService&Timestamp=2018-02-10T07%3A36%3A59.000Z'
-    console.log(queryString);
+    let query = [method, options.base, options.endpoint, paramsString];
+    console.log(query);
 
     const hmac = hmacSHA256(queryString, options.AmzSecretKey || initOptions.AmzSecretKey);
     let sig = base64.stringify(hmac);
