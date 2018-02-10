@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "dev": "babel-watch server.js",
-    "start": "npm run dist/serser.js",
-    // "testing": "babel-watch ./controllers/itemLookUp.js"
+    "start": "npm run dist/serser.js"
   },
   "author": "amazingandyyy",
   "license": "MIT",
