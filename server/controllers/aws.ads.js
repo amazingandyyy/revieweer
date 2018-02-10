@@ -17,31 +17,43 @@ class ADS {
     let url = 'https://';
     url += options.base || 'webservices.amazon.com/onca/xml';
     url += options.endpoint || '';
-    
+    let tm = new Date().toISOString()
     options.params = {
       AWSAccessKeyId: options.AWSAccessKeyId || initOptions.AWSAccessKeyId,
-      // SignatureMethod: options.SignatureMethod || 'HmacSHA256',
-      // SignatureVersion: options.SignatureVersion || '2',
       ...options,
-      Timestamp: options.Timestamp || new Date().toISOString()
+      Timestamp: tm
     }
+    console.log(options.params.Timestamp);
 
-    let queryString = qs.stringify(options.params);
-    console.log(queryString)
+    let paramsArr = Object.keys(options.params).map((param) => [param, options.params[param]]);
+    paramsArr.sort((a, b) =>  a[0] > b[0] ? 1 : -1)
+
+    let keys = [];
+    let vals = [];
+    paramsArr.forEach(tuple => {
+      keys.push(encodeURIComponent(tuple[0]));
+      vals.push(encodeURIComponent(tuple[1]));
+    });
+
+    let paramsString = keys.map((key, index) => {
+      return key + '=' + vals[index];
+    }).join("&");
+    // AWSAccessKeyId=AKIAIAOHXIHGOHSC4TJA&AssociateTag=revieweer-20&ItemId=B01J24C0TI&Operation=ItemLookup&ResponseGroup=Images%252CItemAttributes%252COffers%252CReviews&Service=AWSECommerceService&Timestamp=2018-02-10T07%3A37%3A41.694Z&Version=2013-08-01
+    // Service=AWSECommerceService&Operation=ItemLookup&SubscriptionId=AKIAIAOHXIHGOHSC4TJA&AssociateTag=revieweer-20&ItemId=B01J24C0TI&IdType=ASIN&ResponseGroup=Images,ItemAttributes,Offers,Reviews
+    let query = [method, options.base, options.endpoint, paramsString];
+    let queryString = 'AWSAccessKeyId=AKIAIAOHXIHGOHSC4TJA&AssociateTag=revieweer-20&IdType=ASIN&ItemId=B01J24C0TI&Operation=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers%2CReviews&Service=AWSECommerceService&Timestamp=2018-02-10T07%3A36%3A59.000Z'
+    console.log(queryString);
 
     const hmac = hmacSHA256(queryString, options.AmzSecretKey || initOptions.AmzSecretKey);
-    console.log(hmac)
     let sig = base64.stringify(hmac);
-    console.log(sig);
-    let sigString = sig.replace(/+/g, '%2B');
-    console.log(sigString);
-
+    let sigString = sig.replace(/\+/g, '%2B').replace(/=/g, '%3D');
+    console.log('sigString:::', sigString);
     let deliveryOption = {
       method: method.toString().toLowerCase(),
       url: url,
       params: {
         ...options.params,
-        Signature: sig
+        Signature: sigString
       }
     }
     // console.log(deliveryOption)
@@ -51,3 +63,6 @@ class ADS {
 }
 
 export default ADS;
+
+// /onca/xml?AWSAccessKeyId=AKIAIOSFODNN7EXAMPLE&AssociateTag=mytag-20&ItemId=0679722769&Operation=ItemLookup&ResponseGroup=Images%2CItemAttributes%2COffers%2CReviews&Service=AWSECommerceService&Timestamp=2014-08-18T12%3A00%3A00Z&Version=2013-08-01&Signature=j7bZM0LXZ9eXeZruTqWm2DIvDYVUU3wxPPpp%2BiXxzQc%3D
+// /onca/xml?AWSAccessKeyId=AKIAIAOHXIHGOHSC4TJA&AssociateTag=revieweer-20&ItemId=B01J24C0TI&Operation=ItemLookup&ResponseGroup=Images%252CItemAttributes%252COffers%252CReviews&Service=AWSECommerceService&Timestamp=2018-02-10T07:02:50.862Z&Version=2013-08-01&Signature=kGCUZMW7AVo2O07KYZYx%2BhIcbB%2FtmbjXDcS%2FOh4CpfI%3D

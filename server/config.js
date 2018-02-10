@@ -7,5 +7,7 @@ export default {
   URIDomain: process.env.NODE_ENV == 'production' ? 'https://www.amazingandyyy.com/revieweer/' : 'localhost:8080/',
   mongoose: {
     uri: process.env.MONGODB_URI || 'mongodb://localhost/revieweer'
-  }
+  },
+  AmzSecretKey: process.env.AmzSecretKey,
+  AWSAccessKeyId: process.env.AWSAccessKeyId
 }
