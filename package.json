@@ -12,7 +12,7 @@
     "precommit": "npm run test && build-client && npm version patch",
     "prepush": "npm run test && build-client && npm version patch",
     "build-client": "cd ./client && npm run build && cd ..",
-    "postinstall": "npm i && npm i --prefix server && npm run build --prefix server"
+    "postinstall": "npm i --prefix server && npm run build --prefix server"
   },
   "repository": {
     "type": "git",
