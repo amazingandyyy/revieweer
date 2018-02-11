@@ -4,6 +4,7 @@ import api from './api';
 
 const router = require('express').Router();
 
+router.get('/sandbox', (req, res)=>res.send({connection: true,timestamp: new Date().toUTCString()}));
 router.use('/api', Middlewares.loginRequired, api);
 router.post('/signupWithEmail', Authenticator.signupWithEmail);
 router.post('/verifyEmailToken', Authenticator.verifyEmailToken);
