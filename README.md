@@ -1,4 +1,4 @@
-# revieweer
+# revieweer [![Build Status](https://travis-ci.com/amazingandyyy/revieweer.svg?token=C7NJ8bT8vb8dmq7fMDsa&branch=master)](https://travis-ci.com/amazingandyyy/revieweer)
 MongoDB, Express, React/Redux, Node
 
 ## clone or download and send me PR(please)
