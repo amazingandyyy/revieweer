@@ -54,9 +54,9 @@ module.exports = {
         ]
     },
     plugins: [
-        new BundleAnalyzerPlugin({
-            analyzerMode: 'static'
-        }),
+        // new BundleAnalyzerPlugin({
+        //     analyzerMode: 'static'
+        // }),
         new HtmlWebpackPlugin({template: path.resolve(__dirname, 'src/index.html')}),
         new webpack.optimize.CommonsChunkPlugin({
             name: 'manifest',

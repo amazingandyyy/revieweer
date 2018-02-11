@@ -1,4 +1,4 @@
-# Revieweer
+# Revieweer [![Build Status](https://travis-ci.com/amazingandyyy/revieweer.svg?token=C7NJ8bT8vb8dmq7fMDsa&branch=master)](https://travis-ci.com/amazingandyyy/revieweer)
 [Revieweer](www.revieweer.com) Official Resource for Website and Server
 Explore, review, earn.
 
