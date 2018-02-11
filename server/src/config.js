@@ -1,5 +1,8 @@
 import dotenv from 'dotenv';
-dotenv.config();
+import path from 'path';
+if(process.env.NODE_ENV != 'production'){
+  dotenv.config({ path: path.resolve(__dirname, '.env') });
+}
 
 export default {
   jwt_secret: process.env.JWT_SECRET || 'jwt_secret_FJLK:',
@@ -8,6 +11,7 @@ export default {
   mongoose: {
     uri: process.env.MONGODB_URI || 'mongodb://localhost/revieweer'
   },
-  AmzSecretKey: process.env.AmzSecretKey,
-  AWSAccessKeyId: process.env.AWSAccessKeyId
+  AmzSecretKey: process.env.AmzSecretKey || '',
+  AWSAccessKeyId: process.env.AWSAccessKeyId || '',
+  sentryDSN: process.env.SENTRY_DSN || ''
 }

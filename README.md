@@ -1,6 +1,15 @@
 # Revieweer [![Build Status](https://travis-ci.com/amazingandyyy/revieweer.svg?token=C7NJ8bT8vb8dmq7fMDsa&branch=master)](https://travis-ci.com/amazingandyyy/revieweer)
-[Revieweer](www.revieweer.com) Official Resource for Website and Server
+[Revieweer](http://www.revieweer.com) Official Resource for Website and Server
+
+## What is Revieweer
+
 Explore, review, earn.
+
+- Explore products
+
+- Order, recieve and review
+
+- Earn money and compensation
 
 ## Feature
 
@@ -11,7 +20,7 @@ Explore, review, earn.
     - [x] login
     - [x] account dashboard
   - [ ] update
-    - [ ] basic name
+    - [x] basic name
     - [ ] forget password
   - [ ] delete
 - [ ] product CRUD
@@ -29,11 +38,19 @@ Explore, review, earn.
   - orders
   - pay out status
 - referral program
+  - rule
+  - graph
+  - referral code generator
 - insight dashboard
   - user ranking
   - user behavior
   - referral structure
 
+
 ## Author
 
 [Amazingandyyy](amazingandyyy.github.io)
+
+## License
+
+remain private before public leasing
