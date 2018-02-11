@@ -81,11 +81,11 @@ body {
             color: #dc3545;
             text-align: right;
         }
-        input.form-control:disabled {
+        input.form-control:not(.original-disable):disabled {
             border-color: rgba(0,0,0,0);
             background-color: rgba(#e9ecef, 0.1);
         }
-        input.form-control[readonly]{
+        input.form-control:not(.original-disable)[readonly]{
             border-color: rgba(0,0,0,0);
             background-color: rgba(#e9ecef, 0);
         }

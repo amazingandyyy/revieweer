@@ -87,7 +87,7 @@ class Account extends React.Component {
         <label>Email:</label>
         <Field
             disabled
-            readOnly
+            readonly
             type= 'email'
             name="email"
             component="input"

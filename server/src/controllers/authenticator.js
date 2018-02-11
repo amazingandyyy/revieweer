@@ -1,6 +1,5 @@
 import token from '../services/token';
 import User from '../models/user';
-import config from '../config';
 
 export default {
   signupWithEmail: (req, res, next) => {
@@ -10,9 +9,9 @@ export default {
       email: email
     }).then(user => {
       if (user) return next('403:Email is in use.');
-      const { URIDomain } = config;
+      const { origin } = req.headers;
       const tokenn = token.generateTokenWithEmail(email);
-      const deepLink = `${URIDomain}#signupVerification?token=${tokenn}&address=${email}`;
+      const deepLink = `${origin}/#signupVerification?token=${tokenn}&address=${email}`;
       res.send({email, link: deepLink});
     }).catch(next);
   },
@@ -33,7 +32,6 @@ export default {
       lastName
     } = req.body;
     token.verifyEmailToken(tokenParams, (err, address) => {
-      console.log(address);
       if (err || (address !== email) || (!email || !password)) return res.sendStatus(401);
       User
         .findOne({

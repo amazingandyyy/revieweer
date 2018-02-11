@@ -50,6 +50,10 @@ module.exports = {
                     },
                     },
                 ],
+            },
+            { 
+                test: /\.json$/, 
+                loader: 'json-loader' 
             }
         ]
     },
@@ -70,5 +74,11 @@ module.exports = {
         new CopyWebpackPlugin([
             { from: path.resolve(__dirname, './src/assets'), to: 'assets' }
         ])
-    ]
+    ],
+    node: {
+        console: true,
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
+    }
 }

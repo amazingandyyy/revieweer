@@ -34,7 +34,7 @@ class SignupVerification extends Component {
     }
     handleFormSubmit(data) {
         const {token, address} = this.state;
-        data.email = address
+        data.email = address;
         if (data.password == data.password2) {
             this.props.signUserUp(token, data);
         }else{
@@ -56,6 +56,7 @@ class SignupVerification extends Component {
         return (
             <CenterCard121>
                 <div className={this.renderBorder()}>
+                    <h4 className="card-header" />
                     <RevieweerLogo />
                     <div className='card-body'>
                         {this.renderLoading()}
@@ -73,10 +74,19 @@ class SignupVerification extends Component {
             return <div>
                 {emailTokenGood?(<div>
                 <h3 className='card-title text-center text-success'>Email Verified</h3>
-                <p>Please complete infomation to create your new Reveweer account of {address}.</p>
+                <p>Please complete infomation to create.</p>
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
                     <div className='form-group'>
-                        <label>First name:</label>
+                        <Field
+                            name='emailAddressShow'
+                            type='text'
+                            component='input'
+                            className='form-control form-control-lg original-disable'
+                            disabled
+                            readonly='true'
+                            />
+                    </div>
+                    <div className='form-group'>
                         <Field
                             name='firstName'
                             type='text'
@@ -86,7 +96,6 @@ class SignupVerification extends Component {
                             required/>
                     </div>
                     <div className='form-group'>
-                        <label>Last name:</label>
                         <Field
                             name='lastName'
                             type='text'
@@ -96,7 +105,6 @@ class SignupVerification extends Component {
                             required/>
                     </div>
                     <div className='form-group'>
-                        <label>Password:</label>
                         <Field
                             type='password'
                             name='password'
@@ -108,7 +116,6 @@ class SignupVerification extends Component {
                     </div>
                     
                     <div className='form-group'>
-                        <label>Comfirm Password:</label>
                         <Field
                             type='password'
                             name='password2'
@@ -118,7 +125,15 @@ class SignupVerification extends Component {
                             required/>
                     </div>
                     <div style={{'paddingTop': '30px'}}>
-                        <button type='submit' className='btn btn-lg btn-success btn-block'>Lets Do It!</button>
+                        <button type='submit' className='btn btn-lg btn-success btn-block'>Join Revieweer!</button>
+                    </div>
+                    <div className='form-group' style={{'fontSize': '0.7rem', 'opacity': '0.7', 'textAlign': 'center'}}>
+                        <hr style={{'margin': '30px auto 25px'}}/>
+                        To signup, you promise that:
+                        1. You are <b>older than 18 years</b> old.&nbsp;
+                        2. You have read and agreed with the <a><b>terms of use</b></a>&nbsp;
+                        3. You have read and understand the <a><b>privacy policy</b></a>&nbsp;
+                        4. Be nice and make this world a better to live in.
                     </div>
                     {!emailTokenGood&&<div style={{'paddingTop': '20px'}}>
                         <Link to='/signup' className='btn btn-link btn-block'>You can signup here again</Link>
@@ -146,9 +161,21 @@ function validate(formProps) {
 }
 
 function mapStateToProps({signupVerification}) {
+    const params = qs.parse(window.location.href.split('?')[1]);
+    const {address} = params;
+    console.log(address);
     const { emailTokenGood } = signupVerification;
-    return {
-        emailTokenGood
+    if(address){
+        return {
+            emailTokenGood,
+            initialValues: {
+                emailAddressShow: address
+            }
+        }
+    }else{
+        return {
+            emailTokenGood
+        }
     }
 }
 

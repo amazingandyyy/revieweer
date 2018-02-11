@@ -62,7 +62,7 @@ class SignupWithEmail extends React.Component {
             return(<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signupWithEmailReset}>
                 <div className="form-group">
                     <label>
-                        {emailStateError&&<span className='danger-hint'>{emailStateError}</span>}
+                        Email: {emailStateError&&<span className='danger-hint'>{emailStateError}</span>}
                     </label>
                     <Field
                         type= 'email'
