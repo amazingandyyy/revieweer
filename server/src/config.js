@@ -1,5 +1,8 @@
 import dotenv from 'dotenv';
-dotenv.config();
+import path from 'path';
+if(process.env != 'production'){
+  dotenv.config({ path: path.resolve(__dirname, '.env') });
+}
 
 export default {
   jwt_secret: process.env.JWT_SECRET || 'jwt_secret_FJLK:',
