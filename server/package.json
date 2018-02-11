@@ -22,6 +22,7 @@
     "jwt-simple": "^0.5.1",
     "mongoose": "^4.7.4",
     "qs": "^6.5.1",
+    "raven": "^2.4.1",
     "request": "^2.83.0"
   },
   "devDependencies": {

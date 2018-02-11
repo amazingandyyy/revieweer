@@ -2,7 +2,7 @@
   "name": "revieweer",
   "version": "2.1.1",
   "description": "www.revieweer.com Official Website and Server",
-  "main": "server.js",
+  "main": "server/dist/server.js",
   "scripts": {
     "test": "eslint .",
     "precommit": "npm run test && build-client && npm version patch",

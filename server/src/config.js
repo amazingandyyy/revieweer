@@ -8,6 +8,7 @@ export default {
   mongoose: {
     uri: process.env.MONGODB_URI || 'mongodb://localhost/revieweer'
   },
-  AmzSecretKey: process.env.AmzSecretKey,
-  AWSAccessKeyId: process.env.AWSAccessKeyId
+  AmzSecretKey: process.env.AmzSecretKey || '',
+  AWSAccessKeyId: process.env.AWSAccessKeyId || '',
+  sentryDSN: process.env.SentryDSN || ''
 }
