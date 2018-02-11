@@ -35,7 +35,7 @@ export function signUserIn(data) {
             })
             break
           case 500:
-            if (typeof message == 'string') dispatch({
+            if (typeof message == 'string' && message.length < 20) dispatch({
               type: SIGNIN_NORMAL_ERROR,
               payload: message
             })
