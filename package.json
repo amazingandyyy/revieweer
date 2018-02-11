@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "eslint .",
-    "precommit": "npm run test",
+    "precommit": "npm run test && build-client && npm version patch",
     "prepush": "npm run test && build-client && npm version patch",
     "build-client": "cd ./client && npm run build && cd .."
   },
