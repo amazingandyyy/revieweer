@@ -3,6 +3,9 @@
   "version": "2.1.1",
   "description": "www.revieweer.com Official Website and Server",
   "main": "server/dist/server.js",
+  "engines": {
+    "node": "8.5.0"
+  },
   "scripts": {
     "start": "NODE_ENV=production node server/dist/server.js",
     "test": "eslint .",
