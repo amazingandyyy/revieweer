@@ -6,7 +6,8 @@
   "scripts": {
     "test": "eslint .",
     "precommit": "npm run test",
-    "prepush": "cd ./client && npm run build && cd .. && npm run test"
+    "prepush": "npm run test && build-client",
+    "build-client": "cd ./client && npm run build && cd .."
   },
   "repository": {
     "type": "git",
