@@ -9,7 +9,7 @@ module.exports = merge(common, {
         new webpack.DefinePlugin({
             'process.env': {
                 'NODE_ENV': JSON.stringify('production'),
-                'SERVERURI': JSON.stringify('server.revieweer.com')
+                'SERVERURI': JSON.stringify('http://server.revieweer.com')
             }
         }),
         // new UglifyJsPlugin({

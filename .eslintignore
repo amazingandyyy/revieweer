@@ -1,9 +1,11 @@
 !.*
 node_modules/*
 client/node_modules/*
+
 server/node_modules/*
-client/dist/*
-server/lib/*
+server/docs/*
+server/dist/*
+
 docs/*
-readme.md
 assets/*
+readme.md
