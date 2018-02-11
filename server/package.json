@@ -2,12 +2,10 @@
   "name": "revieweer-server",
   "version": "1.0.1",
   "description": "",
-  "main": "dist/server.js",
+  "main": "build/server.js",
   "scripts": {
     "dev": "babel-watch src/server.js",
-    "start": "node dist/server.js",
-    "build": "rm -rf dist && npm run babel-build",
-    "babel-build": "babel src -d dist"
+    "start": "NODE_ENV=production node build/server.js"
   },
   "author": "amazingandyyy",
   "license": "MIT",
