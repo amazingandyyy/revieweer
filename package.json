@@ -7,7 +7,7 @@
     "node": "8.5.0"
   },
   "scripts": {
-    "start": "node start --prefix server",
+    "start": "NODE_ENV=production node ./server/build/server.js",
     "test": "eslint .",
     "precommit": "npm run test && build-client && npm version patch",
     "prepush": "npm run test",
