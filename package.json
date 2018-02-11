@@ -14,7 +14,7 @@
     "postinstall": "npm i --prefix server && npm run build",
     "build": "npm run build:server",
     "build:client": "cd ./client && npm run build && cd ..",
-    "build:server": "npm run clean:server && babel -d ./server/build ./server/src -s",
+    "build:server": "cd ./server && npm run build && cd ..",
     "clean:server": "rm -rf ./server/build && mkdir ./server/build"
   },
   "repository": {
