@@ -1,6 +1,6 @@
 import dotenv from 'dotenv';
 import path from 'path';
-if(process.env != 'production'){
+if(process.env.NODE_ENV != 'production'){
   dotenv.config({ path: path.resolve(__dirname, '.env') });
 }
 
@@ -13,5 +13,5 @@ export default {
   },
   AmzSecretKey: process.env.AmzSecretKey || '',
   AWSAccessKeyId: process.env.AWSAccessKeyId || '',
-  sentryDSN: process.env.SentryDSN || ''
+  sentryDSN: process.env.SENTRY_DSN || ''
 }
