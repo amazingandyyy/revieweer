@@ -11,7 +11,7 @@
     "test": "eslint .",
     "precommit": "npm run test && build-client && npm version patch",
     "prepush": "npm run test",
-    "postinstall": "npm i --prefix server && npm run build",
+    "postinstall": "NPM_CONFIG_PRODUCTION=false npm i --prefix server && npm run build",
     "build": "npm run build:server",
     "build:client": "cd ./client && npm run build && cd ..",
     "build:server": "cd ./server && npm run build && cd ..",
