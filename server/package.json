@@ -2,10 +2,11 @@
   "name": "revieweer-server",
   "version": "1.0.1",
   "description": "",
-  "main": "server.js",
+  "main": "dist/server.js",
   "scripts": {
-    "dev": "babel-watch server.js",
-    "start": "npm run dist/serser.js"
+    "dev": "babel-watch src/server.js",
+    "start": "npm run dist/serser.js",
+    "build": "babel src -d dist"
   },
   "author": "amazingandyyy",
   "license": "MIT",
@@ -29,6 +30,7 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "babel-watch": "^2.0.7",
     "morgan": "^1.9.0"
   }
