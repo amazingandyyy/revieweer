@@ -1,72 +1,85 @@
 import React, {Component} from 'react';
 import {reduxForm, Field} from 'redux-form';
 import { connect } from 'react-redux';
-import {signUserIn} from '../../actions';
-import CenterCard363 from '../centerCard363';
+import { Link } from 'react-router-dom';
+
+import {signUserIn,signinReset} from '../../actions';
+import CenterCard121 from '../CenterCard121';
+import RevieweerLogo from '../logo';
+
 class Signin extends Component {
-    renderAlert(){
-        if(this.props.errorMsg) {
-            return (
-                <div className="alert alert-warning">
-                    <strong>Oops! </strong>{this.props.errorMsg}
-                </div>
-            )
-        }
+    componentWillMount(){
+        this.props.signinReset();
+    }
+    componentWillUnmount(){
+        this.props.signinReset();
     }
     handleFormSubmit(d) {
-        this.props.signUserIn(d)
+        this.props.signUserIn(d);
+        this.props.change('password', '');
     }
     render() {
-        // console.log('this.props;: ', this.props);
-        const {handleSubmit} = this.props;
+        const {handleSubmit, emailStateError, passwordError, normalError, signinReset} = this.props;
         return (
-                <CenterCard363>
-                    <div className='card'>
+            <CenterCard121>
+                <div className='card'>
                     <h4 className="card-header">
-                        Sign In
+                        Welcome
                     </h4>
-                        <div className="card-body">
-                        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
-                            <div className="form-group">
-                                <label>Email:</label>
-                                <Field
-                                    type= 'email'
-                                    name="email"
-                                    component="input"
-                                    className="form-control form-control-lg"
-                                    placeholder="email@email.com"
-                                    required
-                                    />
-                            </div>
-                            <div className="form-group">
-                                <label>Password:</label>
-                                <Field
-                                    type= 'password'
-                                    name="password"
-                                    component="input"
-                                    className="form-control form-control-lg"
-                                    placeholder="your password"
-                                    required
-                                    />
-                            </div>
-                            {this.renderAlert()}
-                            <div style={{'paddingTop': '30px'}}>
-                                <button type="submit" className="btn btn-lg btn-light btn-block">Sign in</button>
-                            </div>
-                        </form>
+                    <RevieweerLogo />
+                    <div className="card-body">
+                    <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signinReset}>
+                        <div className="form-group">
+                            <label>
+                                Email: {emailStateError&&<span className='danger-hint'>{emailStateError}</span>}
+                            </label>
+                            <Field
+                                type= 'email'
+                                name="email"
+                                component="input"
+                                className={`form-control form-control-lg ${(emailStateError)?'is-invalid':''}`}
+                                placeholder="adddress"
+                                required
+                            />
                         </div>
+                        <div className="form-group">
+                            <label>
+                                Password: {passwordError&&<span className='danger-hint'>{passwordError}</span>}
+                            </label>
+                            <Field
+                                type= 'password'
+                                name="password"
+                                component="input"
+                                className={`form-control form-control-lg ${(passwordError)?'is-invalid':''}`}
+                                placeholder="password"
+                                required
+                            />
+                        </div>
+                        {normalError && <div className='alert alert-warning'>
+                            {normalError}
+                        </div>}
+                        <div style={{'paddingTop': '30px'}}>
+                            <button type="submit" className="btn btn-lg btn-light btn-block">Sign in</button>
+                        </div>
+                        <div style={{'paddingTop': '20px'}}>
+                            <Link to='/signup' className="btn btn-link btn-block">{"Don't have an account? Signup here."}</Link>
+                        </div>
+                    </form>
+                    <div className='card-bottom-balancer'></div>
                     </div>
-                </CenterCard363>
+                </div>
+            </CenterCard121>
         );
     }
 }
 
-function mapStateToProps({auth}) {
+function mapStateToProps({signin}) {
+    const {emailStateError, passwordError, normalError} = signin;
     return {
-        errorMsg: auth.error
+        emailStateError, passwordError, normalError
     }
 }
 
-export default connect(mapStateToProps, {signUserIn})(reduxForm({
+export default connect(mapStateToProps, {signinReset,signUserIn})(reduxForm({
     form: 'signin'
 })(Signin));

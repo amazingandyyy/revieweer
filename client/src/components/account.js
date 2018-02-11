@@ -1,25 +1,25 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
-import {tryConnect, getUserProfile, updateUserProfile} from '../actions';
-import CenterCard363 from './centerCard363';
+import {serverConnect, getUserProfile, updateUserProfile} from '../actions';
+import CenterCard121 from './CenterCard121';
 
-class Account extends Component {
-  constructor(){
-    super();
+class Account extends React.Component {
+  constructor(props){
+    super(props);
     this.state = {
       editting: false
     }
   }
-  componentWillMount() {
-    this.props.tryConnect();
+  componentWillMount(){
+    this.props.serverConnect();
     this.props.getUserProfile();
   }
   render() {
     let {status, profile} = this.props;
     return (
-      <CenterCard363>
-        <div className='card border-secondary'>
+      <CenterCard121>
+        <div className='card'>
         <h4 className="card-header">
           Account
         </h4>
@@ -28,7 +28,7 @@ class Account extends Component {
           {profile && this.renderProfileForm()}
         </div>
         </div>
-      </CenterCard363>
+      </CenterCard121>
     );
   }
   handleFormSubmit(d){
@@ -45,7 +45,7 @@ class Account extends Component {
     const {submitting, dirty} = this.props;
     if(this.state.editting){
       return (<div className="form-group">
-        <button disabled={!dirty} type="submit" className="btn-lg btn btn-light btn-block">Save Change</button>
+        <button disabled={!dirty} type="submit" className="btn-lg btn btn-success btn-block">Save Change</button>
         <button disabled={submitting} className="btn-lg btn btn-secondary btn-block" onClick={this.cancelForm.bind(this)}>Cancel</button>
       </div>)
     }else{
@@ -92,7 +92,7 @@ class Account extends Component {
             name="email"
             component="input"
             className="form-control form-control-lg"
-            placeholder="sample@email.com"
+            placeholder="your email adddress"
             required
             />
       </div>
@@ -117,23 +117,25 @@ class Account extends Component {
   }
 }
 
-function mapStateToProps({auth, user}) {
-  return user.profile?{
-      status: auth.status,
-      profile: user.profile,
+function mapStateToProps({server, profile, auth}) {
+  return profile.name?{
+      status: server.connection,
+      profile: profile,
       initialValues: {
-        email: user.profile.email,
-        firstName: user.profile.name.first,
-        lastName: user.profile.name.last
+        email: profile.email,
+        firstName: profile.name.first,
+        lastName: profile.name.last
       },
-      updateProfileFailMsg: user.updateProfileFailMsg
-  }:{
-    status: auth.status,
-    profile: user.profile
+      updateProfileFailMsg: profile.updateProfileFailMsg,
+      isLoggedin: auth.authentication
+    }:{
+      status: server.connection,
+      profile: profile,
+      isLoggedin: auth.authentication
   }
 }
 
 
-export default connect(mapStateToProps, {tryConnect, getUserProfile, updateUserProfile})(reduxForm({
+export default connect(mapStateToProps, {serverConnect, getUserProfile, updateUserProfile})(reduxForm({
   form: 'profileUpdate',
 })(Account));

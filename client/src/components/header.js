@@ -1,14 +1,25 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
 import { NavLink } from 'react-router-dom';
+import {getUserProfile} from '../actions';
 
 class Header extends Component {
+    componentDidMount(){
+        this.props.getUserProfile();
+    }
     renderSignButton(){
-        if (this.props.authenticated){
+        const {isLoggedIn, profile} = this.props;
+        if (isLoggedIn && profile.name){
             return (
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/signout">Sign out</NavLink>
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {profile.name.first}
+                    </a>
+                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <NavLink className="dropdown-item" to="/account">Account</NavLink>
+                    <div className="dropdown-divider"></div>
+                    <NavLink className="dropdown-item" to="/signout">Log out</NavLink>
+                    </div>
                 </li>
             )
         }else{
@@ -27,20 +38,17 @@ class Header extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-sm navbar-light bg-light">
-                <NavLink className="navbar-brand" to="/">MERN</NavLink>
+                <NavLink className="navbar-brand" to="/">Revieweer</NavLink>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="nav navbar-nav">
+                    <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/public">Public</NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink className="nav-link" to="/account">Account</NavLink>
+                            <NavLink className="nav-link" to="/explore">Explore</NavLink>
                         </li>
                     </ul>
-                    <ul className="nav navbar-nav">
+                    <ul className="navbar-nav">
                         {this.renderSignButton()}
                     </ul>
                 </div>
@@ -49,10 +57,11 @@ class Header extends Component {
     }
 }
 
-function mapStateToProps({auth}){
+function mapStateToProps({auth, profile}){
     return {
-        authenticated: auth.authenticated
+        isLoggedIn: auth.authenticated,
+        profile: profile
     }
 }
 
-export default connect(mapStateToProps, actions)(Header)
+export default connect(mapStateToProps, {getUserProfile})(Header)

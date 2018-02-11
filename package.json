@@ -1,19 +1,33 @@
 {
   "name": "revieweer",
-  "version": "2.0.1",
-  "description": "CRUD in MongoDB, Express, React/Redux, Node",
-  "main": "index.js",
+  "version": "2.1.1",
+  "description": "www.revieweer.com Official Website and Server",
+  "main": "server/build/server.js",
+  "engines": {
+    "node": "8.5.0"
+  },
   "scripts": {
-    "test": "eslint --fix src/",
-    "precommit": "npm test",
-    "prepush": "npm test"
+    "start": "NODE_ENV=production node ./server/build/server.js",
+    "test": "eslint .",
+    "precommit": "npm run test && build-client && npm version patch",
+    "prepush": "npm run test",
+    "postinstall": "NPM_CONFIG_PRODUCTION=false npm i --prefix server && npm run build",
+    "build": "npm run build:server",
+    "build:client": "cd ./client && npm run build && cd ..",
+    "build:server": "cd ./server && npm run build && cd ..",
+    "clean:server": "rm -rf ./server/build && mkdir ./server/build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amazingandyyy/revieweer.git"
   },
   "keywords": [
-    "react"
+    "marketing",
+    "seo",
+    "ecommerce",
+    "online shopping",
+    "review",
+    "referral"
   ],
   "author": "Amazingandyyy <amazingandyyy@gmail.com> (Andy Chen)",
   "license": "MIT",
@@ -33,6 +47,8 @@
     "eslint-plugin-react": "^7.5.1",
     "eslint-plugin-security": "^1.4.0",
     "eslint-plugin-standard": "^3.0.1",
-    "husky": "^0.14.3"
+    "husky": "^0.14.3",
+    "webpack": "^3.11.0",
+    "webpack-bundle-analyzer": "^2.10.0"
   }
 }

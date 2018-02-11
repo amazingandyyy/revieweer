@@ -1,13 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
+
+* { 
+    font-family: 'Open Sans', sans-serif;
+    text-rendering: optimizeLegibility;
+    @media (max-width: 543px) {}
+}
+html.touch * {
+    text-rendering: optimizeSpeed; 
+}
 body {
     background-color: white;
     .cointainer {
       padding: 10px;
       padding-top: 30px;
+      padding-bottom: 50px;
+    }
+    .card{
+        margin: 0px;
+        padding-bottom: 30px;
+        border-radius: 0.5rem;
+        border: 3px solid rgba(0,0,0,0.03);
+        // box-shadow: 0px 10px 20px -3px rgba(0,0,0,0.05);
+        .card-bottom-balancer {
+            // border: 3px solid rgba(0,0,0,0.03);
+            width: 50px;
+            margin: 30px auto;
+            // border-radius: 10rem;
+            // background: url('/assets/logo-grey-sm.png') no-repeat center center;
+        }
+        @media (max-width: 543px) {
+            marginTop:-1px; 
+            border: 0px solid rgba(0,0,0,.125);
+            box-shadow: 0px 10px 0px 0px rgba(0,0,0,0);
+        }
+
+        .card-header:first-child {
+            border-radius: 0px;
+        }
+        .card-header{
+            background-color: rgba(#f8f9fa, 0);
+            border-bottom: none;
+            padding: 1.25rem 1.25rem;
+        }
     }
     nav {
+        .nav-link{
+            opacity: 0.8;
+            &.active{
+                opacity: 1;
+                font-weight: 500;
+                color: #F5A623;
+            }
+        }
+        
         .navbar-toggler {
             outline: none;
-            border: none;   
+            border: none;
+        }
+        .dropdown-menu{
+            right: 10px;
+            left: -100px;
         }
     }
     .row{
@@ -16,8 +68,80 @@ body {
     .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
         padding: 0px 0px;
     }
+    form {
+        label {
+            width: 100%;
+        }
+        span.danger-hint {
+            width: 60%;
+            display: inline-block;
+            float: right;
+            margin-top: .25rem;
+            font-size: .875rem;
+            color: #dc3545;
+            text-align: right;
+        }
+        input.form-control:disabled {
+            border-color: rgba(0,0,0,0);
+            background-color: rgba(#e9ecef, 0.1);
+        }
+        input.form-control[readonly]{
+            border-color: rgba(0,0,0,0);
+            background-color: rgba(#e9ecef, 0);
+        }
+    }
     button.btn{
         cursor: pointer;
+    }
+    
+    .btn.btn-dark.early-access{
+        transition: .1s all ease-in-out;
+        overflow: hidden;
+        position: relative;
+        height: 50px;
+        width: 200px;
+    
+        &.go-dashboard:hover {
+            color: #F5A623;
+        }
+    
+        span.btn-tag {
+            transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
+            position: absolute;
+            left: 25px;
+            top: 8px;
+        }
+        span.login-hint {
+            transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
+            position: absolute;
+            right: 25px;
+            bottom: -50px;
+        }
+    
+        &:hover{
+            span.btn-tag {
+                transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
+                position: absolute;
+                left: 25px;
+                top: -30px;
+            }
+            span.login-hint {
+                color: #F5A623;
+                transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
+                position: absolute;
+                right: 25px;
+                bottom: 8px;
+            }
+        }
+    }
+    .centercard121{
+        .row{
+            padding: 30px 10px;
+            @media (max-width: 543px) {
+                padding: 0px 0px;
+            }
+            
+        }   
     }
 }
 
