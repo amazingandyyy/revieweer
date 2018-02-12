@@ -8,6 +8,27 @@ html.touch * {
 }
 body {
     background-color: white;
+    .homescreen {
+        background: rgba(0,0,0,0.02);
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        .homescreen-logo {
+           width: 60%;
+           max-width: 200px;
+        }
+        .version-info{
+            font-size: 0.7rem;
+            opacity: 0.6;
+            position: absolute;
+            margin: auto;
+            bottom: 20px;
+            text-align: center;
+        }
+    }
     .cointainer {
       padding: 10px;
       padding-top: 30px;

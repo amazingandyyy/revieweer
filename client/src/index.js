@@ -5,7 +5,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import reduxThunk from 'redux-thunk';
 
-import App from './components/app';
+import Layout from './components/layout';
 import Welcome from './components/welcome';
 import Explore from './components/explore';
 import Account from './components/account';
@@ -13,6 +13,7 @@ import Signin from './components/auth/signin';
 import SignupWithEmail from './components/auth/signupWithEmail';
 import SignupVerification from './components/auth/signupVerification';
 import Signout from './components/auth/signout'
+import Homescreen from './homescreen'
 import RequireAuth from './components/auth/require_auth';
 import reducers from './reducers';
 
@@ -24,17 +25,18 @@ const store = createStoreWithMiddleware(reducers)
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter hashType="noslash">
-      <App>
         <Switch>
-          <Route exact path="/" component= {Welcome} />
-          <Route path="/explore" component= {Explore} />
-          <Route path="/account" component= {RequireAuth(Account)} />
-          <Route path="/signup" component= {SignupWithEmail} />
-          <Route path="/signupVerification" component= {SignupVerification} />
-          <Route path="/signin" component= {Signin} />
-          <Route path="/signout" component= {Signout} />
+          <Route exact path="/homescreen" component= {Homescreen} />
+          <Layout>
+            <Route exact path="/" component= {Welcome} />
+            <Route path="/explore" component= {Explore} />
+            <Route path="/account" component= {RequireAuth(Account)} />
+            <Route path="/signup" component= {SignupWithEmail} />
+            <Route path="/signupVerification" component= {SignupVerification} />
+            <Route path="/signin" component= {Signin} />
+            <Route path="/signout" component= {Signout} />
+          </Layout>
         </Switch>
-      </App>
     </HashRouter>
   </Provider>
   , document.getElementById('root'));
