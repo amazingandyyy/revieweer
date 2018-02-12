@@ -75,7 +75,7 @@ module.exports = {
             minChunks: Infinity
         }),
         new ExtractTextPlugin({
-            filename: 'styles/style.css'
+            filename: 'styles/style.[hash].css'
         }),
         new CopyWebpackPlugin([
             { from: path.resolve(__dirname, './src/assets'), to: 'assets' }
