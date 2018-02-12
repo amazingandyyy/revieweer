@@ -83,7 +83,7 @@ class SignupVerification extends Component {
                             component='input'
                             className='form-control form-control-lg original-disable'
                             disabled
-                            readonly='true'
+                            readOnly='true'
                             />
                     </div>
                     <div className='form-group'>

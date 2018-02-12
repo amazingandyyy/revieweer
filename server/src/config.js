@@ -13,5 +13,9 @@ export default {
   },
   AmzSecretKey: process.env.AmzSecretKey || '',
   AWSAccessKeyId: process.env.AWSAccessKeyId || '',
-  sentryDSN: process.env.SENTRY_DSN || ''
+  sentryDSN: process.env.SENTRY_DSN || '',
+  admin: {
+    passcode: process.env.adminKey,
+    list: ['amazingandyyy@gmail.com']
+  }
 }

@@ -6,7 +6,7 @@ import request from 'request';
 //     console.log(product)
 //   }).catch(e=>console.log(e));
 
-function itemLookUp(uri){
+export function itemLookUp(uri){
   return new Promise((resolve, reject) => {
     if(uri.search('/B0') < 0) return reject('No Product Id Found');
     let productId = 'B0' + uri.split('/B0')[1].split('/')[0];
@@ -34,5 +34,3 @@ function itemLookUp(uri){
         })
     })
 }
-
-export default itemLookUp;
