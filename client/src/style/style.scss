@@ -8,8 +8,11 @@ html.touch * {
 }
 body {
     background-color: white;
+    .statusbar-overlay {
+        background: #333;
+    }
     .homescreen {
-        background: rgba(0,0,0,0.02);
+        background: white;
         width: 100vw;
         height: 100vh;
         display: flex;

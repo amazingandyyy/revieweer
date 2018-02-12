@@ -7,8 +7,9 @@
   "theme_color": "#333333",
   "icons": [
     {
-      "src": "assets/logo-sm.png",
-      "sizes": "143*143"
+      "src": "assets/logo-192.png",
+      "sizes": "192*192"
     }
-  ]
+  ],
+  "background_color": "white"
 }
