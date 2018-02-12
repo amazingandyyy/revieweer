@@ -1,0 +1,14 @@
+{
+  "name": "Revieweer Beta",
+  "short_name": "Revieweer",
+  "lang": "en-US",
+  "start_url": "/#homescreen",
+  "display": "standalone",
+  "theme_color": "#333333",
+  "icons": [
+    {
+      "src": "assets/logo-sm.png",
+      "sizes": "143*143"
+    }
+  ]
+}
