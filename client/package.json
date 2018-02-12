@@ -7,9 +7,9 @@
     "start": "serve ../docs",
     "dev": "webpack-dev-server --open --config webpack.dev.js",
     "build": "rm -rf ../docs && webpack -p --config webpack.prod.js --optimize-minimize && npm run copy-files",
-    "create-cname": "touch ../docs/CNAME && echo \"https://www.revieweer.com\" >> ../docs/CNAME ",
     "copy-files": "npm run create-cname",
-    "copy-manifest": ""
+    "create-cname": "touch ../docs/CNAME && echo \"https://www.revieweer.com\" >> ../docs/CNAME ",
+    "copy-manifest": "cp src/manifest-app.json ../docs"
   },
   "author": "amazingandyyy",
   "license": "MIT",
