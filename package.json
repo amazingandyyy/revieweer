@@ -11,11 +11,11 @@
     "test": "eslint .",
     "precommit": "npm run test",
     "prepush": "npm run test",
-    "postinstall": "NPM_CONFIG_PRODUCTION=false npm i --prefix server && NPM_CONFIG_PRODUCTION=false npm i --prefix client && npm run build:server",
-    "release": "git pull && npm run test && npm run build && git add . && git commit -m 'deploy' && git push origin master",
+    "postinstall": "npm run build:server",
+    "release": "git pull && npm run test && npm run build && git add . && git commit -m 'deploy' && git push origin master && npm version patch",
     "build": "npm run build:server && npm run build:client",
-    "build:client": "cd ./client && npm run build && cd ..",
-    "build:server": "cd ./server && npm run build && cd .."
+    "build:client": "NPM_CONFIG_PRODUCTION=false npm i --prefix server && cd ./client && npm run build && cd ..",
+    "build:server": "NPM_CONFIG_PRODUCTION=false npm i --prefix client && cd ./server && npm run build && cd .."
   },
   "repository": {
     "type": "git",
