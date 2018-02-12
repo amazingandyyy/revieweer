@@ -9,13 +9,13 @@
   "scripts": {
     "start": "NODE_ENV=production node ./server/build/server.js",
     "test": "eslint .",
-    "precommit": "npm run test && build-client && npm version patch",
+    "precommit": "npm run test && build-client",
     "prepush": "npm run test",
     "postinstall": "NPM_CONFIG_PRODUCTION=false npm i --prefix server && npm run build",
-    "build": "npm run build:server",
+    "release": "git pull && npm run test && npm run build && git add . && git commit -m 'deploy' && git push origin master",
+    "build": "npm run build:server && npm run:client",
     "build:client": "cd ./client && npm run build && cd ..",
-    "build:server": "cd ./server && npm run build && cd ..",
-    "clean:server": "rm -rf ./server/build && mkdir ./server/build"
+    "build:server": "cd ./server && npm run build && cd .."
   },
   "repository": {
     "type": "git",
