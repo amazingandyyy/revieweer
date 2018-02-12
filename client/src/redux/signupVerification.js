@@ -3,6 +3,10 @@ import request from './request';
 import {AUTH_USER} from './auth';
 const CHECK_EMAIL_TOKEN_GOOD = 'CHECK_EMAIL_TOKEN_GOOD';
 const CHECK_EMAIL_TOKEN_BAD = 'CHECK_EMAIL_TOKEN_BAD';
+const SIGNUP_EMAIL_BAD = 'SIGNUP_EMAIL_BAD';
+const SIGNUP_EMAIL_RESET = 'SIGNUP_EMAIL_RESET';
+
+export const signupEmailReset = () => (dispatch) => dispatch({type: SIGNUP_EMAIL_RESET});
 
 export function signUserUp(token, user) {
   return function (dispatch) {
@@ -12,8 +16,8 @@ export function signUserUp(token, user) {
           .then(res => {
               dispatch({type: AUTH_USER, payload: res.data.token})
           })
-          .catch(error => {
-              console.log(error);
+          .catch(err => {
+            dispatch({type: SIGNUP_EMAIL_BAD, payload: err})
           });
   }
 }
@@ -39,15 +43,21 @@ export function verifyEmailToken(token, address) {
 }
 
 let INITIAL_STATE = {
-  emailTokenGood: null
+  emailTokenGood: null,
+  authUserError: null
 }
 
 export function signupVerificationReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case CHECK_EMAIL_TOKEN_GOOD:
-      return { ...state, emailTokenGood: true }
+        window.location = '/#account';
+        return { ...state, emailTokenGood: true }
     case CHECK_EMAIL_TOKEN_BAD:
-      return { ...state, emailTokenGood: false }
+        return { ...state, emailTokenGood: false }
+    case SIGNUP_EMAIL_BAD:
+        return { ...state, authUserError: action.payload }
+    case SIGNUP_EMAIL_RESET:
+        return INITIAL_STATE
     default:
       return state
   }

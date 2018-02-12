@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import qs from 'qs';
 
-import {signUserUp,verifyEmailToken} from '../../actions';
+import {signUserUp,verifyEmailToken,signupEmailReset} from '../../actions';
 import CenterCard121 from '../CenterCard121';
 import RevieweerLogo from '../logo';
 
@@ -19,12 +19,16 @@ class SignupVerification extends Component {
             address: ''
         }
     }
+    componentWillUnmount(){
+        this.props.signupEmailReset();
+    }
     componentWillMount(){
         const params = qs.parse(this.context.router.history.location.search.split('?')[1])
         const {token, address} = params;
         this.setState({
             token, address
         })
+        this.props.signupEmailReset();
         this.props.verifyEmailToken(token, address);
     }
     componentWillReceiveProps(n, o){
@@ -67,7 +71,7 @@ class SignupVerification extends Component {
     }
     renderLoading(){
         const {address} = this.state;
-        const {handleSubmit, emailTokenGood} = this.props;
+        const {handleSubmit, emailTokenGood, authUserError,signupEmailReset} = this.props;
         if(this.state.loading){
             return <div>Loading</div>
         }else{
@@ -75,7 +79,7 @@ class SignupVerification extends Component {
                 {emailTokenGood?(<div>
                 <h3 className='card-title text-center text-success'>Email Verified</h3>
                 <p>Please complete infomation to create.</p>
-                <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signupEmailReset}>
                     <div className='form-group'>
                         <Field
                             name='emailAddressShow'
@@ -124,6 +128,9 @@ class SignupVerification extends Component {
                             placeholder='your password again'
                             required/>
                     </div>
+                    {authUserError && <div className='alert alert-warning'>
+                        {authUserError}
+                    </div>}
                     <div style={{'paddingTop': '30px'}}>
                         <button type='submit' className='btn btn-lg btn-success btn-block'>Join Revieweer!</button>
                     </div>
@@ -163,18 +170,19 @@ function validate(formProps) {
 function mapStateToProps({signupVerification}) {
     const params = qs.parse(window.location.href.split('?')[1]);
     const {address} = params;
-    console.log(address);
-    const { emailTokenGood } = signupVerification;
+    const { emailTokenGood, authUserError } = signupVerification;
     if(address){
         return {
             emailTokenGood,
+            authUserError,
             initialValues: {
                 emailAddressShow: address
             }
         }
     }else{
         return {
-            emailTokenGood
+            emailTokenGood,
+            authUserError
         }
     }
 }
@@ -183,7 +191,7 @@ SignupVerification.contextTypes = {
     router: PropTypes.object
   }
 
-export default connect(mapStateToProps, {signUserUp, verifyEmailToken})(reduxForm({
+export default connect(mapStateToProps, {signUserUp, verifyEmailToken,signupEmailReset})(reduxForm({
     form: 'signup',
     validate 
 })(SignupVerification));

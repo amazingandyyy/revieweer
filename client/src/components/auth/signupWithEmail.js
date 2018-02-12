@@ -18,9 +18,6 @@ class SignupWithEmail extends React.Component {
     componentWillUnmount(){
         this.props.signupWithEmailReset();
     }
-    componentDidUpdate(){
-        // console.log(this.context.router);
-    }
     renderAlert(error) {
         let errorMsg = error || this.props.errorMsg
         if (this.props.errorMsg) {

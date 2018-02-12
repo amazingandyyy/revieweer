@@ -71,14 +71,16 @@ body {
                 color: #F5A623;
             }
         }
-        
         .navbar-toggler {
             outline: none;
             border: none;
         }
         .dropdown-menu{
-            right: 10px;
             left: -100px;
+            top: -100px;
+        }
+        .dropdown-toggle::after {
+            transform: rotate(180deg);
         }
     }
     .row{
