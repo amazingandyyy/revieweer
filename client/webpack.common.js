@@ -19,6 +19,12 @@ module.exports = {
         filename: "js/[name].[chunkhash].js",
         publicPath: '/'
     },
+    resolve: {
+        "alias": {
+        "react": "preact-compat",
+        "react-dom": "preact-compat"
+        }
+    },
     module: {
         rules: [
             {

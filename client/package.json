@@ -6,8 +6,10 @@
   "scripts": {
     "start": "serve ../docs",
     "dev": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "rm -rf ../docs && webpack -p --config webpack.prod.js --optimize-minimize && npm run create-cname",
-    "create-cname": "touch ../docs/CNAME && echo \"https://www.revieweer.com\" >> ../docs/CNAME "
+    "build": "rm -rf ../docs && webpack -p --config webpack.prod.js --optimize-minimize && npm run copy-files",
+    "create-cname": "touch ../docs/CNAME && echo \"https://www.revieweer.com\" >> ../docs/CNAME ",
+    "copy-files": "npm run create-cname",
+    "copy-manifest": ""
   },
   "author": "amazingandyyy",
   "license": "MIT",
@@ -43,6 +45,8 @@
     "axios": "^0.17.1",
     "cheerio": "^1.0.0-rc.2",
     "lodash": "^4.17.4",
+    "preact": "^8.2.7",
+    "preact-compat": "^3.18.0",
     "prop-types": "^15.6.0",
     "qs": "^6.5.1",
     "querystring": "^0.2.0",
