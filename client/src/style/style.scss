@@ -11,6 +11,12 @@ body {
     .statusbar-overlay {
         background: #333;
     }
+    .jumbotron {
+        margin-bottom: 0px;
+        @media (min-width: 767px) { 
+            text-align: center;
+        }
+    }
     .homescreen {
         background: white;
         width: 100vw;
@@ -19,7 +25,7 @@ body {
         justify-content: center;
         align-items: center;
         position: relative;
-        .homescreen-logo {
+        .logo-slogon {
            width: 60%;
            max-width: 200px;
         }

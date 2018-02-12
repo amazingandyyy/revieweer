@@ -38,7 +38,7 @@ class Header extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand fixed-bottom navbar-light bg-light">
-                <NavLink className="navbar-brand" to="/">Revieweer</NavLink>
+                <a className="navbar-brand" href="/">Revieweer</a>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">

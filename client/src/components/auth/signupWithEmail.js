@@ -67,11 +67,12 @@ class SignupWithEmail extends React.Component {
                         component="input"
                         className={`form-control form-control-lg ${(emailStateError)?'is-invalid':''}`}
                         placeholder="your email adddress"
+                        required
                     />
                 </div>
                 {this.renderAlert()}
                 <div>
-                    <button type="submit" disabled={submitting} className="btn btn-lg btn-light btn-block">Create</button>
+                    <button type="submit" disabled={submitting} className="btn btn-lg btn-light btn-block">Send Me Activication</button>
                 </div>
                 <div style={{'paddingTop': '20px'}}>
                     <Link to='/signin' className="btn btn-link btn-block">Have an account? signin here</Link>
