@@ -9,9 +9,9 @@
   "scripts": {
     "start": "NODE_ENV=production node ./server/build/server.js",
     "test": "eslint .",
-    "precommit": "npm run test && build-client",
+    "precommit": "npm run test",
     "prepush": "npm run test",
-    "postinstall": "NPM_CONFIG_PRODUCTION=false npm i --prefix server && npm run build",
+    "postinstall": "NPM_CONFIG_PRODUCTION=false npm i --prefix server && NPM_CONFIG_PRODUCTION=false npm i --prefix client && npm run build:server",
     "release": "git pull && npm run test && npm run build && git add . && git commit -m 'deploy' && git push origin master",
     "build": "npm run build:server && npm run build:client",
     "build:client": "cd ./client && npm run build && cd ..",
