@@ -13,7 +13,7 @@
     "prepush": "npm run test",
     "postinstall": "NPM_CONFIG_PRODUCTION=false npm i --prefix server && npm run build",
     "release": "git pull && npm run test && npm run build && git add . && git commit -m 'deploy' && git push origin master",
-    "build": "npm run build:server && npm run:client",
+    "build": "npm run build:server && npm run build:client",
     "build:client": "cd ./client && npm run build && cd ..",
     "build:server": "cd ./server && npm run build && cd .."
   },
