@@ -16,7 +16,7 @@ import Signout from './components/auth/signout'
 import RequireAuth from './components/auth/require_auth';
 import reducers from './reducers';
 
-import '../style/style.scss'
+import './style/style.scss'
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
 const store = createStoreWithMiddleware(reducers)
