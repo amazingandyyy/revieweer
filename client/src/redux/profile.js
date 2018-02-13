@@ -17,7 +17,6 @@ export function getUserProfile() {
             })
             .catch(error => {
                 dispatch({ type: UNAUTH_USER })
-                console.log(error.response.data)
             });
     }
 }
