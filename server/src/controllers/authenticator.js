@@ -1,4 +1,4 @@
-import {token} from '../services';
+import {token, SES} from '../services';
 import User from '../models/user';
 
 export default {
@@ -12,7 +12,34 @@ export default {
       const { origin } = req.headers;
       const tokenn = token.generateTokenWithEmail(email);
       const deepLink = `${origin}/#signupVerification?token=${tokenn}&address=${email}`;
-      res.send({email, link: deepLink});
+      const mailObj = {
+        to: email,
+        subject: '[Revieweer]Welcome and Account Activation.',
+        message: `<b>Welcome to Revieweer,
+        </b>
+        If you requested this activation, please go to the following URL to confirm this email and continue to use this email address as your Revieweer account username,
+        <br/>
+        <a href='${deepLink}' target='_blank'>${deepLink}</a>
+        <br/> 
+        Enjoy the benefits of being a revieweer:
+        <br/>
+        <ul>
+          <li><b>Explore:</b> explore new products to try.</li>
+          <li><b>Review:</b> amazing review with photo to help business grow</li>
+          <li><b>Earn:</b> we pay you up to 100% cashback + cash rewards</li>
+        </ul>
+        <br/>
+        We are looking forward to <b>your experience</b>. Please feel free to reach out to us via team@revieweer.com
+        <br/>
+        The best,<br/>
+        <b>Revieweer Team</b>
+        `
+      };
+      SES.send(mailObj).then(email=>{
+        res.send({email});
+      }).catch((err)=>{
+        next('500:Email is bad.')
+      });
     }).catch(next);
   },
   verifyEmailToken: (req, res, next) => {

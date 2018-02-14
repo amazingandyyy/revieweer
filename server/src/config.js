@@ -19,7 +19,7 @@ export default {
     list: ['amazingandyyy@gmail.com']
   },
   aws: {
-    AccessKeyId: process.env.AWSAccessKeyId,
-    SecretAccessKey: process.env.AWSSecretAccessKey
+    accessKeyId: process.env.AWSAccessKeyId,
+    secretKey: process.env.AWSSecretKey
   }
 }

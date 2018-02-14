@@ -72,7 +72,7 @@ class SignupWithEmail extends React.Component {
                 </div>
                 {this.renderAlert()}
                 <div>
-                    <button type="submit" disabled={submitting} className="btn btn-lg btn-light btn-block">Send Me Activication</button>
+                    <button type="submit" disabled={submitting} className="btn btn-lg btn-light btn-block">Send Me Activation</button>
                 </div>
                 <div style={{'paddingTop': '20px'}}>
                     <Link to='/signin' className="btn btn-link btn-block">Have an account? signin here</Link>
