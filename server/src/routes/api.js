@@ -1,4 +1,5 @@
 import Authenticator from '../controllers/authenticator';
+import Product from '../controllers/product';
 import admin from './admin';
 import Middleware from './middlewares';
 
@@ -15,6 +16,8 @@ router.get('/userProfile', (req, res)=>{
 })
 
 router.post('/userProfile', Authenticator.updateProfile);
+router.post('/createOneProductFromAmazonLink', Product.createOneProductFromAmazonLink);
+router.get('/getOneProductFromRevieweer/:id', Product.getOneProductFromRevieweer);
 
 router.use(`/admin`, Middleware.loginRequired, Middleware.adminReuired, admin);
 
