@@ -40,8 +40,9 @@ export const createOneProductFromAmazonLinkToRevieer = (link) => {
       const {imageURL,title,link,price,seller,productId} = p;
       const product = new Product({
         basic_info: {
-          imageURL,title,link,price,seller,productId
-        }
+          imageURL,title,link,price,seller
+        },
+        productId
       });
       product.save()
       .then(savedProduct => {

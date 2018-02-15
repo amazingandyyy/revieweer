@@ -17,7 +17,7 @@
     "build:client": "cd ./client && npm run build && cd ..",
     "build:server": "cd ./server && npm run build && cd ..",
     "dev:server": "npm run dev --prefix server",
-    "dev:client": "npm run dev --prefix client"
+    "dev:client": "cd ./server && npm run dev"
   },
   "repository": {
     "type": "git",

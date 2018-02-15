@@ -7,11 +7,11 @@ const productSchema = new mongoose.Schema({
         title: String,
         link: String,
         price: Number,
-        seller: String,
-        productId: {
-            type: String,
-            unique: true
-        }
+        seller: String
+    },
+    productId: {
+        type: String,
+        unique: true
     },
     // buyer_list : [{
     //     type: mongoose.Schema.ObjectId,
