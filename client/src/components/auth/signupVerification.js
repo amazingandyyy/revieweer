@@ -78,7 +78,7 @@ class SignupVerification extends Component {
             return <div>
                 {emailTokenGood?(<div>
                 <h3 className='card-title text-center text-success'>Email Verified</h3>
-                <p>Please complete infomation to create.</p>
+                <p>Please complete Information to create.</p>
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signupEmailReset}>
                     <div className='form-group'>
                         <Field
@@ -149,7 +149,7 @@ class SignupVerification extends Component {
                 </div>)
                 :(<div className='text-center '>
                     <h3 className='card-title text-center text-warning'>Verification Expired</h3>
-                    <p>Verification infomation sent to {address} is expired.</p>
+                    <p>Verification Information sent to {address} is expired.</p>
                     <div style={{'paddingTop': '20px'}}>
                         <Link to='/signup' className='btn btn-light btn-lg btn-block'>Try Again</Link>
                     </div>

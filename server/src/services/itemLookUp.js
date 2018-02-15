@@ -8,11 +8,13 @@ import request from 'request';
 
 export function itemLookUp(uri){
   return new Promise((resolve, reject) => {
+    if(!uri) return reject('No Uri Is Provided.')
     if(uri.search('/B0') < 0) return reject('No Product Id Found');
     let productId = 'B0' + uri.split('/B0')[1].split('/')[0];
     // let momentStarting = new Date();
     request(`https://www.amazon.com/s/field-keywords=${productId}`, (err, res, html) => {
             if(err|| !res || !html) return reject('500:Error');
+            console.log('htmllll', html);
             let $ = cheerio.load(html);
             let result = {};
             let item = $('#s-results-list-atf').find(`li[data-asin="${productId}"]`);
@@ -26,10 +28,12 @@ export function itemLookUp(uri){
             let fact = $(priceElm).find('.sx-price-fractional').html()
             result.price = Number(whole) + 0.01 * Number(fact);
             result.seller = $(sellStepTwo).html();
+            result.productId = productId;
             // const momentEnding = new Date()
             // const period = momentEnding.getTime() - momentStarting.getTime() + ' ms';
             // console.log('period: ', period)
-            if(!result.seller) return reject('400:Item Infomation is not complete.');
+            // console.log(result);
+            if(!result.productId || !result.imageURL) return reject('400:Item Information is not complete.');
             resolve(result);
         })
     })

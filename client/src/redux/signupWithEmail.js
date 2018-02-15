@@ -12,7 +12,6 @@ export function signupWithEmail(email) {
       request
           .post(`/signupWithEmail`, {email})
           .then(res => {
-              console.log('link:', res.data);
               dispatch({ type: SIGNUP_EMAIL_SENT, payload: res.data.email })
           })
           .catch((err) => {

@@ -15,11 +15,15 @@ export default {
       const mailObj = {
         to: email,
         subject: '[Revieweer]Welcome and Account Activation.',
-        message: `<b>Welcome to Revieweer,
-        </b>
-        If you requested this activation, please go to the following URL to confirm this email and continue to use this email address as your Revieweer account username,
+        message: `<b>Welcome to Revieweer,</b>
+        <br/>
+        <br/>
+        If you requested this activation, please go to the following URL to confirm this email and continue to use this email address as your account username,
+        <br/>
         <br/>
         <a href='${deepLink}' target='_blank'>${deepLink}</a>
+        <br/> 
+        <br/> 
         <br/> 
         Enjoy the benefits of being a revieweer:
         <br/>
@@ -29,9 +33,14 @@ export default {
           <li><b>Earn:</b> we pay you up to 100% cashback + cash rewards</li>
         </ul>
         <br/>
-        We are looking forward to <b>your experience</b>. Please feel free to reach out to us via team@revieweer.com
+        We are looking forward to <b>your experience</b>. 
         <br/>
-        The best,<br/>
+        Please feel free to reach out to us via team@revieweer.com
+        <br/>
+        <br/>
+        <br/>
+        Sincerely,
+        <br/>
         <b>Revieweer Team</b>
         `
       };
@@ -78,6 +87,7 @@ export default {
     (!email || !password)?next('You Must Provide Email And Password'):
       User.findOne({ email })
       .then(user => {
+        if(!user)return next('404:User Is Not Found');
         user.comparedPassword(password, (err, good) => {
           (err || !good)?next(err || '403:Password Is Incorrect'):
           res.send({token: token.generateToken(user)});

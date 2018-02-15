@@ -14,9 +14,9 @@ Raven.config(config.sentryDSN).install();
 app.use(Raven.requestHandler());
 
 // DB Setup
-mongoose.connect(config.mongoose.uri, {
-    useMongoClient: true
-});
+mongoose.connect(config.mongoose.uri)
+.catch(err=>console.error(err));
+
 mongoose.Promise = global.Promise;
 
 // App Setup

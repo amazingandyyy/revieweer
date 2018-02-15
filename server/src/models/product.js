@@ -7,7 +7,11 @@ const productSchema = new mongoose.Schema({
         title: String,
         link: String,
         price: Number,
-        seller: String
+        seller: String,
+        productId: {
+            type: String,
+            unique: true
+        }
     },
     // buyer_list : [{
     //     type: mongoose.Schema.ObjectId,
@@ -18,6 +22,8 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     }
+},{
+    timestamps: true
 })
 
 // Export the model
