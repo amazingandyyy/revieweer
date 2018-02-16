@@ -46,6 +46,33 @@ Explore, review, earn.
   - user behavior
   - referral structure
 
+## Companywise
+
+- [ ] VIS
+  - [ ] logo
+  - [ ] font
+  - [ ] color
+  - [ ] style
+- [x] email
+  - [x] host by namecheap, serve by cloudfare
+  - [x] team@revieweer.com
+  - [ ] email signature
+  - [ ] email template
+- [ ] https server
+  - [x] server(`https://server.revieweer.com`)
+  - [x] sandbox(`https://server.revieweer.com/sandbox`)
+  - [ ] help(`https://server.revieweer.com/docs`)
+  - [ ] server 404 handler
+- [x] https client
+  - [x] website(`https://www.revieweer.com`)
+  - [x] website(`https://revieweer.com`)
+  - [x] 404 handler _> redirect to `/#`, handled by ReactRouter
+- [ ] social account
+  - [ ] company [github](https://github.com/revieweer)
+  - [ ] company twitter
+  - [ ] company [facebook](https://facebook.com/revieweer)
+  - [ ] company wechat
+  - [ ] company medium
 
 ## Author
 

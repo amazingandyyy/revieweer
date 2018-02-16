@@ -13,11 +13,6 @@ const productSchema = new mongoose.Schema({
         type: String,
         unique: true
     },
-    // buyer_list : [{
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: 'User',
-    //     unique: true
-    // }],
     end: {
         type: Boolean,
         default: false
