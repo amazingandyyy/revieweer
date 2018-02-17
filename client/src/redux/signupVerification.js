@@ -16,7 +16,7 @@ export function signUserUp(token, user) {
           .post(`/signup/${token}`, user)
           .then(res => {
                 dispatch({type: AUTH_USER, payload: res.data});
-                if(res.data.isAdmin) dispatch({type: AUTH_ADMIN})
+                dispatch({type: AUTH_ADMIN, payload: res.data.isAdmin})
                 if(res.data.status) dispatch({ type: SIGNUP_EMAIL_GOOD })
           })
           .catch(err => {
@@ -59,7 +59,8 @@ export function signupVerificationReducer(state = INITIAL_STATE, action) {
     case SIGNUP_EMAIL_BAD:
         return { ...state, authUserError: action.payload }
     case SIGNUP_EMAIL_GOOD:
-        return window.location = '/#account';
+        window.location = '/#account';
+        break;
     case SIGNUP_EMAIL_RESET:
         return INITIAL_STATE;
     default:

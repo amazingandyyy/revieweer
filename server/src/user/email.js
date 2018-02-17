@@ -10,7 +10,7 @@ var SESserver = ses.createClient({
   secret: AWS_SECRET
 })
 
-export const SES = {
+const Email = {
   send: (obj) => {
     return new Promise((resolve, reject) => {
       SESserver.sendEmail({
@@ -40,6 +40,8 @@ export const SES = {
     })
   }
 }
+
+export default Email;
 
 
 // const mailObj = {

@@ -1,15 +1,11 @@
-import Product from '../controllers/product';
-import admin from './admin';
-import Middleware from './middlewares';
+import Product from './controller';
 
 const router = require('express').Router();
 
 router.get('/', (req, res)=>res.json({ "message": "/api/product connected" }));
 
-router.post('/createFromAmazonSource', Product.createFromAmazonSource);
+router.post('/createFromAmazon', Product.createFromAmazon);
 router.get('/getOneFromAmazon', Product.getOneFromAmazon);
 router.get('/getOneFromRevieweer', Product.getOneFromRevieweer);
-
-router.use(`/admin`, Middleware.loginRequired, Middleware.adminReuired, admin);
 
 export default router;

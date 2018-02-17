@@ -13,7 +13,7 @@ export function signUserIn(data) {
       .post(`/signin`, data)
       .then(res => {
         dispatch({type: AUTH_USER, payload: res.data});
-        if(res.data.isAdmin) dispatch({type: AUTH_ADMIN})
+        dispatch({type: AUTH_ADMIN, payload: res.data.isAdmin})
         window.location = '/#account';
       })
       .catch(err => {

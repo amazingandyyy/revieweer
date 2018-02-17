@@ -1,6 +1,7 @@
-import {token, SES} from '../services';
-import User from '../models/user';
+import Email from './email';
+import User from './model';
 import config from '../config';
+import JWT from './jwt';
 
 export default {
   signupWithEmail: (req, res, next) => {
@@ -11,14 +12,14 @@ export default {
     }).then(user => {
       if (user) return next('403:Email is in use.');
       const { origin } = req.headers;
-      const tokenn = token.generateTokenWithEmail(email);
+      const tokenn = JWT.generateTokenWithEmail(email);
       const deepLink = `${origin}/#signupVerification?token=${tokenn}&address=${email}`;
       const mailObj = {
         to: email,
         subject: '[Revieweer]Welcome and Account Activation.',
         message: activationEmailTemplate(deepLink)
       };
-      SES.send(mailObj).then(email=>{
+      Email.send(mailObj).then(email=>{
         res.send({email});
       }).catch((err)=>{
         next('500:Email is bad.')
@@ -26,14 +27,14 @@ export default {
     }).catch(next);
   },
   verifyEmailToken: (req, res, next) => {
-    token.verifyEmailToken(req.body.token, (err, address) => {
+    JWT.verifyEmailToken(req.body.token, (err, address) => {
       if (err) return res.sendStatus(401);
       res.send(address);
     })
   },
   signup: (req, res, next) => {
     const { email, password, firstName, lastName } = req.body;
-    token.verifyEmailToken(req.params.token, (err, address) => {
+    JWT.verifyEmailToken(req.params.token, (err, address) => {
       if (err || (address !== email) || (!email || !password)) return res.sendStatus(401);
       User
       .findOne({ email })
@@ -51,7 +52,7 @@ export default {
         newUser.save()
         .then(savedUser => {
           return res.send({
-            token: token.generateToken(savedUser), 
+            token: JWT.generateToken(savedUser), 
             isAdmin: (config.admin.list.indexOf(savedUser.email)!=-1),
             status: true
           })
@@ -70,7 +71,7 @@ export default {
         if(!user)return next('404:User Is Not Found');
         user.comparedPassword(password, (err, good) => {
           (err || !good)?next(err || '403:Password Is Incorrect'):
-          res.send({token: token.generateToken(user), isAdmin: (config.admin.list.indexOf(user.email)!=-1)});
+          res.send({token: JWT.generateToken(user), isAdmin: (config.admin.list.indexOf(user.email)!=-1)});
         })
       }).catch(next)
   },
@@ -78,7 +79,7 @@ export default {
   updateProfile: (req, res, next) => {
     req.user.comparedPassword(req.body.password, (err, good) => {
       if (err) return next(err);
-      if (!good) return next('401:Bad Password');
+      if (!good) return next('401:Incorrect Password');
       
       const userId = req.user._id;
       const newProfile = {

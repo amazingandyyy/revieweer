@@ -8,7 +8,7 @@ export function serverConnect(){
         .get(`/api`)
         .then(res => {
             dispatch({ type: AUTH_USER, payload: localStorage.getItem('auth_jwt_token') })
-            dispatch({ type: AUTH_ADMIN, payload: localStorage.getItem('is_admin') });
+            dispatch({ type: AUTH_ADMIN, payload: localStorage.getItem('is_admin')=='true' });
             dispatch({ type: TRY_CONNECT_SERVER, payload: 'connected' });
         })
         .catch(error => {

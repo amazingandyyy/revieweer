@@ -2,7 +2,7 @@ import jwt from 'jwt-simple';
 
 import config from '../config';
 
-export const token =  {
+const JWT =  {
     generateToken: (user) => {
         const createdAt = Math.round(Date.now() / 1000);
         const expiredAt = Math.round(Date.now() / 1000 + 7 * 60 * 60 * 24); // in 7 days
@@ -34,3 +34,5 @@ export const token =  {
         cb(null, decode.sub);
     },
 }
+
+export default JWT;

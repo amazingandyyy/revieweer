@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import Raven from 'raven';
 
-import routers from './routes';
+import routers from './routers';
 import config from './config';
 
 const app = express();

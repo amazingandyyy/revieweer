@@ -1,11 +1,11 @@
-import Product from '../models/product';
-import { itemLookUp,itemLookUpStream } from '../services';
+import Product from './model';
+import itemLookUp from './itemLookUp';
 
 export default {
-  createFromAmazonSource: (req, res, next) => {
+  createFromAmazon: (req, res, next) => {
     const {source} = req.query;
     if(!source) return next('403:source is required');
-    createFromAmazonSourceToRevieer(source)
+    createFromAmazonToRevieer(source)
       .then(id => res.send(id))
       .catch(next);
   },
@@ -34,9 +34,9 @@ export default {
   }
 }
 
-export const createFromAmazonSourceToRevieer = (link) => {
+function createFromAmazonToRevieer(link){
   return new Promise((resolve, reject)=> {
-    itemLookUpStream(link)
+    itemLookUp(link)
     .then(p=>{
       const {imageURL,title,link,price,seller,productId} = p;
       const product = new Product({
@@ -50,7 +50,7 @@ export const createFromAmazonSourceToRevieer = (link) => {
         resolve(savedProduct._id);
       })
       .catch(err=>{
-        if(err.code == 11000) return reject(['The product is existing', err.op.end]);
+        if(err.code == 11000) return reject('500:The product existing');
         reject(err);
       });
     })

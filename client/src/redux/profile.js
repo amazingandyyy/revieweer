@@ -8,7 +8,7 @@ const UPDATE_USER_PROFILE_FAIL = 'UPDATE_USER_PROFILE_FAIL';
 export function getUserProfile() {
     return function (dispatch) {
         request
-            .get(`/api/userProfile`)
+            .get(`/api/user/profile`)
             .then(res => {
                 dispatch({
                     type: GET_USER_PROFILE,
@@ -24,7 +24,7 @@ export function getUserProfile() {
 export function updateUserProfile(profile) {
     return function (dispatch) {
         request
-            .post(`/api/userProfile`, profile)
+            .post(`/api/user/profile`, profile)
             .then(() => {
                 dispatch({
                     type: UPDATE_USER_PROFILE_GOOD

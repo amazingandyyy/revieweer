@@ -21,7 +21,7 @@ to use `/api` route, complete the following stpes:
 - Login [revieweer](https://revieweer.com/#signin) to signup
 - A `auth_jwt_token` will be generated and stored in your browser localStorage
 - This token will expired in 7 days, to request an extended token, [contact]((team@revieweer.com)) us
-- request the endpoint with an `Authentication` header
+- Every API endpoint requires an `Authentication` header
 
 Example:
 
@@ -42,26 +42,26 @@ request.headers['Authorization'] = `token`
   ```json
   "Please make sure your request has an Authorization header."
   ```
-- GET `https://server.revieweer.com/api/userProfile`
-- POST `https://server.revieweer.com/api/userProfile`
+- GET `https://server.revieweer.com/api/user/profile`
+- POST `https://server.revieweer.com/api/user/profile`
 
 #### Product
 
-- POST `https://server.revieweer.com/api/product/createFromAmazonSource?source=XXX`
+- POST `https://server.revieweer.com/api/product/createFromAmazon?source=XXX`
   - request sample:
   ```terminal
-  POST https://server.revieweer.com/api/product/createFromAmazonSource?source=https://www.amazon.com/gp/product/B005FEGYJC
+  POST https://server.revieweer.com/api/product/createFromAmazon?source=https://www.amazon.com/gp/product/B005FEGYJC
   ```
   - good response:
   ```json
   "5a87d194d2b4c919cb364a9c"
   ```
-- GET `ttps://server.revieweer.com/api/product`
+- GET `https://server.revieweer.com/api/product`
   - good response:
   ```json
   { "message": "/api/product connected" }
   ```
-- GET `ttps://server.revieweer.com/api/product/getOneFromAmazon`
+- GET `https://server.revieweer.com/api/product/getOneFromAmazon`
 - GET `https://server.revieweer.com/api/getOneFromRevieweer?productId=XXX`
   - request sample:
   ```terminal
