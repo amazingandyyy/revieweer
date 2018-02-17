@@ -1,6 +1,7 @@
 export const AUTH_USER = 'AUTH_USER';
 export const UNAUTH_USER = 'UNAUTH_USER';
 export const PROMPT_TO_SIGNIN = 'PROMPT_TO_SIGNIN';
+export const AUTH_ADMIN = 'AUTH_ADMIN';
 
 export function signUserOut() {
     return function (dispatch) {
@@ -11,22 +12,31 @@ export function signUserOut() {
 }
 
 let INITIAL_STATE = {
-    authenticated: true
+    authenticated: true,
+    isAdmin: true
 }
 
 export function authReducer(state=INITIAL_STATE, action) {
     switch (action.type) {
         case AUTH_USER:
-            if(action.payload){
-                localStorage.setItem('auth_jwt_token', action.payload);
+            if(action.payload.token){
+                localStorage.setItem('auth_jwt_token', action.payload.token);
             }
             return { ...state,
                 authenticated: true
             }
+        case AUTH_ADMIN:
+            localStorage.setItem('is_admin', action.payload);
+            return { ...state,
+                authenticated: true,
+                isAdmin: action.payload
+            }
         case UNAUTH_USER:
             localStorage.removeItem('auth_jwt_token');
+            localStorage.removeItem('is_admin');
             return { ...state,
-                authenticated: false
+                authenticated: false,
+                isAdmin: false
             }
         case PROMPT_TO_SIGNIN:
             window.location = '/#signin';

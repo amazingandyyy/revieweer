@@ -8,7 +8,7 @@ class Header extends Component {
         this.props.getUserProfile();
     }
     renderSignButton(){
-        const {isLoggedIn, profile} = this.props;
+        const {isLoggedIn, profile, isAdmin} = this.props;
         if (isLoggedIn && profile.name){
             return (
                 <li className="nav-item dropdown">
@@ -17,6 +17,7 @@ class Header extends Component {
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <NavLink className="dropdown-item" to="/account">Account</NavLink>
+                    {isAdmin && <NavLink className="dropdown-item" to="/admin">Admin</NavLink>}
                     <div className="dropdown-divider"></div>
                     <NavLink className="dropdown-item" to="/signout">Log out</NavLink>
                     </div>
@@ -38,7 +39,7 @@ class Header extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand fixed-bottom navbar-dark">
-                <a className="navbar-brand" href="/">Revieweer</a>
+                <NavLink className="navbar-brand" to="/">Revieweer</NavLink>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
@@ -57,7 +58,8 @@ class Header extends Component {
 function mapStateToProps({auth, profile}){
     return {
         isLoggedIn: auth.authenticated,
-        profile: profile
+        profile: profile,
+        isAdmin: auth.isAdmin
     }
 }
 

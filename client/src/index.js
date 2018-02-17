@@ -12,9 +12,13 @@ import Account from './components/account';
 import Signin from './components/auth/signin';
 import SignupWithEmail from './components/auth/signupWithEmail';
 import SignupVerification from './components/auth/signupVerification';
-import Signout from './components/auth/signout'
-import Homescreen from './homescreen'
-import RequireAuth from './components/auth/require_auth';
+import Signout from './components/auth/signout';
+import Admin from './components/admin';
+import Insight from './components/admin/insight';
+import Launch from './components/admin/launch';
+import RequireAdmin from './components/admin/requireAdmin';
+import Homescreen from './homescreen';
+import RequireAuth from './components/auth/requireAuth';
 import reducers from './reducers';
 
 import './style/style.scss'
@@ -35,7 +39,11 @@ ReactDOM.render(
             <Route path="/signupVerification" component= {SignupVerification} />
             <Route path="/signin" component= {Signin} />
             <Route path="/signout" component= {Signout} />
+            <Route path="/admin" component= {RequireAdmin(Admin)} />
+            <Route path="/admin/insight" component= {Insight} />
+            <Route path="/admin/launch" component= {Launch} />
           </Layout>
+
         </Switch>
     </HashRouter>
   </Provider>

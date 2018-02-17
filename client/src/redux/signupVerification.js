@@ -1,6 +1,6 @@
 import request from './request';
 
-import {AUTH_USER} from './auth';
+import {AUTH_USER, AUTH_ADMIN} from './auth';
 const CHECK_EMAIL_TOKEN_GOOD = 'CHECK_EMAIL_TOKEN_GOOD';
 const CHECK_EMAIL_TOKEN_BAD = 'CHECK_EMAIL_TOKEN_BAD';
 const SIGNUP_EMAIL_BAD = 'SIGNUP_EMAIL_BAD';
@@ -15,11 +15,12 @@ export function signUserUp(token, user) {
       request
           .post(`/signup/${token}`, user)
           .then(res => {
-              dispatch({ type: AUTH_USER, payload: res.data.token })
-              dispatch({ type: SIGNUP_EMAIL_GOOD })
+                dispatch({type: AUTH_USER, payload: res.data});
+                if(res.data.isAdmin) dispatch({type: AUTH_ADMIN})
+                if(res.data.status) dispatch({ type: SIGNUP_EMAIL_GOOD })
           })
           .catch(err => {
-            dispatch({type: SIGNUP_EMAIL_BAD, payload: err})
+                dispatch({type: SIGNUP_EMAIL_BAD, payload: err})
           });
   }
 }

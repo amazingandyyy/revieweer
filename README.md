@@ -21,7 +21,8 @@ Explore, review, earn.
     - [x] account dashboard
   - [ ] update
     - [x] basic name
-    - [ ] forget password
+    - [ ] reset password
+    - [ ] change password
   - [ ] delete
 - [ ] product CRUD
   - [ ] create
@@ -54,13 +55,13 @@ Explore, review, earn.
   - [ ] color
   - [ ] style
 - [x] email
-  - [x] host by namecheap, serve by cloudfare
+  - [x] host by namecheap, served by cloudfare
   - [x] team@revieweer.com
   - [ ] email signature
   - [ ] email template
 - [ ] https server
   - [x] server(`https://server.revieweer.com`)
-  - [x] sandbox(`https://server.revieweer.com/sandbox`)
+  - [x] webhook(`https://server.revieweer.com/webhook`)
   - [ ] help(`https://server.revieweer.com/docs`)
   - [ ] server 404 handler
 - [x] https client
@@ -73,6 +74,7 @@ Explore, review, earn.
   - [ ] company [facebook](https://facebook.com/revieweer)
   - [ ] company wechat
   - [ ] company medium
+  - [ ] company linkedin
 
 ## Author
 
@@ -80,4 +82,4 @@ Explore, review, earn.
 
 ## License
 
-remain private before public leasing
+All rights reserved before public releasing

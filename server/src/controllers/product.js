@@ -2,24 +2,25 @@ import Product from '../models/product';
 import { itemLookUp,itemLookUpStream } from '../services';
 
 export default {
-  createOneProductFromAmazonLink: (req, res, next) => {
+  createFromAmazonSource: (req, res, next) => {
     const {source} = req.query;
     if(!source) return next('403:source is required');
-    createOneProductFromAmazonLinkToRevieer(source)
+    createFromAmazonSourceToRevieer(source)
       .then(id => res.send(id))
       .catch(next);
   },
-  getOneProductFromAmazon: (req, res, next) => {
+  getOneFromAmazon: (req, res, next) => {
     const {source} = req.query;
     if(!source) return next('403:source is required');
     itemLookUp(source)
       .then(p=>res.send(p))
       .catch(next);
   },
-  getOneProductFromRevieweer: (req, res, next) => {
-    Product.findById(req.params.id)
-    .then(p=>res.send(p))
-    .catch(next);
+  getOneFromRevieweer: (req, res, next) => {
+    const {productId} = req.query;
+    Product.findById(productId)
+      .then(p=>res.send(p))
+      .catch(next);
   },
   endOneProductById: (req, res, next) => {
     Product.findByIdAndUpdate(req.params.id, { end: true })
@@ -33,7 +34,7 @@ export default {
   }
 }
 
-export const createOneProductFromAmazonLinkToRevieer = (link) => {
+export const createFromAmazonSourceToRevieer = (link) => {
   return new Promise((resolve, reject)=> {
     itemLookUpStream(link)
     .then(p=>{

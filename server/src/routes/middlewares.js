@@ -19,5 +19,5 @@ export default {
       .catch(next)
     })
   },
-  adminReuired: ({user}, res, next) => (config.admin.list.includes(user.email)) ? next() : next('401:Bad')
+  adminReuired: ({user}, res, next) => (config.admin.list.includes(user.email)) ? next() : next('401:Admin Authorization Failed ')
 }

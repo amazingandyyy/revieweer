@@ -14,7 +14,7 @@ export function itemLookUp(uri){
     // let momentStarting = new Date();
     request(`https://www.amazon.com/s/field-keywords=${productId}`, (err, res, html) => {
             if(err|| !res || !html) return reject('500:Error');
-            console.log('htmllll', html);
+            // console.log('htmllll', html);
             let $ = cheerio.load(html);
             let result = {};
             let item = $('#s-results-list-atf').find(`li[data-asin="${productId}"]`);

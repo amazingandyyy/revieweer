@@ -1,5 +1,6 @@
 import {token, SES} from '../services';
 import User from '../models/user';
+import config from '../config';
 
 export default {
   signupWithEmail: (req, res, next) => {
@@ -15,34 +16,7 @@ export default {
       const mailObj = {
         to: email,
         subject: '[Revieweer]Welcome and Account Activation.',
-        message: `<b>Welcome to Revieweer,</b>
-        <br/>
-        <br/>
-        If you requested this activation, please go to the following URL to confirm this email and continue to use this email address as your account username,
-        <br/>
-        <br/>
-        <a href='${deepLink}' target='_blank'>${deepLink}</a>
-        <br/> 
-        <br/> 
-        <br/> 
-        Enjoy the benefits of being a revieweer:
-        <br/>
-        <ul>
-          <li><b>Explore:</b> explore new products to try.</li>
-          <li><b>Review:</b> amazing review with photo to help business grow</li>
-          <li><b>Earn:</b> we pay you up to 100% cashback + cash rewards</li>
-        </ul>
-        <br/>
-        We are looking forward to <b>your experience</b>. 
-        <br/>
-        Please feel free to reach out to us via team@revieweer.com
-        <br/>
-        <br/>
-        <br/>
-        Sincerely,
-        <br/>
-        <b>Revieweer Team</b>
-        `
+        message: activationEmailTemplate(deepLink)
       };
       SES.send(mailObj).then(email=>{
         res.send({email});
@@ -75,7 +49,13 @@ export default {
         })
         
         newUser.save()
-        .then(savedUser => res.json({ success: true, token: token.generateToken(savedUser) }))
+        .then(savedUser => {
+          return res.send({
+            token: token.generateToken(savedUser), 
+            isAdmin: (config.admin.list.indexOf(savedUser.email)!=-1),
+            status: true
+          })
+        })
         .catch(next);
       })
       .catch(next);
@@ -90,7 +70,7 @@ export default {
         if(!user)return next('404:User Is Not Found');
         user.comparedPassword(password, (err, good) => {
           (err || !good)?next(err || '403:Password Is Incorrect'):
-          res.send({token: token.generateToken(user)});
+          res.send({token: token.generateToken(user), isAdmin: (config.admin.list.indexOf(user.email)!=-1)});
         })
       }).catch(next)
   },
@@ -115,4 +95,36 @@ export default {
     })
   }
 
+}
+
+const activationEmailTemplate = (deepLink) => {
+  return `<b>Welcome to Revieweer,</b>
+  <br/>
+  <br/>
+  If you requested this activation, please go to the following URL to confirm this email and continue to use this email address as your account username,
+  <br/>
+  <br/>
+  <a href='${deepLink}' target='_blank'>${deepLink}</a>
+  <br/> 
+  <br/> 
+  <p>--------------</p>
+  <br/> 
+  Enjoy the benefits of being a revieweer:
+  <br/>
+  <ul>
+    <li><b>Explore:</b> explore new products to try.</li>
+    <li><b>Review:</b> amazing review with photo to help business grow</li>
+    <li><b>Earn:</b> we pay you up to 100% cashback + cash rewards</li>
+  </ul>
+  <br/>
+  We are looking forward to <b>your experience</b>. 
+  <br/>
+  Please feel free to reply this email or reach out to us via team@revieweer.com anytime.
+  <br/>
+  <br/>
+  <br/>
+  Regards,
+  <br/>
+  <b>The Revieweer team</b>
+  `
 }

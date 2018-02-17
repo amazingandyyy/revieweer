@@ -1,5 +1,5 @@
 import request from './request';
-import { AUTH_USER } from './auth';
+import { AUTH_USER,AUTH_ADMIN } from './auth';
 const SIGNIN_USER_NOT_FOUND = 'SIGNIN_USER_NOT_FOUND';
 const SIGNIN_PASSWORD_FAIL = 'SIGNIN_PASSWORD_FAIL';
 const SIGNIN_NORMAL_ERROR = 'SIGNIN_NORMAL_ERROR';
@@ -12,7 +12,8 @@ export function signUserIn(data) {
     request
       .post(`/signin`, data)
       .then(res => {
-        dispatch({type: AUTH_USER, payload: res.data.token});
+        dispatch({type: AUTH_USER, payload: res.data});
+        if(res.data.isAdmin) dispatch({type: AUTH_ADMIN})
         window.location = '/#account';
       })
       .catch(err => {
