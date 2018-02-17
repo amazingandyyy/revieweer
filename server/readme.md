@@ -36,11 +36,11 @@ request.headers['Authorization'] = `token`
 - GET `https://server.revieweer.com/api`
   - good response
   ```json
-  {'message': '/api connected'}
+  {"message": "/api connected"}
   ```
   - bad response
   ```json
-  'Please make sure your request has an Authorization header.'
+  "Please make sure your request has an Authorization header."
   ```
 - GET `https://server.revieweer.com/api/userProfile`
 - POST `https://server.revieweer.com/api/userProfile`
@@ -59,7 +59,7 @@ request.headers['Authorization'] = `token`
 - GET `ttps://server.revieweer.com/api/product`
   - good response:
   ```json
-  { 'message': '/api/product connected' }
+  { "message": "/api/product connected" }
   ```
 - GET `ttps://server.revieweer.com/api/product/getOneFromAmazon`
 - GET `https://server.revieweer.com/api/getOneFromRevieweer?productId=XXX`
@@ -86,4 +86,7 @@ request.headers['Authorization'] = `token`
     }
   ```
 - GET `https://server.revieweer.com/api/admin`
-  - good response: `{'message': '/api/admin connected'}`
+  - good response:
+  ```json
+  {"message": "/api/admin connected"}
+  ```

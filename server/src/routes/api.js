@@ -5,7 +5,7 @@ import Middleware from './middlewares';
 
 const router = require('express').Router();
 
-router.get('/', (req, res)=>res.send({ 'message': '/api connected' }));
+router.get('/', (req, res)=>res.json({ "message": "/api connected" }));
 
 router.get('/userProfile', (req, res)=>res.send(req.user));
 router.post('/userProfile', Authenticator.updateProfile);
