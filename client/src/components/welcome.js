@@ -29,7 +29,7 @@ const Content = (props) => {
       <div style={{'marginTop': '50px'}}>
         {!props.isLoggedIn?
           <span>
-            <Link style={{'cursor': 'pointer'}} className='btn btn-dark btn-block btn-lg' to='signup'>Join The Beta Program</Link>
+            <Link style={{'cursor': 'pointer'}} className='btn btn-dark btn-block btn-lg' to='signup'>Join beta program</Link>
             <Link style={{'cursor': 'pointer'}} className='btn btn-light btn-block btn-lg' to='signin'>Sign in to dashboard</Link>
           </span>
           :<Link style={{'cursor': 'pointer'}} className='btn btn-light btn-block btn-lg' to='explore'><span>Explore</span></Link>}

@@ -1,25 +1,49 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
 import { signUserOut } from '../../actions';
-import RevieweerLogo from '../logo';
+
 class Signout extends React.Component {
     componentDidMount() {
         this.props.signUserOut()
     }
-    render() {
-        return (
-            <div className="jumbotron" style={{"height": "100vh"}}>
-                <RevieweerLogo />
-                <h1 className="display-4">Explore More, Earn More</h1>
-                <p className="lead">Here are many good products waiting for you to explore. Order and review and we will pay you up to 100% cashback.</p>
-                <p className="lead">
-                    <Link style={{'cursor': 'pointer'}} className="btn btn-dark btn-lg early-access go-dashboard" to="account"><span>Login Again</span></Link>
-                </p>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className='jumbotron' style={{'height': '100vh'}}>
+        <div className='background' style={{'opacity': '0.75'}}></div>
+        <div className='overlay'></div>
+        <div className='content-container'>
+          <Content isLoggedIn={this.props.isLoggedin}/>
+        </div>
+      </div>)
+  }
 }
 
-export default connect(null, {signUserOut})(Signout)
+const Content = (props) => {
+  return (<div>
+      <a href='/'>
+        <img src='/assets/revieweer-logo.png' style={{'margin': '20px auto', 'width': '70px', 'height': '70px'}}/>
+      </a>
+        <h1 className='display-4'>See you soon!</h1>
+      <div className='lead'>Good products are waiting for you to explore.</div>
+      <div className='row'>
+      <div className='col-sm-12 col-md-3'></div>
+      <div className='col-sm-12 col-md-6'>
+      <div style={{'marginTop': '50px'}}>
+        {!props.isLoggedIn?
+          <span>
+            <Link style={{'cursor': 'pointer'}} className='btn btn-light btn-block btn-lg' to='signin'>Sign in again</Link>
+          </span>
+          :<Link style={{'cursor': 'pointer'}} className='btn btn-light btn-block btn-lg' to='explore'><span>Explore</span></Link>}
+      </div>
+      </div>
+      </div>
+  </div>)
+}
+
+const mapStateToProps = ({ auth }) => ({
+  isLoggedin: auth.authenticated
+});
+
+export default connect(mapStateToProps, {signUserOut})(Signout);
+

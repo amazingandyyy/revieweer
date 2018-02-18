@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 export default function(ComposedComponent) {
   class AuthAdmin extends Component {
     componentWillMount() {
-      if (!localStorage.getItem('is_admin')) {
+      if (!localStorage.getItem('is_admin') || !localStorage.getItem('auth_jwt_token')) {
         this.context.router.history.push('/signin');
       }
     }
 
     componentWillUpdate(nextProps) {
-      if (!localStorage.getItem('is_admin')) {
+      if (!localStorage.getItem('is_admin') || !localStorage.getItem('auth_jwt_token')) {
         this.context.router.history.push('/signin');
       }
     }

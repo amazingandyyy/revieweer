@@ -43,7 +43,6 @@ ReactDOM.render(
             <Route path="/admin/insight" component= {Insight} />
             <Route path="/admin/launch" component= {Launch} />
           </Layout>
-
         </Switch>
     </HashRouter>
   </Provider>

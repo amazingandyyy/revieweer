@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import {getUserProfile} from '../actions';
 
-class Header extends Component {
+class Navbar extends Component {
     componentDidMount(){
         this.props.getUserProfile();
     }
@@ -17,7 +17,7 @@ class Header extends Component {
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <NavLink className="dropdown-item" to="/account">Account</NavLink>
-                    {isAdmin && <NavLink className="dropdown-item" to="/admin">Admin</NavLink>}
+                    {isAdmin && <NavLink className="dropdown-item" to="/admin/insight">Admin</NavLink>}
                     <div className="dropdown-divider"></div>
                     <NavLink className="dropdown-item" to="/signout">Log out</NavLink>
                     </div>
@@ -63,4 +63,4 @@ function mapStateToProps({auth, profile}){
     }
 }
 
-export default connect(mapStateToProps, {getUserProfile})(Header)
+export default connect(mapStateToProps, {getUserProfile})(Navbar)
