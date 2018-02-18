@@ -24,7 +24,8 @@
     "node-ses": "^2.1.0",
     "qs": "^6.5.1",
     "raven": "^2.4.1",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "sleep": "^5.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

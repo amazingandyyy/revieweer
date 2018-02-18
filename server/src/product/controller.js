@@ -9,12 +9,13 @@ export default {
       .then(id => res.send(id))
       .catch(next);
   },
-  getOneFromAmazon: (req, res, next) => {
+  searchOneFromAmazon: (req, res, next) => {
     const {source} = req.query;
     if(!source) return next('403:source is required');
-    itemLookUp(source)
-      .then(p=>res.send(p))
-      .catch(next);
+    itemLookUp(source, (err, p)=>{
+      if(err) return next;
+      res.send(p)
+    })
   },
   getOneFromRevieweer: (req, res, next) => {
     const {productId} = req.query;

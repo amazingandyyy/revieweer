@@ -43,7 +43,6 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "cheerio": "^1.0.0-rc.2",
     "lodash": "^4.17.4",
     "preact": "^8.2.7",
     "preact-compat": "^3.18.0",
@@ -56,7 +55,6 @@
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-form": "^7.2.3",
-    "redux-thunk": "^2.1.0",
-    "request": "^2.83.0"
+    "redux-thunk": "^2.1.0"
   }
 }
