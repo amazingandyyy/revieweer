@@ -7,5 +7,6 @@ router.get('/', (req, res)=>res.json({ "message": "/api/product connected" }));
 router.post('/createFromAmazon', Product.createFromAmazon);
 router.get('/searchOneFromAmazon', Product.searchOneFromAmazon);
 router.get('/getOneFromRevieweer', Product.getOneFromRevieweer);
+router.post('/webhook', Product.getOneFromRevieweer);
 
 export default router;

@@ -4,8 +4,8 @@
   "description": "",
   "main": "handler.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "deploy": "serverless deploy"
+    "deploy": "serverless deploy",
+    "test": "jest"
   },
   "author": "Amazingandyyy <amazingandyyy@gmail.com> (Andy Chen)",
   "license": "MIT",
@@ -13,5 +13,8 @@
     "axios": "^0.17.1",
     "cheerio": "^1.0.0-rc.2",
     "sleep": "^5.1.1"
+  },
+  "devDependencies": {
+    "jest": "^22.3.0"
   }
 }

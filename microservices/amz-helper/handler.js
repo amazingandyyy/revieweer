@@ -2,11 +2,17 @@
 
 var cheerio = require('cheerio');
 var axios = require('axios');
+// let LAMBDA_UNSAFE_TOKEN = process.env.LAMBDA_UNSAFE_TOKEN;
+let LAMBDA_UNSAFE_TOKEN = process.env.LAMBDA_UNSAFE_TOKEN || 'LAMBDA_UNSAFE_TOKEN';
 
 module.exports.itemLookUp = (event, c, callback) => {
-  var productId = event.queryStringParameters.prouctId;
-  console.log(productId);
-  return lookUp(productId, callback, {});
+  var token = event.queryStringParameters.token;
+  var productId = event.queryStringParameters.productId;
+  if(!productId) return callback(new Error('Product Id Bad'));
+  if(token == LAMBDA_UNSAFE_TOKEN) {
+    return lookUp(productId, callback, {});
+  }
+  callback(new Error('Token Bad'));
 };
 
 function lookUp(productId, cb, result) {
@@ -19,7 +25,10 @@ function lookUp(productId, cb, result) {
     };
     return cb(null, response);
   }
-  axios.get('https://www.amazon.com/s/field-keywords='+productId)
+  let request = axios.create({
+    'Access-Control-Allow-Origin': '*'
+  });
+  request.get('https://www.amazon.com/s/field-keywords='+productId)
   .then(function(res){
       var $ = cheerio.load(res.data);
       var item = $('#s-results-list-atf').find('li[data-asin="'+productId+'"]');
@@ -34,11 +43,14 @@ function lookUp(productId, cb, result) {
       result.price = Number(whole) + 0.01 * Number(fact);
       result.seller = $(sellStepTwo).html();
       result.productId = productId;
-      console.log(result);
+      console.log('count')
       setTimeout(function(){
         return lookUp(productId, cb, result);
-      }, 200)
+      }, 50 + Math.round(Math.random() * 250))
   }).catch(function(err){
-    return cb(new Error('bad'));
+    console.log('err')
+    setTimeout(function(){
+      return lookUp(productId, cb, result);
+    }, 50 + Math.round(Math.random() * 250))
   })
 }

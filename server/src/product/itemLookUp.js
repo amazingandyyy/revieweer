@@ -1,14 +1,23 @@
 import axios from 'axios';
+import config from '../config';
 
 export default function itemLookUp(uri, cb){
         if(!uri) return cb(new Error('No Uri Is Provided.'));
         if(uri.search('/B0') < 0) return cb(new Error('No Product Id Found'));
         let productId = 'B0' + uri.split('/B0')[1].split('/')[0];
-        axios.get(`https://sv4tgjj3h9.execute-api.us-east-1.amazonaws.com/dev/itemLookUp?prouctId=${productId}`)
-        .then(r=>{
-            console.log(r.data)
-            cb(null, r.data)
-        }).catch(err=>{
+        axios.post(`https://api.apify.com/v1/k85BDCrCt5HTrNAE4/crawlers/xZbpx7AEMEzYCQMLP/execute?token=${config.apifyToken.itemLookUp}`, {
+            "startUrls": [
+                {
+                    "key": "START",
+                    "value": `https://www.amazon.com/s/field-keywords=${productId}`
+                }
+            ]
+        })
+        .then(res=> {
+            const {status, resultsUrl, _id, detailsUrl} = res.data;
+            cb(null, {status, resultsUrl, _id, detailsUrl});
+        })
+        .catch(err=>{
             console.log(err)
             cb(err)
         })

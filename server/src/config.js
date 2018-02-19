@@ -21,5 +21,8 @@ export default {
   aws: {
     accessKeyId: process.env.AWSAccessKeyId,
     secretKey: process.env.AWSSecretKey
+  },
+  apifyToken: {
+    itemLookUp: process.env.apifyToken_itemLookUp
   }
 }
