@@ -1,4 +1,4 @@
-import Product from './model';
+import Product from '../product/model';
 
 export default {
   createOneProduct: (req, res, next) => {

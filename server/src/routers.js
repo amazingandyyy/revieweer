@@ -1,7 +1,7 @@
 import User from './user/controller';
 import {loginRequired, apifyRequired} from './middlewares';
 import api from './api';
-import apify from './apify';
+import apify from './apify/router';
 
 const router = require('express').Router();
 router.get('/', (req, res)=>res.send({message: 'connect to server.revieweer.com', webhook: 'https://server.revieweer.com/webhook', openapi:'https://server.revieweer.com/openapi', api: 'https://server.revieweer.com/api'}));
