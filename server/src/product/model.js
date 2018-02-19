@@ -14,8 +14,15 @@ const productSchema = new mongoose.Schema({
         unique: true
     },
     end: {
-        type: Boolean,
-        default: false
+        status: {
+            type: Boolean,
+            default: false
+        },
+        changeBy: {
+            type: mongoose.Schema.ObjectId,
+            ref: 'User',
+            unique: true
+        }
     }
 },{
     timestamps: true

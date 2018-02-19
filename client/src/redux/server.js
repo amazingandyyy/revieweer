@@ -1,5 +1,6 @@
 import request from './request';
 import { AUTH_USER,AUTH_ADMIN } from '../actions';
+
 const TRY_CONNECT_SERVER = 'TRY_CONNECT_SERVER';
 
 export function serverConnect(){

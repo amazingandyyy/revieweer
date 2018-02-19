@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
+import { loadingBarReducer } from 'react-redux-loading-bar'
 
 import { serverReducer as server } from './redux/server';
 import { authReducer as auth } from './redux/auth';
@@ -9,6 +10,7 @@ import { signupWithEmailReducer as signupWithEmail } from './redux/signupWithEma
 import { signupVerificationReducer as signupVerification } from './redux/signupVerification';
 
 export default combineReducers({
+  loadingBar: loadingBarReducer,
   form,
   server,
   auth,

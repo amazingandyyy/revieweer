@@ -8,8 +8,16 @@ html.touch * {
 }
 body {
     background-color: white;
+    position: relative;
     .statusbar-overlay {
         background: #333;
+    }
+    .revieweer-loading-bar{
+        background: linear-gradient(to right, #64e6ca, #2ac4f3);
+        height: 0.15rem;
+        position: absolute;
+        top: 0;
+        left: 0;
     }
     .jumbotron {
         border-radius: 0px;

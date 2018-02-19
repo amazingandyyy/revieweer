@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from '../config';
+// import sleep from 'sleep';
 
 export default function itemLookUp(uri, cb){
         if(!uri) return cb(new Error('No Uri Is Provided.'));
@@ -13,10 +14,18 @@ export default function itemLookUp(uri, cb){
                 }
             ]
         })
-        .then(res=> {
-            const {status, resultsUrl, _id, detailsUrl} = res.data;
-            cb(null, {status, resultsUrl, _id, detailsUrl});
+        .then(r=>{
+            // sleep.sleep(4);
+            // return axios.get(r.data.resultsUrl)
+            cb(null, r.data._id);
         })
+        // .then(res=> {
+        //     if(res.data){
+        //         const product = res.data[0].pageFunctionResult;
+        //         product.link = 'dd'
+        //         cb(null, product);
+        //     }
+        // })
         .catch(err=>{
             console.log(err)
             cb(err)

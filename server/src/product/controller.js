@@ -2,13 +2,6 @@ import Product from './model';
 import itemLookUp from './itemLookUp';
 
 export default {
-  createFromAmazon: (req, res, next) => {
-    const {source} = req.query;
-    if(!source) return next('403:source is required');
-    createFromAmazonToRevieer(source)
-      .then(id => res.send(id))
-      .catch(next);
-  },
   searchOneFromAmazon: (req, res, next) => {
     const {source} = req.query;
     if(!source) return next('403:source is required');
@@ -17,21 +10,36 @@ export default {
       res.send(p)
     })
   },
-  getOneFromRevieweer: (req, res, next) => {
-    const {productId} = req.query;
-    Product.findById(productId)
-      .then(p=>res.send(p))
+  createOne: (req, res, next) => {
+    const {source} = req.query;
+    if(!source) return next('403:source is required');
+    createFromAmazonToRevieer(source)
+      .then(id => res.send(id))
       .catch(next);
   },
-  endOneProductById: (req, res, next) => {
-    Product.findByIdAndUpdate(req.params.id, { end: true })
-    .then(_=>res.send())
-    .catch(next);
+  getOneById: (req, res, next) => {
+    const {productId} = req.query;
+    productId
+    ?Product.findById(productId)
+      .then(p=>res.send(p))
+      .catch(next)
+    :next('404:No Product Id')
   },
-  activeOneProductById: (req, res, next) => {
-    Product.findByIdAndUpdate(req.params.id, { end: false })
+  endOneById: (req, res, next) => {
+    const {productId} = req.query;
+    productId
+    ?Product.findByIdAndUpdate(productId, { end: true, changeBy: req.user._id })
     .then(_=>res.send())
-    .catch(next);
+    .catch(next)
+    :next('404:No Product Id')
+  },
+  activeOneById: (req, res, next) => {
+    const {productId} = req.query;
+    productId
+    ?Product.findByIdAndUpdate(productId, { end: false, changeBy: req.user._id })
+    .then(_=>res.send())
+    .catch(next)
+    :next('404:No Product Id')
   }
 }
 

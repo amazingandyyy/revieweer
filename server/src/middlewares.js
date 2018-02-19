@@ -23,8 +23,8 @@ export function loginRequired(req, res, next){
   }
 
   export function apifyRequired(req, res, next) {
-    const h = req.header('Apify_Authorization');
-    if(!h) return next('403:Need Apify_Authorization header.');
-    if(h !== 'Apify_Authorization')return next('403:Apify_Authorization is bad.');
+    const h = (req.body.data == 'Apify_Authorization');
+    if(!h) return next('403:Need Authorization payload.');
+    if(h !== 'Apify_Authorization')return next('403:Authorization is bad.');
     next();
   }

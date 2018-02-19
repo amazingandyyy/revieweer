@@ -7,7 +7,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
-        main: path.resolve(__dirname, './src/index.js'),
+        main: path.resolve(__dirname, './src/app.js'),
         vendor: [
             'react', 'react-dom', 'redux', 
             'react-redux', 'react-router-dom', 'redux-form', 

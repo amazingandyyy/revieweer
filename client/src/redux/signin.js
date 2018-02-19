@@ -1,5 +1,7 @@
 import request from './request';
 import { AUTH_USER,AUTH_ADMIN } from './auth';
+import loader from './loader';
+
 const SIGNIN_USER_NOT_FOUND = 'SIGNIN_USER_NOT_FOUND';
 const SIGNIN_PASSWORD_FAIL = 'SIGNIN_PASSWORD_FAIL';
 const SIGNIN_NORMAL_ERROR = 'SIGNIN_NORMAL_ERROR';
@@ -12,11 +14,13 @@ export function signUserIn(data) {
     request
       .post(`/signin`, data)
       .then(res => {
+        loader.end(500);
         dispatch({type: AUTH_USER, payload: res.data});
         dispatch({type: AUTH_ADMIN, payload: res.data.isAdmin})
         window.location = '/#account';
       })
       .catch(err => {
+        loader.end(500);
         let message, status;
         if(err.response){
           message = err.response.data;
