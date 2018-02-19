@@ -2,8 +2,7 @@ import Product from '../product/model';
 
 export default {
   createOneProduct: (req, res, next) => {
-    console.log('apify webhook', req.body);
-    if(!req.body && !req.body._id && !req.body.actId) return next('500:Not A Valid Apify Request')
+    if(!req.body || !req.body._id || !req.body.actId) return next('500:Not A Valid Apify Request')
     createOneProductFromApify(req.body.data)
       .then(() => res.send())
       .catch(next);
