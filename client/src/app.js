@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import LoadingBar, { loadingBarMiddleware } from 'react-redux-loading-bar';
-import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Switch } from 'react-router-dom';
 import reduxMiddlewares from './redux/middlewares';
 
 import Layout from './components/layout';
