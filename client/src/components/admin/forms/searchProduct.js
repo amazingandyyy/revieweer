@@ -2,8 +2,8 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Recaptcha from '../../recaptcha';
-
+import LoadingBar, { showLoading, hideLoading }  from 'react-redux-loading-bar';
+import {store} from '../../../app';
 import { searchOneProduct, adminDashboardReset } from '../../../actions';
 
 // https://www.amazon.com/dp/B0758RP5V8/ref=sxbs_sxwds-stvp_1?pf_rd_m=ATVPDKIKX0DER&pf_rd_p=3341940462&pd_rd_wg=hOnNe&pf_rd_r=2P63MYTGNHA7294C6J1Q&pf_rd_s=desktop-sx-bottom-slot&pf_rd_t=301&pd_rd_i=B0758RP5V8&pd_rd_w=UdZTt&pf_rd_i=B077N2KK27&pd_rd_r=29b40780-0aee-49f2-bd57-1ad2094c25e7&ie=UTF8&qid=1519082529&sr=1
@@ -25,6 +25,7 @@ class SearchProductForm extends React.Component {
     }
     handleFormSubmit({url}) {
         if(url.search('amazon.com')!==-1&&url.search('/B0')!==-1){
+            store.dispatch(showLoading('adminSearchProductBar'))
             this.props.searchOneProduct(url);
         }else{
             this.setState({
@@ -67,22 +68,44 @@ class SearchProductForm extends React.Component {
             </form>
             )
         }else{
-            return(<div style={{'textAlign': 'center'}}>
-                <div>Verify Google Recaptcha</div>
-                <Recaptcha
-                    verify={this.recaptchaVerifyCallback.bind(this)}
-                />
+            return(<div style={{'textAlign': 'center', 'padding': '30px'}}>
+                <div>{this.renderLoader()}</div>
+                <div>{this.renderProdudtPendingId()}</div>
+                <div>{this.renderProductId()}</div>
             </div>)
         }
     }
-    recaptchaVerifyCallback(){
-        this.context.router.history.push(`/admin/launch/preview/${this.props.produdtPendingId}`);
+    renderLoader(){
+        return (<div style={{'margin': '30px auto'}}>
+            <i style={{'fontSize': '2rem', 'opacity': '0.7'}}className='fa fa-spin fa-sync'></i>
+            <LoadingBar scope="adminSearchProductBar" className='revieweer-loading-bar-2'/>
+            <h6>Fetching product details from amazon...</h6>
+        </div>)
+    }
+    renderProdudtPendingId(){
+        if(this.props.produdtPendingId){
+            store.dispatch(hideLoading('adminSearchProductBar'))
+                this.context.router.history.push(`/admin/launch/preview/${this.props.produdtPendingId}`);
+            return <div>
+                {this.props.produdtPendingId}
+            </div>
+        }
+    }
+    renderProductId(){
+        if(this.props.productId){
+            store.dispatch(hideLoading('adminSearchProductBar'))
+            this.context.router.history.push(`/explore/pd/${this.props.productId}`);
+            return <div>
+                {this.props.productId}
+            </div>
+        }
     }
 }
 
 function mapStateToProps({adminDashboard}) {
     return {
         produdtPendingId: adminDashboard.produdtPendingId,
+        productId: adminDashboard.productId,
         initialValues: {
             url: 'https://www.amazon.com/dp/B0758RP5V8/ref=sxbs_sxwds-stvp_1?pf_rd_m=ATVPDKIKX0DER&pf_rd_p=3341940462&pd_rd_wg=hOnNe&pf_rd_r=2P63MYTGNHA7294C6J1Q&pf_rd_s=desktop-sx-bottom-slot&pf_rd_t=301&pd_rd_i=B0758RP5V8&pd_rd_w=UdZTt&pf_rd_i=B077N2KK27&pd_rd_r=29b40780-0aee-49f2-bd57-1ad2094c25e7&ie=UTF8&qid=1519082529&sr=1'
         }

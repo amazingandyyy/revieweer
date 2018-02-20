@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import Recaptcha from '../recaptcha';
 import { signupWithEmail, signupWithEmailReset } from '../../actions';
-import CenterCard121 from '../CenterCard121';
+import CenterCard121 from '../centerCard121';
 import RevieweerLogo from '../logo';
 
 let INITIAL_STATE = {

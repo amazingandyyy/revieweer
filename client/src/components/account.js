@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
 import {serverConnect, getUserProfile, updateUserProfile} from '../actions';
-import CenterCard121 from './CenterCard121';
+import CenterCard121 from './centerCard121';
 
 class Account extends React.Component {
   constructor(props){

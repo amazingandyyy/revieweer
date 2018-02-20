@@ -13,9 +13,9 @@ export function searchOneProduct(uri) {
         const {productPendingId, productId} = res.data;
         if(!productPendingId && productId) {
           console.log('productId', productId);
-          // window.location = `/#explore/product/${productId}`;
+          dispatch({ type: ADMIN_SEARCH_FOR_ONE_PRODUCT, payload: {productPendingId,productId} })
         }else{
-          dispatch({ type: ADMIN_SEARCH_FOR_ONE_PRODUCT, payload: productPendingId })
+          dispatch({ type: ADMIN_SEARCH_FOR_ONE_PRODUCT, payload: {productPendingId,productId} })
         }
         
       })
@@ -49,14 +49,16 @@ export function createOneProduct(obj) {
 
 let INITIAL_STATE = {
   produdtPendingId: null,
-  produdtPreviewData: null
+  produdtPreviewData: null,
+  productId: null
 }
 
 export function adminReducer(state=INITIAL_STATE, action) {
     switch (action.type) {
         case ADMIN_SEARCH_FOR_ONE_PRODUCT:
             return { ...state,
-              produdtPendingId: action.payload
+              produdtPendingId: action.payload.produdtPendingId,
+              productId: action.payload.productId
             }
         case ADMIN_FETCH_ONE_PRODUCT_FROM_APIFY:
             return { ...state,
