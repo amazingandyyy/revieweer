@@ -4,23 +4,33 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+import Recaptcha from '../recaptcha';
 import { signupWithEmail, signupWithEmailReset } from '../../actions';
 import CenterCard121 from '../CenterCard121';
 import RevieweerLogo from '../logo';
 
+let INITIAL_STATE = {
+    recaptchaGood: false,
+    errorMsg: null
+}
+
 class SignupWithEmail extends React.Component {
     constructor(){
         super();
+        this.state = {
+            recaptchaGood: false,
+            errorMsg: null
+        };
     }
-    componentWillMount(){
-        this.props.signupWithEmailReset();
+    componentDidMount(){
+        this.resetStateAndProps();
     }
     componentWillUnmount(){
-        this.props.signupWithEmailReset();
+        this.resetStateAndProps();
     }
     renderAlert(error) {
-        let errorMsg = error || this.props.errorMsg
-        if (this.props.errorMsg) {
+        let errorMsg = error || this.props.errorMsg || this.state.errorMsg
+        if (errorMsg) {
             return (
                 <div className="alert alert-warning">
                     <strong>Oops!
@@ -30,7 +40,16 @@ class SignupWithEmail extends React.Component {
         }
     }
     handleFormSubmit({email}) {
-        this.props.signupWithEmail(email);
+        if(this.state.recaptchaGood){
+            this.props.signupWithEmail(email);
+        }else{
+            this.setState({
+                errorMsg: 'Recaptcha Failed, the page will be refreshed in 2 seconds.'
+            })
+            setTimeout(()=>{
+                window.location.reload(true);
+            }, 2000)
+        }
     }
     render() {
         return (
@@ -47,8 +66,12 @@ class SignupWithEmail extends React.Component {
             </CenterCard121>
         );
     }
+    resetStateAndProps(){
+        this.setState(INITIAL_STATE)
+        this.props.signupWithEmailReset();
+    }
     renderForm(){
-        const {handleSubmit,emailStateError,signupWithEmailReset,emailSentTo, submitting} = this.props;
+        const {handleSubmit,emailStateError,emailSentTo, submitting} = this.props;
         if(emailSentTo && emailSentTo.length > 1){
             return(<div className='alert alert-success'>
                 <h4 className="alert-heading">Almost there!</h4>
@@ -56,7 +79,7 @@ class SignupWithEmail extends React.Component {
                 <hr/>Please check your inbox or trash/junk box. The activation code will be expired in 60 minutes...
             </div>)
         }else{
-            return(<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signupWithEmailReset}>
+            return(<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={this.resetStateAndProps.bind(this)}>
                 <div className="form-group">
                     <label>
                         Email: {emailStateError&&<span className='danger-hint'>{emailStateError}</span>}
@@ -72,6 +95,9 @@ class SignupWithEmail extends React.Component {
                 </div>
                 {this.renderAlert()}
                 <div>
+                    <div style={{'margin': '20px auto'}}>
+                        <Recaptcha verify={this.recaptchaVerifyCallback.bind(this)} />
+                    </div>
                     <button type="submit" disabled={submitting} className="btn btn-lg btn-light btn-block">Send Me Activation</button>
                 </div>
                 <div style={{'paddingTop': '20px'}}>
@@ -79,6 +105,11 @@ class SignupWithEmail extends React.Component {
                 </div>
             </form>)
         }
+    }
+    recaptchaVerifyCallback(){
+        this.setState({
+            recaptchaGood: true
+        })
     }
 }
 

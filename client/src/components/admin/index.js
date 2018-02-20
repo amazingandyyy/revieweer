@@ -11,7 +11,7 @@ export default function Admin(props) {
               <Link className="nav-link active" to="/admin/insight">Insight</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/admin/launch/search">Launch</Link>
+              <a className="nav-link" style={{'cursor': 'pointer'}} onClick={go}>Launch</a>
             </li>
           </ul>
         </div>
@@ -20,4 +20,8 @@ export default function Admin(props) {
       {props.children}
     </div>
   </div>
+}
+
+function go(){
+  window.location = '/#admin/launch/search'
 }

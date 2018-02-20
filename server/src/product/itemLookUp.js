@@ -1,35 +1,36 @@
 import axios from 'axios';
 import config from '../config';
-// import sleep from 'sleep';
+import Product from './model';
 
 export default function itemLookUp(uri, cb){
-        if(!uri) return cb(new Error('No Uri Is Provided.'));
-        if(uri.search('/B0') < 0) return cb(new Error('No Product Id Found'));
-        let productId = 'B0' + uri.split('/B0')[1].split('/')[0];
-        axios.post(`https://api.apify.com/v1/k85BDCrCt5HTrNAE4/crawlers/xZbpx7AEMEzYCQMLP/execute?token=${config.apifyToken.itemLookUp}`, {
-            "startUrls": [
-                {
-                    "key": "START",
-                    "value": `https://www.amazon.com/s/field-keywords=${productId}`
-                }
-            ]
+    if(!uri) return cb(new Error('No Uri Is Provided.'));
+    if(uri.search('/B0') < 0) return cb(new Error('No Product Id Found'));
+    let productId = 'B0' + uri.split('/B0')[1].split('/')[0];
+
+    Product.findOne({ productId })
+        .then(p=>{
+            if(!p) return searchViaApify();
+            return cb(null, {
+                message: 'Already Exists',
+                productId: p._id
+            })
         })
-        .then(r=>{
-            // sleep.sleep(4);
-            // return axios.get(r.data.resultsUrl)
-            cb(null, r.data._id);
-        })
-        // .then(res=> {
-        //     if(res.data){
-        //         const product = res.data[0].pageFunctionResult;
-        //         product.link = 'dd'
-        //         cb(null, product);
-        //     }
-        // })
-        .catch(err=>{
-            console.log(err)
-            cb(err)
-        })
+        .catch(err=>cb(err))
+
+    const searchViaApify = () => {
+    axios.post(`https://api.apify.com/v1/k85BDCrCt5HTrNAE4/crawlers/xZbpx7AEMEzYCQMLP/execute?token=${config.apifyToken.itemLookUp}`, {
+        "startUrls": [
+            {
+                "key": "START",
+                "value": `https://www.amazon.com/s/field-keywords=${productId}`
+            }
+        ]
+    })
+    .then(r=>cb(null, {
+        productPendingId: r.data._id
+    }))
+    .catch(err=>cb(err))
+      }
 }
 
 // For information about migrating to our APIs refer to our 

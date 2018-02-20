@@ -12,6 +12,9 @@ body {
     .statusbar-overlay {
         background: #333;
     }
+    .rc-anchor-normal{
+        margin: auto;
+    }
     .revieweer-loading-bar{
         background: linear-gradient(to right, #64e6ca, #2ac4f3);
         height: 0.15rem;
@@ -152,11 +155,11 @@ body {
             color: #dc3545;
             text-align: right;
         }
-        input.form-control:not(.original-disable):disabled {
+        input.form-control:not(.original-disable):disabled, textarea.form-control:not(.original-disable):disabled {
             border-color: rgba(0,0,0,0);
             background-color: rgba(#e9ecef, 0.1);
         }
-        input.form-control:not(.original-disable)[readonly]{
+        input.form-control:not(.original-disable)[readonly], textarea.form-control:not(.original-disable)[readonly]{
             border-color: rgba(0,0,0,0);
             background-color: rgba(#e9ecef, 0);
         }

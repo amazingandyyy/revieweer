@@ -1,8 +1,8 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Recaptcha from '../../recaptcha';
 
 import { searchOneProduct, adminDashboardReset } from '../../../actions';
 
@@ -11,49 +11,72 @@ import { searchOneProduct, adminDashboardReset } from '../../../actions';
 class SearchProductForm extends React.Component {
     constructor(){
         super();
+        this.status = {
+            errorMsg: '',
+            waitingFinished: false
+        }
+    }
+    componentDidMount(){
+        this.setState({
+            errorMsg: '',
+            waitingFinished: false
+        })
+        this.props.adminDashboardReset();
     }
     handleFormSubmit({url}) {
-        if(url.search('amazon.com')!==-1||url.search('/B0')!==-1){
+        if(url.search('amazon.com')!==-1&&url.search('/B0')!==-1){
             this.props.searchOneProduct(url);
         }else{
-            console.log('bad url')
+            this.setState({
+                errorMsg: 'URL is bad'
+            })
         }
     }
     render() {
         return (
-            <div className='row'>
+            <div className='container'>
                 {this.renderForm()}
             </div>
         );
     }
     renderForm(){
-        const {handleSubmit,produdtPendingId, submitting} = this.props;
-        if(!produdtPendingId){
+        const {handleSubmit, submitting, submitSucceeded} = this.props;
+        const {errorMsg} = this.state;
+        if(!submitSucceeded){
             return (
-                <div>
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={adminDashboardReset}>
-                <div className="form-group">
-                    <label> URL: </label>
+                <div className='form-group'>
+                    <label>
+                        Amazon Product Link: {errorMsg&&<span className='danger-hint'>{errorMsg}</span>}
+                    </label>
                     <Field
                         type= 'url'
-                        name="url"
-                        component="input"
-                        className='form-control form-control-lg'
-                        placeholder="Amazon URL"
+                        name='url'
+                        component='textarea'
+                        className={`form-control ${(errorMsg)?'is-invalid':''}`}
+                        placeholder='Amazon URL'
+                        rows='5'
+                        style={{'fontSize': '0.8rem'}}
+                        disabled={submitting}
                         required
                     />
                 </div>
                 <div>
-                    <button type="submit" disabled={submitting} className="btn btn-lg btn-light btn-block">Preview Publishing</button>
+                    <button type='submit' disabled={submitting} className='btn btn-lg btn-light btn-block'>Fetch Product Details</button>
                 </div>
             </form>
-            </div>
             )
         }else{
-            return(<div>
-                <Link to={`/admin/launch/preview/${produdtPendingId}`}>{produdtPendingId}</Link>
+            return(<div style={{'textAlign': 'center'}}>
+                <div>Verify Google Recaptcha</div>
+                <Recaptcha
+                    verify={this.recaptchaVerifyCallback.bind(this)}
+                />
             </div>)
         }
+    }
+    recaptchaVerifyCallback(){
+        this.context.router.history.push(`/admin/launch/preview/${this.props.produdtPendingId}`);
     }
 }
 

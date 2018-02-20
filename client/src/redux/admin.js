@@ -8,27 +8,41 @@ export const adminDashboardReset = () => (dispatch) => dispatch({type: ADMIN_DAS
 
 export function searchOneProduct(uri) {
     return function (dispatch) {
-      console.log(uri);
       request.get(`/api/product/searchOneFromAmazon?source=${uri}`)
       .then(res=>{
-        console.log(res.data);
-        dispatch({ type: ADMIN_SEARCH_FOR_ONE_PRODUCT, payload: res.data })
+        const {productPendingId, productId} = res.data;
+        if(!productPendingId && productId) {
+          console.log('productId', productId);
+          // window.location = `/#explore/product/${productId}`;
+        }else{
+          dispatch({ type: ADMIN_SEARCH_FOR_ONE_PRODUCT, payload: productPendingId })
+        }
+        
       })
       .catch(err=>{
         console.log(err)
       })
     }
 }
-export function fetchProeuctPreview(productPendingId) {
-    console.log('productPendingId', productPendingId);
+export function fetchProductPreview(productPendingId) {
     return function (dispatch) {
       request.get(`/api/product/fetchProductFromApify?productPendingId=${productPendingId}`)
       .then(res=>{
-        console.log(res.data);
         dispatch({ type: ADMIN_FETCH_ONE_PRODUCT_FROM_APIFY, payload: res.data })
       })
       .catch(err=>{
-        console.log(err)
+        window.location.reload(true);
+      })
+    }
+}
+export function createOneProduct(obj) {
+    return function (dispatch) {
+      request.post(`/api/product/createOne`, obj)
+      .then(res=>{
+        console.log('product Id',res.data);
+      })
+      .catch(err=>{
+        console.log(err);
       })
     }
 }

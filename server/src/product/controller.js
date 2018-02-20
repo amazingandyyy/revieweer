@@ -14,10 +14,36 @@ export default {
   createOne: (req, res, next) => {
     const obj = req.body;
     if(!obj)return next('500:No Product Details')
-    const product = new Product(obj);
+    const cleanUpObj = {
+      productId: obj.productId,
+      basic_info: {
+        ...obj
+      }
+    }
+    const product = new Product(cleanUpObj);
     product.save()
-      .then(p=>res.send(p))
-      .catch(next)
+      .then(p=>{
+        return res.send({
+          message: 'New Created',
+          productId: p._id
+        })
+      })
+      .catch(err=>{
+        if(err.code == 11000) {
+          Product.findOne({
+            productId: cleanUpObj.productId
+          })
+          .then(p=>{
+            return res.send({
+              message: 'Already Exists',
+              productId: p._id
+            })
+          })
+          .catch(next)
+        }else{
+          return next(err);
+        }
+      });
   },
   getOneById: (req, res, next) => {
     const {productId} = req.query;
