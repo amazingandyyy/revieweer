@@ -3,13 +3,7 @@ export const UNAUTH_USER = 'UNAUTH_USER';
 export const PROMPT_TO_SIGNIN = 'PROMPT_TO_SIGNIN';
 export const AUTH_ADMIN = 'AUTH_ADMIN';
 
-export function signUserOut() {
-    return function (dispatch) {
-        dispatch({
-            type: UNAUTH_USER
-        });
-    }
-}
+export const signUserOut = () => (dispatch) => dispatch({type: UNAUTH_USER});
 
 let INITIAL_STATE = {
     authenticated: true,

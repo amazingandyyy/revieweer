@@ -9,5 +9,6 @@ router.post('/createOne', adminReuired, Controller.createOne);
 router.get('/getOneById', Controller.getOneById); //req.query.productId
 router.get('/endOneById', Controller.endOneById); //req.query.productId
 router.get('/activeOneById', Controller.activeOneById); //req.query.productId
+router.get('/fetchProductFromApify', Controller.fetchProductFromApify); //req.query.productId
 
 export default router;

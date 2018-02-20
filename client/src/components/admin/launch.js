@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function Launch() {
-  return <div className='container'>
-    Launch
-  </div>
+export default function Launch(props) {
+  return (<div className='container'>
+    {props.children}
+  </div>)
 }

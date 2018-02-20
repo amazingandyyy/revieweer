@@ -11,7 +11,7 @@ export default function Admin(props) {
               <Link className="nav-link active" to="/admin/insight">Insight</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/admin/launch">Launch</Link>
+              <Link className="nav-link" to="/admin/launch/search">Launch</Link>
             </li>
           </ul>
         </div>
