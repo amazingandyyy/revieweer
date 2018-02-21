@@ -3,10 +3,10 @@ import itemLookUp from './itemLookUp';
 import axios from 'axios';
 
 export default {
-  searchOneFromAmazon: (req, res, next) => {
-    const {source} = req.query;
-    if(!source) return next('403:source is required');
-    itemLookUp(source, (err, p)=>{
+  searchAmazonByProductId: (req, res, next) => {
+    const {productId} = req.query;
+    if(!productId) return next('403:productId is required');
+    itemLookUp(productId, (err, p)=>{
       if(err) return next;
       res.send(p)
     })
@@ -29,21 +29,19 @@ export default {
       },
       productId: obj.productId
     }
-    Product.findOne({
-      productId: obj.productId
-    })
+    Product.findOneByProductId(obj.productId)
     .then(p=>{
       if(p) {
         return res.send({
           message: 'Existing',
-          productId: p._id
+          productId: p.productId
         })
       }
       const product = new Product(cleanUpObj);
       product.save().then(p=>{
         return res.send({
           message: 'New',
-          productId: p._id
+          productId: p.productId
         })
       })
     })
@@ -51,35 +49,45 @@ export default {
   },
   getOneByProductId: (req, res, next) => {
     const {productId} = req.query;
+    if(!productId) next('404:No Product Id')
     productId
-    ?Product.findById(productId)
-      .then(p=>res.send(p))
-      .catch(next)
-    :next('404:No Product Id')
-  },
-  getOneById: (req, res, next) => {
-    const {id} = req.query;
-    id
-    ?Product.findById(id)
+    ?Product.findOneByProductId(productId)
       .then(p=>res.send(p))
       .catch(next)
     :next('404:No Product Id')
   },
   endOneById: (req, res, next) => {
-    const {productId} = req.query;
-    productId
-    ?Product.findByIdAndUpdate(productId, { end: true, changeBy: req.user._id })
+    const {id} = req.query;
+    id
+    ?Product.findByIdAndUpdate(id, { end: true })
     .then(_=>res.send())
     .catch(next)
-    :next('404:No Product Id')
+    :next('404:No Id')
+  },
+  updateOneById: (req, res, next) => {
+    const {id} = req.query;
+    const obj = req.body;
+    id
+    ?Product.findByIdAndUpdate(id, {$set: dotNotate(obj)})
+    .then(_=>res.send())
+    .catch(next)
+    :next('404:No Id')
   },
   activeOneById: (req, res, next) => {
-    const {productId} = req.query;
-    productId
-    ?Product.findByIdAndUpdate(productId, { end: false, changeBy: req.user._id })
+    const {id} = req.query;
+    id
+    ?Product.findByIdAndUpdate(id, { end: false })
     .then(_=>res.send())
     .catch(next)
-    :next('404:No Product Id')
+    :next('404:No Id')
+  },
+  deleteOneById: (req, res, next) => {
+    const {id} = req.query;
+    id
+    ?Product.findByIdAndRemove(id)
+    .then(_=>res.send())
+    .catch(next)
+    :next('404:No Id')
   },
   fetchProductFromApify: (req, res, next) => {
     const {productPendingId} = req.query;
@@ -88,4 +96,19 @@ export default {
         .then(p=>res.send(p.data[0].pageFunctionResult))
         .catch(next)
   },
+}
+
+function dotNotate(obj,target,prefix) {
+  target = target || {},
+  prefix = prefix || "";
+
+  Object.keys(obj).forEach(function(key) {
+    if ( typeof(obj[key]) === "object" ) {
+      dotNotate(obj[key],target,prefix + key + ".");
+    } else {
+      return target[prefix + key] = obj[key];
+    }
+  });
+
+  return target;
 }

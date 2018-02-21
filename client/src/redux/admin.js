@@ -5,19 +5,32 @@ export const ADMIN_FETCH_ONE_PRODUCT_FROM_APIFY = 'ADMIN_FETCH_ONE_PRODUCT_FROM_
 
 export const adminDashboardReset = () => (dispatch) => dispatch({type: ADMIN_DASHBOARD_REST});
 
-export function searchOneProduct(uri) {
+export function searchOneProductByURL(url) {
     return function (dispatch) {
-      request.get(`/api/product/searchOneFromAmazon?source=${uri}`)
-      .then(res=>{
-        const {productPendingId, productId} = res.data;
-        dispatch({ type: ADMIN_SEARCH_FOR_ONE_PRODUCT, payload: {productPendingId, productId} });
+      let productId = 'B0' + url.split('/B0')[1].split('/')[0];
+      request.get(`/api/product/getOneByProductId?productId=${productId}`)
+      .then(p=>{
+        if(p.productId){
+          let r = window.confirm(`This prodcut(${p.productId}) is already existing, want to check the current posting?`)
+          if(r==true){
+            return window.location = `/#pd/${p.productId}`;
+          }else{
+            window.location.reload(true);
+          }
+        }
+        request.get(`/api/product/searchAmazonByProductId?productId=${productId}`)
+          .then(res=>{
+            const {productPendingId, productId} = res.data;
+            dispatch({ type: ADMIN_SEARCH_FOR_ONE_PRODUCT, payload: {productPendingId, productId} });
+          })
       })
+      
       .catch(err=>{
         console.log(err)
       })
     }
 }
-export function fetchProductPreview(productPendingId) {
+export function fetchProductPreviewByProductPendingId(productPendingId) {
     return function (dispatch) {
       request.get(`/api/product/fetchProductFromApify?productPendingId=${productPendingId}`)
       .then(res=>{
@@ -25,9 +38,13 @@ export function fetchProductPreview(productPendingId) {
         const productId = res.data.productId;
         request.get(`/api/product/getOneByProductId?productId=${productId}`)
         .then(p=>{
-          let r = window.confirm(`This prodcut(${productId}) is already existing, want to check the current posting?`)
-          if(r==true){
-            window.location = `/#pd/${res.data.productId}`;  
+          if(p.productId){
+            let r = window.confirm(`This prodcut(${p.productId}) is already existing, want to check the current posting?`)
+            if(r==true){
+              return window.location = `/#pd/${p.productId}`;
+            }else{
+              window.location.reload(true);
+            }
           }
         })
       })

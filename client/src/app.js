@@ -10,6 +10,7 @@ import Layout from './components/layout';
 import Welcome from './components/welcome';
 import Explore from './components/explore/browser';
 import Product from './components/explore/product';
+import ProductEdit from './components/explore/product.edit';
 import Account from './components/account';
 import Signin from './components/auth/signin';
 import SignupWithEmail from './components/auth/signupWithEmail';
@@ -45,7 +46,8 @@ ReactDOM.render(
           
           <Route path='/explore' component= {Explore} />
           
-          <Route path='/pd/:id' component= {Product} />
+          <Route path='/pd/:productId' component= {Product} />
+          <Route path='/edit/pd/:productId' component= {ProductEdit} />
           
           <Route path='/signup' component= {SignupWithEmail} />
           <Route path='/account' component= {RequireAuth(Account)} />

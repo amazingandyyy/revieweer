@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import {getOneproduct} from '../../actions';
+import { getOneproduct } from '../../actions';
 import CenterCard121 from '../centerCard121';
 
 class Product extends Component {
   componentDidMount(){
-    const {id} = this.context.router.route.match.params;
-    if(!id) return this.context.router.history.push('/explore');
-    this.props.getOneproduct(id);
+    const {productId} = this.context.router.route.match.params;
+    if(!productId) return this.context.router.history.push('/explore');
+    this.props.getOneproduct(productId);
   }
   render() {
     return (
@@ -24,7 +25,7 @@ class Product extends Component {
     );
   }
   renderProduct(){
-    const {details, benefits} = this.props;
+    const {details, benefits, isAdmin, productId} = this.props;
     if(details && benefits){
       return <div>
         <div className='text-center'>
@@ -53,13 +54,16 @@ class Product extends Component {
                 <li className="list-group-item">
                     <label><b>Notes:</b></label>
                     <br/>
-                    {benefits.notes}
+                    {benefits.notes || 'None'}
                 </li>
                 <li className="list-group-item">
                     <label><b>Rewards:</b></label>
                     <br/>
                     ${benefits.rewards}
                 </li>
+                {isAdmin&&<li className="list-group-item">
+                  <Link to={`/edit/pd/${productId}`} className='btn btn-lg btn-light btn-block'>Edit This Item</Link>
+                </li>}
             </ul>
         </div>
       </div>
@@ -75,16 +79,19 @@ Product.contextTypes = {
   router: PropTypes.object
 }
 
-function mapStateToProps({product}) {
+function mapStateToProps({auth,product}) {
   const {item} = product;
   if(item){
     return {
+      productId: item.productId,
       details: item.details,
-      benefits: item.benefits
+      benefits: item.benefits,
+      isAdmin: auth.isAdmin
     }
   }else{
     return {
-      product: null
+      product: null,
+      isAdmin: auth.isAdmin
     }
   }
 }

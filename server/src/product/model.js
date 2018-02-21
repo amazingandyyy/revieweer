@@ -26,5 +26,15 @@ const productSchema = new mongoose.Schema({
     timestamps: true
 })
 
+productSchema.statics.findOneByProductId = (productId) => {
+    console.log('productId')
+    return Product.findOne({
+        productId: productId
+    })
+}
+
 // Export the model
-export default mongoose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema);
+
+
+export default Product

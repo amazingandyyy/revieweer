@@ -2,10 +2,8 @@ import axios from 'axios';
 import config from '../config';
 import Product from './model';
 
-export default function itemLookUp(uri, cb){
-    if(!uri) return cb(new Error('No Uri Is Provided.'));
-    if(uri.search('/B0') < 0) return cb(new Error('No Product Id Found'));
-    let productId = 'B0' + uri.split('/B0')[1].split('/')[0];
+export default function itemLookUp(productId, cb){
+    if(!productId) return cb(new Error('No productId Is Provided.'));
     Product.findOne({ productId })
         .then(p=>{
             if(!p) return searchViaApify();

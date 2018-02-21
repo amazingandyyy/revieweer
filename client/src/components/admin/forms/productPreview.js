@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 
 import CenterCard121 from '../../centerCard121';
-import { adminDashboardReset, fetchProductPreview, createOneProduct } from '../../../actions';
+import { adminDashboardReset, fetchProductPreviewByProductPendingId, createOneProduct } from '../../../actions';
 
 class productPreviewForm extends React.Component {
     constructor(){
@@ -19,18 +19,16 @@ class productPreviewForm extends React.Component {
         }
         let finalObj = {
             ...mergeObj,
-            price: Number(mergeObj.price),
-            cashback: Number(mergeObj.cashback),
-            rewards: Number(mergeObj.rewards)
+            price: Number(mergeObj.price).toFixed(2),
+            cashback: Number(mergeObj.cashback).toFixed(2),
+            rewards: Number(mergeObj.rewards).toFixed(2)
         }
-        console.log(finalObj)
         this.props.createOneProduct(finalObj);
-        
     }
     componentDidMount(){
         const {productPendingId} = this.context.router.route.match.params;
         if(productPendingId){
-            this.props.fetchProductPreview(productPendingId)
+            this.props.fetchProductPreviewByProductPendingId(productPendingId)
         }
     }
     render() {
@@ -152,9 +150,7 @@ function mapStateToProps({adminDashboard}) {
         return {
             produdtPreviewData: produdtPreviewData,
             initialValues: {
-                title:  produdtPreviewData.title,
                 price:  produdtPreviewData.price,
-                seller:  produdtPreviewData.seller,
                 rewards: 4,
                 cashback: produdtPreviewData.price,
                 notes: ''
@@ -167,7 +163,7 @@ function mapStateToProps({adminDashboard}) {
 }
 
 export default connect(mapStateToProps, {
-    fetchProductPreview, adminDashboardReset,createOneProduct
+    fetchProductPreviewByProductPendingId, adminDashboardReset,createOneProduct
 })(reduxForm({
     form: 'productPreviewForm'
 })(productPreviewForm));

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import LoadingBar, { showLoading, hideLoading }  from 'react-redux-loading-bar';
 import {store} from '../../../app';
-import { searchOneProduct, adminDashboardReset } from '../../../actions';
+import { searchOneProductByURL, adminDashboardReset } from '../../../actions';
 
 // https://www.amazon.com/dp/B0758RP5V8/ref=sxbs_sxwds-stvp_1?pf_rd_m=ATVPDKIKX0DER&pf_rd_p=3341940462&pd_rd_wg=hOnNe&pf_rd_r=2P63MYTGNHA7294C6J1Q&pf_rd_s=desktop-sx-bottom-slot&pf_rd_t=301&pd_rd_i=B0758RP5V8&pd_rd_w=UdZTt&pf_rd_i=B077N2KK27&pd_rd_r=29b40780-0aee-49f2-bd57-1ad2094c25e7&ie=UTF8&qid=1519082529&sr=1
 
@@ -26,7 +26,7 @@ class SearchProductForm extends React.Component {
     handleFormSubmit({url}) {
         if(url.search('amazon.com')!==-1 && url.search('/B0')!==-1){
             store.dispatch(showLoading('adminSearchProductBar'))
-            this.props.searchOneProduct(url);
+            this.props.searchOneProductByURL(url);
         }else{
             this.setState({
                 errorMsg: 'URL is bad'
@@ -107,7 +107,6 @@ class SearchProductForm extends React.Component {
 }
 
 function mapStateToProps({adminDashboard}) {
-    console.log('adminDashboard', adminDashboard);
     return {
         productPendingId: adminDashboard.productPendingId,
         productId: adminDashboard.productId,
@@ -122,6 +121,6 @@ SearchProductForm.contextTypes = {
 }
 
 
-export default connect(mapStateToProps, {searchOneProduct, adminDashboardReset})(reduxForm({
+export default connect(mapStateToProps, {searchOneProductByURL, adminDashboardReset})(reduxForm({
     form: 'SearchProductForm'
 })(SearchProductForm));
