@@ -15,40 +15,52 @@ export default {
     const obj = req.body;
     if(!obj)return next('500:No Product Details')
     const cleanUpObj = {
-      productId: obj.productId,
-      basic_info: {
-        ...obj
-      }
+      details: {
+        imageURL: obj.imageURL,
+        title: obj.title,
+        link: obj.link,
+        price: obj.price,
+        seller: obj.seller,
+      },
+      benefits: {
+          cashback: obj.cashback,
+          notes: obj.notes || '',
+          rewards: obj.rewards,
+      },
+      productId: obj.productId
     }
-    const product = new Product(cleanUpObj);
-    product.save()
-      .then(p=>{
+    Product.findOne({
+      productId: obj.productId
+    })
+    .then(p=>{
+      if(p) {
         return res.send({
-          message: 'New Created',
+          message: 'Existing',
+          productId: p._id
+        })
+      }
+      const product = new Product(cleanUpObj);
+      product.save().then(p=>{
+        return res.send({
+          message: 'New',
           productId: p._id
         })
       })
-      .catch(err=>{
-        if(err.code == 11000) {
-          Product.findOne({
-            productId: cleanUpObj.productId
-          })
-          .then(p=>{
-            return res.send({
-              message: 'Already Exists',
-              productId: p._id
-            })
-          })
-          .catch(next)
-        }else{
-          return next(err);
-        }
-      });
+    })
+    .catch(next)
   },
-  getOneById: (req, res, next) => {
+  getOneByProductId: (req, res, next) => {
     const {productId} = req.query;
     productId
     ?Product.findById(productId)
+      .then(p=>res.send(p))
+      .catch(next)
+    :next('404:No Product Id')
+  },
+  getOneById: (req, res, next) => {
+    const {id} = req.query;
+    id
+    ?Product.findById(id)
       .then(p=>res.send(p))
       .catch(next)
     :next('404:No Product Id')

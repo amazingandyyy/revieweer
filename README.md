@@ -25,9 +25,9 @@ Explore, review, earn.
     - [ ] change password
   - [ ] delete
 - [ ] product CRUD
-  - [ ] create
+  - [x] create
     - [x] fetch product details api
-    - [ ] create new product
+    - [x] create new product
   - [ ] read
     - [ ] list at client
   - [ ] update
@@ -75,6 +75,14 @@ Explore, review, earn.
   - [ ] company wechat
   - [ ] company medium
   - [ ] company linkedin
+
+
+## Porduction Devops
+- [x] https
+- [ ] new relic
+- [ ] sentry
+- [ ] ga
+
 
 ## Author
 

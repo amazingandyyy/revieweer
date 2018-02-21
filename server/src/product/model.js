@@ -2,27 +2,25 @@ import mongoose from 'mongoose';
 
 // Define the model
 const productSchema = new mongoose.Schema({
-    basic_info: {
+    details: {
         imageURL: String,
         title: String,
         link: String,
         price: Number,
         seller: String
     },
+    benefits: {
+        notes: String,
+        cashback: Number,
+        rewards: Number
+    },
+    end: {
+        type: Boolean,
+        default: false
+    },
     productId: {
         type: String,
         unique: true
-    },
-    end: {
-        status: {
-            type: Boolean,
-            default: false
-        },
-        changeBy: {
-            type: mongoose.Schema.ObjectId,
-            ref: 'User',
-            unique: true
-        }
     }
 },{
     timestamps: true

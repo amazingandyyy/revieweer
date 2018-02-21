@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export default class Explore extends Component {
+export default class Browser extends Component {
   render() {
     return (
       <div>
-      <h1>Explore</h1>
+      <h1>Explore Browser</h1>
       </div>
     );
   }

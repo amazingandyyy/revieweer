@@ -24,7 +24,7 @@ class SearchProductForm extends React.Component {
         this.props.adminDashboardReset();
     }
     handleFormSubmit({url}) {
-        if(url.search('amazon.com')!==-1&&url.search('/B0')!==-1){
+        if(url.search('amazon.com')!==-1 && url.search('/B0')!==-1){
             store.dispatch(showLoading('adminSearchProductBar'))
             this.props.searchOneProduct(url);
         }else{
@@ -76,25 +76,29 @@ class SearchProductForm extends React.Component {
         }
     }
     renderLoader(){
-        return (<div style={{'margin': '30px auto'}}>
-            <i style={{'fontSize': '2rem', 'opacity': '0.7'}}className='fa fa-spin fa-sync'></i>
-            <LoadingBar scope="adminSearchProductBar" className='revieweer-loading-bar-2'/>
-            <h6>Fetching product details from amazon...</h6>
-        </div>)
+        if(!this.productPendingId && !this.productId) {
+            return (<div style={{'margin': '30px auto'}}>
+                <i style={{'fontSize': '2rem', 'opacity': '0.7'}}className='fa fa-spin fa-sync'></i>
+                <LoadingBar scope="adminSearchProductBar" className='revieweer-loading-bar-2' style={{'margin': '20px auto'}}/>
+                <h6>Fetching product details from amazon...</h6>
+            </div>)
+        }
     }
     renderProdudtPendingId(){
-        if(this.props.produdtPendingId){
-            store.dispatch(hideLoading('adminSearchProductBar'))
-                this.context.router.history.push(`/admin/launch/preview/${this.props.produdtPendingId}`);
-            return <div>
-                {this.props.produdtPendingId}
-            </div>
+        if(this.props.productPendingId){
+            setTimeout(()=>{
+                store.dispatch(hideLoading('adminSearchProductBar'))
+                this.context.router.history.push(`/admin/launch/preview/${this.props.productPendingId}`);
+                return <div>
+                    {this.props.productPendingId}
+                </div>
+            }, 5000)
         }
     }
     renderProductId(){
         if(this.props.productId){
             store.dispatch(hideLoading('adminSearchProductBar'))
-            this.context.router.history.push(`/explore/pd/${this.props.productId}`);
+            this.context.router.history.push(`/pd/${this.props.productId}`);
             return <div>
                 {this.props.productId}
             </div>
@@ -103,8 +107,9 @@ class SearchProductForm extends React.Component {
 }
 
 function mapStateToProps({adminDashboard}) {
+    console.log('adminDashboard', adminDashboard);
     return {
-        produdtPendingId: adminDashboard.produdtPendingId,
+        productPendingId: adminDashboard.productPendingId,
         productId: adminDashboard.productId,
         initialValues: {
             url: 'https://www.amazon.com/dp/B0758RP5V8/ref=sxbs_sxwds-stvp_1?pf_rd_m=ATVPDKIKX0DER&pf_rd_p=3341940462&pd_rd_wg=hOnNe&pf_rd_r=2P63MYTGNHA7294C6J1Q&pf_rd_s=desktop-sx-bottom-slot&pf_rd_t=301&pd_rd_i=B0758RP5V8&pd_rd_w=UdZTt&pf_rd_i=B077N2KK27&pd_rd_r=29b40780-0aee-49f2-bd57-1ad2094c25e7&ie=UTF8&qid=1519082529&sr=1'

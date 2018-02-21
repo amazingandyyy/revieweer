@@ -21,7 +21,7 @@ class productPreviewForm extends React.Component {
             ...mergeObj,
             price: Number(mergeObj.price),
             cashback: Number(mergeObj.cashback),
-            rewards: Number(mergeObj.cashback)
+            rewards: Number(mergeObj.rewards)
         }
         console.log(finalObj)
         this.props.createOneProduct(finalObj);
@@ -50,7 +50,7 @@ class productPreviewForm extends React.Component {
         if(produdtPreviewData){
             return (
                 <div className='text-center'>
-                    <img style={{'width': '70%', 'margin':'auto'}} className='card-img-top' src={this.props.produdtPreviewData.imageURL} alt={this.props.produdtPreviewData.title}/>
+                    <img style={{'width': '70%', 'margin':'auto'}} className='card-img-top' src={produdtPreviewData.imageURL} alt={produdtPreviewData.title}/>
                     <ul className="list-group list-group-flush text-left">
                         <li className="list-group-item">
                             <label><b>Title:</b></label>
@@ -135,7 +135,7 @@ class productPreviewForm extends React.Component {
             )
         }else{
             return(<div style={{'textAlign': 'center', 'margin': '30px'}}>
-                <i className='fa fa-sync fa-spin'></i>
+                <i style={{'fontSize': '2rem', 'opacity': '0.7'}}className='fa fa-spin fa-sync'></i>
             </div>)
         }
     }

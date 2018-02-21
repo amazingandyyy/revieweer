@@ -6,31 +6,31 @@ export default function itemLookUp(uri, cb){
     if(!uri) return cb(new Error('No Uri Is Provided.'));
     if(uri.search('/B0') < 0) return cb(new Error('No Product Id Found'));
     let productId = 'B0' + uri.split('/B0')[1].split('/')[0];
-
     Product.findOne({ productId })
         .then(p=>{
             if(!p) return searchViaApify();
             return cb(null, {
-                message: 'Already Exists',
+                message: 'Existing',
                 productId: p._id
             })
         })
         .catch(err=>cb(err))
 
     const searchViaApify = () => {
-    axios.post(`https://api.apify.com/v1/k85BDCrCt5HTrNAE4/crawlers/xZbpx7AEMEzYCQMLP/execute?token=${config.apifyToken.itemLookUp}`, {
-        "startUrls": [
-            {
-                "key": "START",
-                "value": `https://www.amazon.com/s/field-keywords=${productId}`
-            }
-        ]
-    })
-    .then(r=>cb(null, {
-        productPendingId: r.data._id
-    }))
-    .catch(err=>cb(err))
-      }
+        axios.post(`https://api.apify.com/v1/k85BDCrCt5HTrNAE4/crawlers/xZbpx7AEMEzYCQMLP/execute?token=${config.apifyToken.itemLookUp}`, {
+            "startUrls": [
+                {
+                    "key": "START",
+                    "value": `https://www.amazon.com/s/field-keywords=${productId}`
+                }
+            ]
+        })
+        .then(r=>cb(null, {
+            message: 'New',
+            productPendingId: r.data._id
+        }))
+        .catch(err=>cb(err))
+    }
 }
 
 // For information about migrating to our APIs refer to our 

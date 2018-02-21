@@ -8,7 +8,8 @@ import reduxMiddlewares from './redux/middlewares';
 
 import Layout from './components/layout';
 import Welcome from './components/welcome';
-import Explore from './components/explore';
+import Explore from './components/explore/browser';
+import Product from './components/explore/product';
 import Account from './components/account';
 import Signin from './components/auth/signin';
 import SignupWithEmail from './components/auth/signupWithEmail';
@@ -41,14 +42,20 @@ ReactDOM.render(
         <Layout>
           <LoadingBar className='revieweer-loading-bar' />
           <Route exact path='/' component= {Welcome} />
+          
           <Route path='/explore' component= {Explore} />
-          <Route path='/account' component= {RequireAuth(Account)} />
+          
+          <Route path='/pd/:id' component= {Product} />
+          
           <Route path='/signup' component= {SignupWithEmail} />
+          <Route path='/account' component= {RequireAuth(Account)} />
           <Route path='/signupVerification' component= {SignupVerification} />
           <Route path='/signin' component= {Signin} />
           <Route path='/signout' component= {Signout} />
+
           <Route path='/admin' component= {RequireAdmin(Admin)} />
           <Route path='/admin/insight' component= {Insight} />
+          
           <Route path='/admin/launch' component= {Launch} />
           <Route path='/admin/launch/search' component= {SearchProduct} />
           <Route path='/admin/launch/preview/:productPendingId' component= {LaunchPreview} />

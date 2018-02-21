@@ -16,16 +16,22 @@ const caseSchema = new mongoose.Schema({
         visit: {
             at: Date
         },
-        startAt: Date,
+        startAt: {
+            at: Date
+        },
         ordered: {
             at: Date,
             screenshot: String
         },
-        reviewedAt: {
+        reviewed: {
             at: Date
         },
-        payoutAt: Date,
-        finishedAt: Date
+        payout: {
+            at: Date
+        },
+        finished: {
+            at: Date
+        },
     },
     progress: {
         type : String, 

@@ -9,6 +9,7 @@ import { signinReducer as signin } from './redux/signin';
 import { signupWithEmailReducer as signupWithEmail } from './redux/signupWithEmail';
 import { signupVerificationReducer as signupVerification } from './redux/signupVerification';
 import { adminReducer as adminDashboard } from './redux/admin';
+import { productReducer as product } from './redux/product';
 
 export default combineReducers({
   loadingBar: loadingBarReducer,
@@ -19,5 +20,6 @@ export default combineReducers({
   profile,
   signupWithEmail,
   signupVerification,
-  adminDashboard
+  adminDashboard,
+  product
 });
