@@ -18,6 +18,9 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    endAt: {
+        type: Date
+    },
     productId: {
         type: String,
         unique: true

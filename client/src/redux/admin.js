@@ -32,7 +32,7 @@ export function searchOneProductByURL(url) {
 }
 export function fetchProductPreviewByProductPendingId(productPendingId) {
     return function (dispatch) {
-      request.get(`/api/product/fetchProductFromApify?productPendingId=${productPendingId}`)
+      request.get(`/api/product/fetchProductPreview?productPendingId=${productPendingId}`)
       .then(res=>{
         dispatch({ type: ADMIN_FETCH_ONE_PRODUCT_FROM_APIFY, payload: res.data })
         const productId = res.data.productId;

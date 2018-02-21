@@ -13,6 +13,8 @@ router.post('/updateOneById', adminReuired, Controller.updateOneById); //req.que
 router.delete('/deleteOneById', adminReuired, Controller.deleteOneById); //req.query.id
 router.put('/deleteOneById', adminReuired, Controller.deleteOneById); //req.query.id
 router.put('/activeOneById', adminReuired, Controller.activeOneById); //req.query.id
-router.get('/fetchProductFromApify', Controller.fetchProductFromApify); //req.query.productId
+router.get('/fetchProductPreview', Controller.fetchProductPreview); //req.query.productId
+
+router.get('/fetchAll', Controller.fetchAll);
 
 export default router;

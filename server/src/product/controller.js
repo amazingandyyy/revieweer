@@ -89,12 +89,33 @@ export default {
     .catch(next)
     :next('404:No Id')
   },
-  fetchProductFromApify: (req, res, next) => {
+  fetchProductPreview: (req, res, next) => {
     const {productPendingId} = req.query;
     console.log(productPendingId);
     axios.get(`https://api.apify.com/v1/execs/${productPendingId}/results`)
         .then(p=>res.send(p.data[0].pageFunctionResult))
         .catch(next)
+  },
+  fetchAll: (req, res, next) => {
+    Product.find({})
+    .sort({updatedAt: -1})
+    .then(list=>{
+      res.send({
+        total: list.length,
+        list
+      })
+    })
+    .catch(next)
+
+    // use local time: 
+    //     new Date(2018, 1, 20, 23, 13, 27)
+    // convert to ISO: 
+    //     .toISOString() = "2018-02-21T07:13:27.000Z"
+    // can use it intuitively: 
+    //     .where('createdAt').gt(new Date(2018, 1, 20, 23, 13, 27).toISOString())
+    // result:
+    //     2018-02-21T07:14:28.372Z stay
+    //     2018-02-21T07:13:26.372Z out
   },
 }
 
@@ -112,3 +133,13 @@ function dotNotate(obj,target,prefix) {
 
   return target;
 }
+
+
+// let larger = new Date(list[0].createdAt); // younger is bigger, have passed more time
+// let smaller = new Date(2018, 1, 20, 23, 15, 33);
+// // '2018-02-21T07:15:34.256Z' > 
+// // '2018-02-21T07:15:33.000Z'
+// console.log('local larger', larger.toLocaleString());
+// console.log('>')
+// console.log('local smaller', smaller.toLocaleString())
+// console.log('is', larger>smaller)

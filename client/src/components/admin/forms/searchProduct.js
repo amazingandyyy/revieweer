@@ -111,7 +111,7 @@ function mapStateToProps({adminDashboard}) {
         productPendingId: adminDashboard.productPendingId,
         productId: adminDashboard.productId,
         initialValues: {
-            url: 'https://www.amazon.com/dp/B0758RP5V8/ref=sxbs_sxwds-stvp_1?pf_rd_m=ATVPDKIKX0DER&pf_rd_p=3341940462&pd_rd_wg=hOnNe&pf_rd_r=2P63MYTGNHA7294C6J1Q&pf_rd_s=desktop-sx-bottom-slot&pf_rd_t=301&pd_rd_i=B0758RP5V8&pd_rd_w=UdZTt&pf_rd_i=B077N2KK27&pd_rd_r=29b40780-0aee-49f2-bd57-1ad2094c25e7&ie=UTF8&qid=1519082529&sr=1'
+            // url: 'https://www.amazon.com/dp/B0758RP5V8/ref=sxbs_sxwds-stvp_1?pf_rd_m=ATVPDKIKX0DER&pf_rd_p=3341940462&pd_rd_wg=hOnNe&pf_rd_r=2P63MYTGNHA7294C6J1Q&pf_rd_s=desktop-sx-bottom-slot&pf_rd_t=301&pd_rd_i=B0758RP5V8&pd_rd_w=UdZTt&pf_rd_i=B077N2KK27&pd_rd_r=29b40780-0aee-49f2-bd57-1ad2094c25e7&ie=UTF8&qid=1519082529&sr=1'
         }
     }
 }
