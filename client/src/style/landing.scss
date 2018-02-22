@@ -60,8 +60,44 @@
   }
 }
 
+.growth-component {
+  padding: 50px 0px;
+  text-align: center;
+  background: $brand-color;
+
+  .growth-tag{
+    display: inline-block;
+    color: $brand-color;
+  }
+
+  .growth-title{
+    font-size: 1.2rem;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .growth-card{
+    background: white;
+    color: black;
+    border-radius: 0.3rem;
+    display: inline-block;
+    box-shadow: 0px 0px 20px -1px rgba(darken($brand-color, 50%), 0.2);
+    padding: 50px 20px;
+    width: 100%;
+    max-width: 750px;
+    margin: 20 auto;
+  }
+  .growth-image{
+    img {
+      width: 200px;
+      transform: rotate(20deg);
+      margin: 10px;
+    }
+  }
+}
+
 .feature-component {
-  margin: 50px auto;
+  padding: 50px 0px;
   text-align: center;
 
   .row{
@@ -92,6 +128,42 @@
       font-weight: 400;
       font-size: 1rem;
       opacity: 0.8;
+    }
+  }
+}
+
+.footer-component{
+  background: darken(#F2F4F5, 3%);
+  padding: 80px 10px 70px;
+  text-align: center;
+  .footer-modules {
+    margin-bottom: 10px;
+    @media (max-width: 543px) {
+      margin-bottom: 30px;
+    }
+    .module-title{
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    .module-link a{
+      color: rgba(black, 0.8);
+      cursor: pointer;
+      line-height: 2rem;
+
+      &:link, &:visited{
+        color: rgba(black, 0.8);
+      }
+      &:hover{
+        color: $brand-color;
+        text-transform: none;
+        text-decoration: none;
+      }
+      &:active{ 
+        color: darken($brand-color, 10%);
+      }
     }
   }
 }

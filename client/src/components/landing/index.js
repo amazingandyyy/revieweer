@@ -6,9 +6,9 @@ import Footer from './footer';
 const Landing= ()=> {
   return (
     <div>
-      <Welcome/>
-      <Feature/>
-      <Footer/>
+      <Welcome />
+      <Feature />
+      <Footer />
     </div>)
 }
 
