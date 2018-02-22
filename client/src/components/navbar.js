@@ -5,8 +5,19 @@ import LoadingBar from 'react-redux-loading-bar';
 import {getUserProfile} from '../actions';
 
 class Navbar extends Component {
+    constructor(){
+        super();
+        this.state = {
+            pathname: ''
+        }
+    }
     componentDidMount(){
         this.props.getUserProfile();
+        const pathname = this.context.router.history.location.pathname;
+        this.setState({ pathname })
+    }
+    renderClass(base, router){
+        return (this.state.pathname.indexOf(router)!=-1)?`${base} revieweer-active`:base;
     }
     renderSignButton(){
         const {isLoggedIn, profile, isAdmin} = this.props;
@@ -18,7 +29,7 @@ class Navbar extends Component {
                             {profile.name.first}
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <NavLink className="dropdown-item" to="/account">Account</NavLink>
+                            <NavLink className='dropdown-item' to="/account">Account</NavLink>
                             {isAdmin && <NavLink className="dropdown-item" to="/admin/insight">Admin</NavLink>}
                             <div className="dropdown-divider"></div>
                             <NavLink className="dropdown-item" to="/signout">Log out</NavLink>
@@ -50,7 +61,7 @@ class Navbar extends Component {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav mr-auto">
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/explore">Explore</NavLink>
+                            <NavLink className={this.renderClass('nav-link', 'explore')} to="/explore">Explore</NavLink>
                         </li>
                     </ul>
                     <ul className="navbar-nav">

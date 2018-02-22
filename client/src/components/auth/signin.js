@@ -23,7 +23,7 @@ class Signin extends Component {
             <CenterCard121>
                 <div className='card'>
                     <h4 className='card-header'>
-                        Welcome Back
+                        Welcome
                     </h4>
                     <div className='card-body'>
                     <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signinReset}>

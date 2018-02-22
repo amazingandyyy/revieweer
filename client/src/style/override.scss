@@ -39,4 +39,15 @@ button.btn.btn-success.btn-lg.btn-block{
 }
 button, button.btn{
   cursor: pointer;
+  user-select: none !important;
+}
+
+input.form-control, textarea.form-control {
+    &:focus{
+      color: #495057;
+      background-color: #fff;
+      border-color: rgba($brand-color, 1);
+      outline: 0;
+      box-shadow: 0 0 0 0.15rem rgba(lighten($brand-color, 10%), 0.2);
+    }
 }

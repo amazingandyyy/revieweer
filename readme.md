@@ -1,5 +1,5 @@
 <div align="right">
-    <img height='20px' src='https://github.com/amazingandyyy/revieweer/blob/master/client/src/assets/svgs/logo-long.svg?raw=true'/>
+    <img height='20px' src='https://github.com/amazingandyyy/revieweer/blob/master/client/src/assets/svgs/logo-long.png?raw=true'/>
 </div>
 
 # Revieweer
@@ -128,5 +128,5 @@ Review, Explore, Earn
 All rights reserved.
 
 <div align="center">
-    <img height='20px' src='https://github.com/amazingandyyy/revieweer/blob/master/client/src/assets/svgs/logo-r.svg?raw=true'/>
+    <img height='20px' src='https://github.com/amazingandyyy/revieweer/blob/master/client/src/assets/svgs/logo-r.png?raw=true'/>
 </div>
