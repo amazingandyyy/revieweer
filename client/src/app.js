@@ -7,7 +7,7 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 import reduxMiddlewares from './redux/middlewares';
 
 import Layout from './components/layout';
-import Welcome from './components/welcome';
+import Landing from './components/landing';
 import Explore from './components/explore/browser';
 import Product from './components/explore/product';
 import ProductEdit from './components/explore/product.edit';
@@ -43,8 +43,8 @@ ReactDOM.render(
         <Route exact path='/homescreen' component= {Homescreen} />
         <Layout>
           <LoadingBar className='revieweer-loading-bar' />
-          <Route exact path='/' component= {Welcome} />
-          
+          <Route exact path='/' component= {Landing} />
+
           <Route path='/explore' component= {Explore} />
           
           <Route path='/pd/:productId' component= {Product} />

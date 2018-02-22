@@ -11,17 +11,19 @@ class Navbar extends Component {
         const {isLoggedIn, profile, isAdmin} = this.props;
         if (isLoggedIn && profile.name){
             return (
-                <li className="nav-item dropdown">
-                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        {profile.name.first}
-                    </a>
-                    <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <NavLink className="dropdown-item" to="/account">Account</NavLink>
-                    {isAdmin && <NavLink className="dropdown-item" to="/admin/insight">Admin</NavLink>}
-                    <div className="dropdown-divider"></div>
-                    <NavLink className="dropdown-item" to="/signout">Log out</NavLink>
-                    </div>
-                </li>
+                <span>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {profile.name.first}
+                        </a>
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <NavLink className="dropdown-item" to="/account">Account</NavLink>
+                            {isAdmin && <NavLink className="dropdown-item" to="/admin/insight">Admin</NavLink>}
+                            <div className="dropdown-divider"></div>
+                            <NavLink className="dropdown-item" to="/signout">Log out</NavLink>
+                        </div>
+                    </li>
+                </span>
             )
         }else{
             return (
