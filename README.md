@@ -3,7 +3,7 @@
 
 ## What is Revieweer
 
-Explore, review, earn.
+Review, Explore, Earn.
 
 - Explore products
 
@@ -70,19 +70,21 @@ Explore, review, earn.
   - [x] 404 handler _> redirect to `/#`, handled by ReactRouter
 - [ ] social account
   - [ ] company [github](https://github.com/revieweer)
-  - [ ] company twitter
+  - [ ] company [twitter](https://twitter.com/revieweer_team)
   - [ ] company [facebook](https://facebook.com/revieweer)
   - [ ] company wechat
-  - [ ] company medium
-  - [ ] company linkedin
+  - [ ] company [medium](https://medium.com/revieweer)
+  - [ ] company [linkedin](https://www.linkedin.com/company/revieweer/)
 
 
 ## Porduction Devops
-- [x] https
-- [ ] new relic
-- [ ] sentry
-- [ ] ga
 
+- [x] https
+- [ ] Sentry
+- [ ] Google AnalyticsUA
+- [ ] Mixpanel
+- [ ] New Relic
+- [ ] Segment
 
 ## Author
 

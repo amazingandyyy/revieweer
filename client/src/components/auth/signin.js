@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 import {signUserIn,signinReset} from '../../actions';
 import CenterCard121 from '../centerCard121';
-import RevieweerLogo from '../logo';
 
 class Signin extends Component {
     componentWillMount(){
@@ -26,7 +25,6 @@ class Signin extends Component {
                     <h4 className="card-header">
                         Welcome Back
                     </h4>
-                    <RevieweerLogo />
                     <div className="card-body">
                     <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signinReset}>
                         <div className="form-group">

@@ -8,7 +8,7 @@ function createThunkMiddleware(extraArgument) {
     return function (next) {
       return function (action) {
         if (typeof action === 'function') {
-          loader.show(500);
+          loader.show(400+Math.floor(Math.random()*500));
           return action(dispatch, getState, extraArgument);
         }
         return next(action);

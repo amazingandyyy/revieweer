@@ -27,6 +27,7 @@ import RequireAuth from './components/auth/requireAuth';
 import reducers from './reducers';
 
 import './style/style.scss'
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 export const store = createStore(
   reducers,

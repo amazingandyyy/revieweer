@@ -7,7 +7,6 @@ import qs from 'qs';
 
 import {signUserUp,verifyEmailToken,signupEmailReset} from '../../actions';
 import CenterCard121 from '../centerCard121';
-import RevieweerLogo from '../logo';
 
 class SignupVerification extends Component {
     constructor(){
@@ -61,7 +60,6 @@ class SignupVerification extends Component {
             <CenterCard121>
                 <div className={this.renderBorder()}>
                     <h4 className="card-header" />
-                    <RevieweerLogo />
                     <div className='card-body'>
                         {this.renderLoading()}
                     </div>

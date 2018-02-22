@@ -2,8 +2,8 @@ import React from 'react';
 import Navbar from './navbar';
 
 const Layout = (props) => (<div>
-  {props.children}
   <Navbar />
+  {props.children}
 </div>)
 
 export default Layout;
