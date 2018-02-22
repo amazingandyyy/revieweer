@@ -7,12 +7,10 @@
 
 ## What is Revieweer
 
-Review, Explore, Earn.
+Review, Explore, Earn
 
 - Explore products
-
 - Order, recieve and review
-
 - Earn money and compensation
 
 ## Feature
@@ -50,37 +48,37 @@ Review, Explore, Earn.
   - [ ] insight dashboard
     - [ ] user ranking
     - [ ] user behavior
-    - [ ] referral structure
+    - [ ] referral infrastructure
 
-## Companywise
+## Company
 
 - [ ] VIS
   - [x] logo
   - [x] font
   - [x] color
     - primary green: `#13AB67`
-  - [ ] style
+  - [ ] style definition
 - [x] email
   - [x] host by namecheap, served by cloudfare
   - [x] team@revieweer.com
   - [ ] email signature
   - [ ] email template
-- [ ] https server
+- [ ] server
   - [x] server(`https://server.revieweer.com`)
   - [x] webhook(`https://server.revieweer.com/webhook`)
   - [ ] docs(`https://server.revieweer.com/docs`)
   - [ ] server 404 handler
-- [x] https client
+- [x] client app
   - [x] website(`https://www.revieweer.com`)
   - [x] website(`https://revieweer.com`)
   - [x] 404 handler _> redirect to `/#`, handled by ReactRouter
-- [ ] social account
-  - [x] company [github](https://github.com/revieweer)
-  - [x] company [twitter](https://twitter.com/revieweer_team)
-  - [x] company [facebook](https://facebook.com/revieweer)
-  - [ ] company wechat
-  - [x] company [medium](https://medium.com/revieweer)
-  - [x] company [linkedin](https://www.linkedin.com/company/revieweer/)
+- [ ] company social account
+  - [x] [github](https://github.com/revieweer)
+  - [x] [twitter](https://twitter.com/revieweer_team)
+  - [x] [facebook](https://facebook.com/revieweer)
+  - [x] [medium](https://medium.com/revieweer)
+  - [x] [linkedin](https://www.linkedin.com/company/revieweer/)
+  - [ ] Wechat Official Account
 - internal
   - [ ] comunication app
   - new hires
@@ -90,20 +88,39 @@ Review, Explore, Earn.
     - [ ] Quality(Infrustructure) Engineer
     - [ ] Writor(FB, Wechat, Medium)
 
-## Porduction DevOps
+## Production DevOps/Setups
 
-- [x] https
-- [x] Sentry
-- [ ] Google AnalyticsUA
-- [ ] Mixpanel
-- [ ] New Relic
-- [ ] Segment
-- [ ] Intercom
+- [x] Automatic CI
+  - [x] [travis-ci](https://travis-ci.com/amazingandyyy/revieweer)
+- [ ] Testing
+  - [ ] Unit Testing
+    - [ ] Node endpoints
+    - [ ] React Snapshot
+  - [x] Linter checking
+- [x] Internet Security
+  - [x] [https](https://www.cloudflare.com/a/overview/revieweer.com)
+  - [ ] DDos Protection
+- [x] Monitoring
+  - [x] [Sentry](https://sentry.io/revieweer/)
+    - [node](https://sentry.io/revieweer/express/)
+    - [reac](https://sentry.io/revieweer/react-0v/)
+  - [ ] New Relic
+- [x] Traffic Analytics
+  - [x] [Google Analytics](https://analytics.google.com/analytics/web/#realtime/rt-overview/a97391318w170557385p170363690/)
+- [ ] SEO
+  - [x] manifest
+  - [ ] PWA
+  - [ ] SSR
+  - [ ] open graph tags
+- [ ] UX Tracking
+  - [ ] Mixpanel
+  - [ ] Segment
+- [ ] RWD
+  - [x] Google Mobile-Friendly Test [Report](https://search.google.com/test/mobile-friendly?id=vCXMGoCZL5l9phVAeNg_Nw)
+- Customer Services
+  - [ ] Intercom
+  - [ ] Helping page
 
-## Author
+## License/Copy Rights
 
-[Amazingandyyy](amazingandyyy.github.io)
-
-## License
-
-All rights reserved before public releasing
+All rights reserved.
