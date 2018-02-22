@@ -51,12 +51,12 @@ class productPreviewForm extends React.Component {
                     <img style={{'width': '70%', 'margin':'auto'}} className='card-img-top' src={produdtPreviewData.imageURL} alt={produdtPreviewData.title}/>
                     <ul className="list-group list-group-flush text-left">
                         <li className="list-group-item">
-                            <label><b>Title:</b></label>
+                            <label><b>*Title:</b></label>
                             <br/>
                             {produdtPreviewData.title}
                         </li>
                         <li className="list-group-item">
-                            <label><b>Seller:</b></label>
+                            <label><b>*Seller:</b></label>
                             <br/>
                             {produdtPreviewData.seller}
                         </li>
@@ -105,7 +105,7 @@ class productPreviewForm extends React.Component {
                                 min="0.1"
                                 max={produdtPreviewData.price}
                                 step='any'
-                                placeholder='Buy XL Size, Blue color.'
+                                placeholder='cashback amount'
                                 disabled={submitting}
                                 required
                             />
@@ -146,6 +146,7 @@ productPreviewForm.contextTypes = {
 
 function mapStateToProps({adminDashboard}) {
     const {produdtPreviewData} = adminDashboard;
+    console.log(produdtPreviewData);
     if(produdtPreviewData){
         return {
             produdtPreviewData: produdtPreviewData,

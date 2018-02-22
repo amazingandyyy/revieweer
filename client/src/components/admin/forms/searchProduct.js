@@ -51,7 +51,7 @@ class SearchProductForm extends React.Component {
                         Amazon Product Link: {errorMsg&&<span className='danger-hint'>{errorMsg}</span>}
                     </label>
                     <Field
-                        type= 'url'
+                        type='url'
                         name='url'
                         component='textarea'
                         className={`form-control ${(errorMsg)?'is-invalid':''}`}

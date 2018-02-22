@@ -8,6 +8,7 @@
 @import './navbar';
 @import './override';
 @import './loader';
+@import './admin';
 
 * { 
     font-family: 'Open Sans', sans-serif;
@@ -107,50 +108,6 @@ body {
         input.form-control:not(.original-disable)[readonly], textarea.form-control:not(.original-disable)[readonly]{
             border-color: rgba(0,0,0,0);
             background-color: rgba(#e9ecef, 0);
-        }
-    }
-    button.btn{
-        cursor: pointer;
-    }
-    
-    .btn.btn-dark.early-access{
-        transition: .1s all ease-in-out;
-        overflow: hidden;
-        position: relative;
-        height: 50px;
-        width: 200px;
-    
-        &.go-dashboard:hover {
-            color: #F5A623;
-        }
-    
-        span.btn-tag {
-            transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
-            position: absolute;
-            left: 25px;
-            top: 8px;
-        }
-        span.login-hint {
-            transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
-            position: absolute;
-            right: 25px;
-            bottom: -50px;
-        }
-    
-        &:hover{
-            span.btn-tag {
-                transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
-                position: absolute;
-                left: 25px;
-                top: -30px;
-            }
-            span.login-hint {
-                color: #F5A623;
-                transition: .3s all cubic-bezier(0.075, 0.82, 0.165, 1);
-                position: absolute;
-                right: 25px;
-                bottom: 8px;
-            }
         }
     }
     .centercard121{
