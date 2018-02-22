@@ -42,9 +42,8 @@ class Navbar extends Component {
         return (
             <nav className="navbar navbar-expand sticky-top navbar-light">
                 <NavLink className="navbar-brand" to="/">
-                    <img src="../assets/logo.png" height="20" className='d-sm-none'/>
+                    <img src="../assets/svgs/logo-r.svg" height="20" className='d-sm-none'/>
                     <img src="../assets/svgs/logo-long.svg" height="20" className='d-none d-sm-block'/>
-                    {/* <img src="../assets/svgs/logo-long.svg" width="20" className='d-block d-sm-none'/> */}
                 </NavLink>
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav mr-auto">
