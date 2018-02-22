@@ -84,12 +84,11 @@ Review, Explore, Earn.
 - internal
   - [ ] comunication app
   - new hires
-    - [ ] COO
-    - [ ] CSO
-    - [ ] Site Stabalization/Redux(Erro Handle) Tester
-    - [ ] Intrustructure Jest Tester
-    - [ ] Wechat Market
-    - [ ] Medium Writor
+    - [ ] Chief Operating Officer
+    - [ ] Chief Sales Offiver
+    - [ ] Site Quality(React/Redux) Engineer
+    - [ ] Quality(Infrustructure) Engineer
+    - [ ] Writor(FB, Wechat, Medium)
 
 ## Porduction DevOps
 
