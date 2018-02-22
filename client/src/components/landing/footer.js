@@ -14,7 +14,7 @@ class Footer extends React.Component {
   }
   renderModules(modules){
     return modules.map(m=>(
-      <div className='footer-modules col-sm-12 col-md-4' key={m.module}>
+      <div className='footer-modules col-xs-12 col-sm-4' key={m.module}>
         <div className='module-title'>{m.module}</div>
         {this.renderLinks(m.list)}
       </div>

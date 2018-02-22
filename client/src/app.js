@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import LoadingBar, { loadingBarMiddleware } from 'react-redux-loading-bar';
+import { loadingBarMiddleware } from 'react-redux-loading-bar';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 import reduxMiddlewares from './redux/middlewares';
 
@@ -42,7 +42,6 @@ ReactDOM.render(
       <Switch>
         <Route exact path='/homescreen' component= {Homescreen} />
         <Layout>
-          <LoadingBar className='revieweer-loading-bar' />
           <Route exact path='/' component= {Landing} />
 
           <Route path='/explore' component= {Explore} />

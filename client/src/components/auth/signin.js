@@ -22,34 +22,34 @@ class Signin extends Component {
         return (
             <CenterCard121>
                 <div className='card'>
-                    <h4 className="card-header">
+                    <h4 className='card-header'>
                         Welcome Back
                     </h4>
-                    <div className="card-body">
+                    <div className='card-body'>
                     <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signinReset}>
-                        <div className="form-group">
+                        <div className='form-group'>
                             <label>
                                 Email: {emailStateError&&<span className='danger-hint'>{emailStateError}</span>}
                             </label>
                             <Field
                                 type= 'email'
-                                name="email"
-                                component="input"
+                                name='email'
+                                component='input'
                                 className={`form-control form-control-lg ${(emailStateError)?'is-invalid':''}`}
-                                placeholder="adddress"
+                                placeholder='adddress'
                                 required
                             />
                         </div>
-                        <div className="form-group">
+                        <div className='form-group'>
                             <label>
                                 Password: {passwordError&&<span className='danger-hint'>{passwordError}</span>}
                             </label>
                             <Field
                                 type= 'password'
-                                name="password"
-                                component="input"
+                                name='password'
+                                component='input'
                                 className={`form-control form-control-lg ${(passwordError)?'is-invalid':''}`}
-                                placeholder="password"
+                                placeholder='password'
                                 required
                             />
                         </div>
@@ -57,10 +57,10 @@ class Signin extends Component {
                             {normalError}
                         </div>}
                         <div style={{'paddingTop': '30px'}}>
-                            <button type="submit" className="btn btn-lg btn-light btn-block">Sign in</button>
+                            <button type='submit' className='btn btn-lg btn-success btn-block'>Sign in</button>
                         </div>
                         <div style={{'paddingTop': '20px'}}>
-                            <Link to='/signup' className="btn btn-link btn-block">{"Don't have an account? Signup here."}</Link>
+                            <Link to='/signup' className='btn btn-link btn-block'>{`Don't have an account? Signup here.`}</Link>
                         </div>
                     </form>
                     <div className='card-bottom-balancer'></div>

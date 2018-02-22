@@ -31,7 +31,7 @@ class SignupWithEmail extends React.Component {
         let errorMsg = error || this.props.errorMsg || this.state.errorMsg
         if (errorMsg) {
             return (
-                <div className="alert alert-warning">
+                <div className='alert alert-warning'>
                     <strong>Oops!
                     </strong> {errorMsg}
                 </div>
@@ -54,10 +54,10 @@ class SignupWithEmail extends React.Component {
         return (
             <CenterCard121>
                 <div className='card'>
-                <h4 className="card-header">
+                <h4 className='card-header'>
                     Join
                 </h4>
-                <div className="card-body">
+                <div className='card-body'>
                     {this.renderForm()}
                 </div>
                 </div>
@@ -72,22 +72,22 @@ class SignupWithEmail extends React.Component {
         const {handleSubmit,emailStateError,emailSentTo, submitting} = this.props;
         if(emailSentTo && emailSentTo.length > 1){
             return(<div className='alert alert-success'>
-                <h4 className="alert-heading">Almost there!</h4>
+                <h4 className='alert-heading'>Almost there!</h4>
                 Verification email is sent to <b>{emailSentTo}</b>
                 <hr/>Please check your inbox or trash/junk box. The activation code will be expired in 60 minutes...
             </div>)
         }else{
             return(<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={this.resetStateAndProps.bind(this)}>
-                <div className="form-group">
+                <div className='form-group'>
                     <label>
                         Email: {emailStateError&&<span className='danger-hint'>{emailStateError}</span>}
                     </label>
                     <Field
                         type= 'email'
-                        name="email"
-                        component="input"
+                        name='email'
+                        component='input'
                         className={`form-control form-control-lg ${(emailStateError)?'is-invalid':''}`}
-                        placeholder="your email adddress"
+                        placeholder='your email adddress'
                         required
                     />
                 </div>
@@ -96,10 +96,10 @@ class SignupWithEmail extends React.Component {
                     <div style={{'margin': '20px auto'}}>
                         <Recaptcha verify={this.recaptchaVerifyCallback.bind(this)} />
                     </div>
-                    <button type="submit" disabled={submitting} className="btn btn-lg btn-light btn-block">Send Me Activation</button>
+                    <button type='submit' disabled={submitting} className='btn btn-lg btn-success btn-block'>Send Me Activation</button>
                 </div>
                 <div style={{'paddingTop': '20px'}}>
-                    <Link to='/signin' className="btn btn-link btn-block">Have an account? signin here</Link>
+                    <Link to='/signin' className='btn btn-link btn-block'>Have an account? Signin here</Link>
                 </div>
             </form>)
         }

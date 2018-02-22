@@ -2,11 +2,31 @@
   background: #F2F4F5;
   // min-height: 60vh;
   text-align: center;
-
+  &.logout{
+    img{
+      margin: 20px 0px;
+      height: 200px;
+    }
+    @media (max-width: 543px) {
+      img{
+        height: 150px;
+        margin: 10px 0px 40px;
+      }
+      .content-container .title{
+        text-align: center;
+        font-size: 2.3rem;
+      }
+      .content-container .subtitle{
+        text-align: center;
+      }
+      .content-container .button-container .btn.btn-success.btn-lg{
+        text-align: center;
+      }
+    }
+  }
   .content-container {
     padding: 5rem 1rem 6rem;
     margin: auto;
-
     .title{
       font-size: 2.5rem;
       font-weight: 900;
@@ -135,10 +155,15 @@
 .footer-component{
   background: darken(#F2F4F5, 3%);
   padding: 80px 10px 70px;
-  text-align: center;
+  text-align: left;
+  padding-left: 15%;
+  @media (max-width: 600px) {
+    padding-left: 0%;
+    text-align: center;
+  }
   .footer-modules {
     margin-bottom: 10px;
-    @media (max-width: 543px) {
+    @media (max-width: 600px) {
       margin-bottom: 30px;
     }
     .module-title{
@@ -152,9 +177,13 @@
       color: rgba(black, 0.8);
       cursor: pointer;
       line-height: 2rem;
+      text-transform: none;
+      text-decoration: none;
 
       &:link, &:visited{
         color: rgba(black, 0.8);
+        text-transform: none;
+        text-decoration: none;
       }
       &:hover{
         color: $brand-color;
@@ -163,6 +192,8 @@
       }
       &:active{ 
         color: darken($brand-color, 10%);
+        text-transform: none;
+        text-decoration: none;
       }
     }
   }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import LoadingBar from 'react-redux-loading-bar';
 import {getUserProfile} from '../actions';
 
 class Navbar extends Component {
@@ -41,6 +42,7 @@ class Navbar extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand sticky-top navbar-light">
+                <LoadingBar className='revieweer-loading-bar' />
                 <NavLink className="navbar-brand" to="/">
                     <img src="../assets/svgs/logo-r.svg" height="20" className='d-sm-none'/>
                     <img src="../assets/svgs/logo-long.svg" height="20" className='d-none d-sm-block'/>

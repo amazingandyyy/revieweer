@@ -6,6 +6,8 @@
 
 @import './landing';
 @import './navbar';
+@import './override';
+@import './loader';
 
 * { 
     font-family: 'Open Sans', sans-serif;
@@ -23,66 +25,6 @@ body {
     }
     .rc-anchor-normal{
         margin: auto;
-    }
-    .revieweer-loading-bar{
-        background: linear-gradient(to right, #64e6ca, #2ac4f3);
-        height: 0.2rem;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transition: transform 200ms cubic-bezier(0, 0.86, 1, 0.82) !important;
-    }
-    .revieweer-loading-bar-2{
-        background: linear-gradient(to right, #64e6ca, #2ac4f3);
-        height: 1rem;
-        border-radius: 5px;
-    }
-    .jumbotron {
-        border-radius: 0px;
-        margin-bottom: 0px;
-        position: relative;
-        color: white !important;
-        z-index: 10;
-
-        @media (min-width: 767px) {
-            padding-top: 20vh;
-            text-align: center;
-        }
-        h1{
-            font-weight: 700;
-            @media (max-width: 543px) {
-                font-size: 2rem;
-                margin-bottom: 20px;
-            }
-        }
-        .content-container,.overlay,.background {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            right: 0;
-            left: 0;
-        }
-        .background {
-            // background: url(../assets/home-background.jpg) no-repeat center center fixed;
-            // -webkit-background-size: cover;
-            // -moz-background-size: cover;
-            // -o-background-size: cover;
-            // background-size: cover;
-            background: white;
-        }
-        .overlay {
-            background: rgba(0,0,0,0.4);
-        }
-        .content-container{
-            padding: 20px;
-            padding-top: 15vh;
-            @media (max-width: 543px) {
-                padding-top: 20px;
-            }
-        }
-
     }
     .homescreen {
         background: white;

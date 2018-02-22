@@ -9,36 +9,24 @@ class Signout extends React.Component {
     }
   render() {
     return (
-      <div className='jumbotron' style={{'height': '100vh'}}>
-        <div className='background' style={{'opacity': '0.75'}}></div>
-        <div className='overlay'></div>
+      <div className='welcome logout' style={{'height': '92vh'}}>
         <div className='content-container'>
-          <Content isLoggedIn={this.props.isLoggedin}/>
+          <img src='../../assets/svgs/logout-bye.svg'/>
+          <div className='title'>
+            See You Soon!
+          </div>
+          <div className='subtitle'>
+            Review more, explore more, earn more!
+          </div>
+          <div  className='button-container'>
+          <div>
+            <Link style={{'cursor': 'pointer'}} className='btn btn-light btn-block btn-lg' to='company/contacts'>Any Feedback?</Link>
+            <Link style={{'cursor': 'pointer'}} className='btn btn-success btn-block btn-lg' to='signin'>Sign Back In Now</Link>
+          </div>
+          </div>
         </div>
       </div>)
   }
-}
-
-const Content = (props) => {
-  return (<div>
-      <a href='/'>
-        <img src='/assets/revieweer-logo.png' style={{'margin': '20px auto', 'width': '70px', 'height': '70px'}}/>
-      </a>
-        <h1 className='display-4'>See you soon!</h1>
-      <div className='lead'>Good products are waiting for you to explore.</div>
-      <div className='row'>
-      <div className='col-sm-12 col-md-3'></div>
-      <div className='col-sm-12 col-md-6'>
-      <div style={{'marginTop': '50px'}}>
-        {!props.isLoggedIn?
-          <span>
-            <Link style={{'cursor': 'pointer'}} className='btn btn-light btn-block btn-lg' to='signin'>Sign in again</Link>
-          </span>
-          :<Link style={{'cursor': 'pointer'}} className='btn btn-light btn-block btn-lg' to='explore'><span>Explore</span></Link>}
-      </div>
-      </div>
-      </div>
-  </div>)
 }
 
 const mapStateToProps = ({ auth }) => ({

@@ -37,14 +37,14 @@ const featuresList = [{
 },{
   icon: 'customer-2.svg',
   title: 'Get The Surprise From Amazon',
-  description: 'Order the product on mainstream websites such as Amazon.'
+  description: 'Order the product on e-commerse sites such as Amazon.'
 },{
   icon: 'customer-3.svg',
   title: 'Receive Package And Review Online',
-  description: 'Take a detailed review and photos online.'
+  description: 'Take an honest review and put photos online.'
 },{
   icon: 'customer-4.svg',
-  title: 'Get up to 100% cashback + bonus',
+  title: 'Get Up To 100% cashback + Bonus',
   description: 'Get up to 100% cashback and bonus for signups before August.'
 },]
 
