@@ -69,7 +69,7 @@ class SignupWithEmail extends React.Component {
         this.props.signupWithEmailReset();
     }
     renderForm(){
-        const {handleSubmit,emailStateError,emailSentTo, submitting} = this.props;
+        const {handleSubmit,emailStateError,emailSentTo, submitting,dirty} = this.props;
         if(emailSentTo && emailSentTo.length > 1){
             return(<div className='alert alert-success'>
                 <h4 className='alert-heading'>Almost there!</h4>
@@ -94,7 +94,7 @@ class SignupWithEmail extends React.Component {
                 {this.renderAlert()}
                 <div>
                     <div style={{'margin': '20px auto'}}>
-                        <Recaptcha verify={this.recaptchaVerifyCallback.bind(this)} />
+                        {dirty&&<Recaptcha verify={this.recaptchaVerifyCallback.bind(this)} />}
                     </div>
                     <button type='submit' disabled={submitting} className='btn btn-lg btn-success btn-block'>Send Me Activation</button>
                 </div>

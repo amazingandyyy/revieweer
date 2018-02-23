@@ -15,7 +15,6 @@ export function signupWithEmail(email) {
               dispatch({ type: SIGNUP_EMAIL_SENT, payload: res.data.email })
           })
           .catch((err) => {
-            console.log(err)
             if(err.response){
               const message = err.response.data;
               const status = err.response.status;

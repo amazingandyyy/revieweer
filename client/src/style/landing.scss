@@ -60,6 +60,10 @@
         border-radius: 3px;
         transition: 0s;
 
+        &.try-it-out {
+          padding: 0.6rem 0rem;
+        }
+
         &:hover{
           background-color: #15bc70;
           border-color: #15bc70;

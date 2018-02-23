@@ -23,10 +23,10 @@ class Welcome extends React.Component {
   renderButton(){
     return (!this.props.isLoggedin)?(
       <div>
-        <Link style={{'cursor': 'pointer'}} className='btn btn-success btn-block btn-lg' to='signup'>Join Beta Now</Link>
+        <Link className='btn btn-success btn-block btn-lg try-it-out' to='signup'>Try It Now</Link>
       </div>)
     :(<div>
-        <Link style={{'cursor': 'pointer'}} className='btn btn-success btn-block btn-lg' to='explore'>Explore Now</Link>
+        <Link className='btn btn-success btn-block btn-lg' to='explore'>Explore Now</Link>
       </div>)
   }
 }
