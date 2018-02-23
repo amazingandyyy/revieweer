@@ -24,9 +24,8 @@ class Feature extends React.Component {
   renderImage(f){
     if(<img src={`../../assets/svgs/${f.icon}`}/>){
       return <img className='item-image' src={`../../assets/svgs/${f.icon}`}/>
-    }else{
-      return <div><i className='fa fa-spin fa-spinner'></i></div>;
     }
+    return (<div><i className='fa fa-spin fa-spinner'></i></div>);
   }
 }
 

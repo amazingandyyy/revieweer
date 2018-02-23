@@ -1,6 +1,7 @@
 import request from './request';
 
 const PRODUCT_GET_ONE_PRODUCT = 'PRODUCT_GET_ONE_PRODUCT';
+const PRODUCT_GET_ALL_PRODUCTS = 'PRODUCT_GET_ALL_PRODUCTS';
 
 export function getOneproduct(productId){
   return function (dispatch) {
@@ -14,6 +15,19 @@ export function getOneproduct(productId){
         });
   }
 }
+export function fetchProducts(){
+  return function (dispatch) {
+    request
+        .get(`/api/product/fetchAll`)
+        .then(res => {
+            dispatch({ type: PRODUCT_GET_ALL_PRODUCTS, payload: res.data })
+        })
+        .catch(error => {
+            console.log(error);
+        });
+  }
+}
+
 export function updateOneProduct(id, obj){
     let pId = obj.productId;
     delete obj.productId;
@@ -42,13 +56,17 @@ export function deleteOneProduct(id){
 }
 
 let INITIAL_STATE = {
-    item: null
+    item: null,
+    items: null,
+    productNum: 0
 }
 
 export function productReducer(state=INITIAL_STATE, action) {
   switch (action.type) {
       case PRODUCT_GET_ONE_PRODUCT:
           return { ...state, item: action.payload }
+      case PRODUCT_GET_ALL_PRODUCTS:
+          return { ...state, items: action.payload.list, productNum: action.payload.total }
       default:
           return state
   }
