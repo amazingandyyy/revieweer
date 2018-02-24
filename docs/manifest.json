@@ -1,11 +1,10 @@
 {
-  "name": "Revieweer",
-  "short_name": "Revieweer",
+  "name": "Revieweer App",
+  "short_name": "revieweer",
   "lang": "en-US",
-  "start_url": "/#homescreen",
   "display": "standalone",
   "theme_color": "#13AB67",
-  "background_color": "white",
+  "background_color": "#fff",
 	"icons": [
 		{
 			"src": "\/assets\/manifast\/icon-36.png",

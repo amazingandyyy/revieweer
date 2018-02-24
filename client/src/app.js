@@ -22,7 +22,6 @@ import Launch from './components/admin/launch';
 import SearchProduct from './components/admin/forms/searchProduct';
 import LaunchPreview from './components/admin/forms/productPreview';
 import RequireAdmin from './components/admin/requireAdmin';
-import Homescreen from './homescreen';
 import RequireAuth from './components/auth/requireAuth';
 import reducers from './reducers';
 import {serverConnect} from './actions';
@@ -43,7 +42,6 @@ ReactDOM.render(
   <Provider store={store}>
     <HashRouter hashType='noslash'>
       <Switch>
-        <Route exact path='/homescreen' component= {Homescreen} />
         <Layout>
           <Route exact path='/' component= {Landing} />
 
