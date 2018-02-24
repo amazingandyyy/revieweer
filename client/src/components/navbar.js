@@ -11,8 +11,10 @@ class Navbar extends Component {
             pathname: ''
         }
     }
-    componentDidMount(){
+    componentWillMount(){
         this.props.getUserProfile();
+    }
+    componentDidMount(){
         const pathname = this.context.router.history.location.pathname;
         this.setState({ pathname })
     }

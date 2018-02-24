@@ -111,13 +111,12 @@ body {
             background-color: rgba(#e9ecef, 0);
         }
     }
-    .centercard121{
+    .centercard121-component{
         .row{
-            padding: 30px 10px;
+            padding: 50px 10px;
             @media (max-width: 543px) {
                 padding: 0px 0px;
             }
-            
         }   
     }
 }

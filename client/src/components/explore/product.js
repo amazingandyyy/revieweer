@@ -4,13 +4,17 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { getOneproduct } from '../../actions';
-import CenterCard121 from '../centerCard121';
+import {Image, CenterCard121} from '../utils';
 
 class Product extends Component {
   componentDidMount(){
     const {productId} = this.context.router.route.match.params;
     if(!productId) return this.context.router.history.push('/explore');
     this.props.getOneproduct(productId);
+    window.scrollTo(0,0);
+  }
+  componentWillUpdate(){
+    window.scrollTo(0,0);
   }
   render() {
     return (
@@ -25,11 +29,11 @@ class Product extends Component {
     );
   }
   renderProduct(){
-    const {details, benefits, isAdmin, productId} = this.props;
+    const {details, benefits, isAdmin, productId, currenUser} = this.props;
     if(details && benefits){
       return <div>
         <div className='text-center'>
-            <img style={{'width': '40%', 'margin':'auto', 'paddingBottom': '20px'}} className='card-img-top' src={details.imageURL} alt={details.title}/>
+            <Image src={details.imageURL} style={{'width': '40%', 'margin':'auto', 'paddingBottom': '20px'}} className='card-img-top'/>
             <ul className="list-group list-group-flush text-left">
                 <li className="list-group-item">
                     <label><b>Title:</b></label>
@@ -61,7 +65,10 @@ class Product extends Component {
                     <br/>
                     ${benefits.rewards}
                 </li>
-                {isAdmin&&<li className="list-group-item">
+                <li className="list-group-item">
+                  <Link to={`/case/${currenUser._id}/${productId}`} className='btn btn-lg btn-success btn-block'>Claim Now</Link>
+                </li>
+                {isAdmin && <li className="list-group-item">
                   <Link to={`/edit/pd/${productId}`} className='btn btn-lg btn-light btn-block'>Edit This Item</Link>
                 </li>}
             </ul>
@@ -79,19 +86,21 @@ Product.contextTypes = {
   router: PropTypes.object
 }
 
-function mapStateToProps({auth,product}) {
+function mapStateToProps({auth,product,profile}) {
   const {item} = product;
   if(item){
     return {
       productId: item.productId,
       details: item.details,
       benefits: item.benefits,
-      isAdmin: auth.isAdmin
+      isAdmin: auth.isAdmin,
+      currenUser: profile
     }
   }else{
     return {
       product: null,
-      isAdmin: auth.isAdmin
+      isAdmin: auth.isAdmin.isAdmin,
+      currenUser: profile
     }
   }
 }

@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import Img from 'react-image';
 
 import { fetchProducts } from '../../actions';
-import CenterCard121 from '../centerCard121';
-import {SquareLoader,CircleLoader} from '../loader';
+import { CenterCard121,SquareLoader,CircleLoader } from '../utils';
 import {timeAgo} from '../../services';
 
 class Browser extends Component {
@@ -39,7 +38,7 @@ class Browser extends Component {
           </div>
           <div className='product-body product-info'>
             <div className='claims bubble-tag'>
-              <div>{5+Math.floor(Math.random()*50)} claims</div>
+              <div>{20+Math.floor(Math.random()*50)} claims</div>
             </div>
             <div className='reviews bubble-tag'>
               <div>{5+Math.floor(Math.random()*20)} reviews</div>

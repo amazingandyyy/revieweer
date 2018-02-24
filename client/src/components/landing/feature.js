@@ -1,5 +1,5 @@
 import React from 'react';
-import {SquareLoader} from '../loader';
+import { SquareLoader } from '../utils';
 
 class Feature extends React.Component {
   render() {

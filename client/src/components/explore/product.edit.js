@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { getOneproduct, updateOneProduct, deleteOneProduct } from '../../actions';
-import CenterCard121 from '../centerCard121';
+import { CenterCard121 } from '../utils';
 
 class ProductEdit extends Component {
   componentDidMount(){

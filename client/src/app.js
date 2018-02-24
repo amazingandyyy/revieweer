@@ -25,6 +25,7 @@ import RequireAdmin from './components/admin/requireAdmin';
 import Homescreen from './homescreen';
 import RequireAuth from './components/auth/requireAuth';
 import reducers from './reducers';
+import {serverConnect} from './actions';
 
 import './style/style.scss'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
@@ -36,6 +37,8 @@ export const store = createStore(
     loadingBarMiddleware()
   )
 );
+serverConnect()(store.dispatch);
+
 ReactDOM.render(
   <Provider store={store}>
     <HashRouter hashType='noslash'>

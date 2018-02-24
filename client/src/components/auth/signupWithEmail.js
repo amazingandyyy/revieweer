@@ -4,9 +4,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Recaptcha from '../recaptcha';
+import { RecaptchaComponent,CenterCard121 } from '../utils';
 import { signupWithEmail, signupWithEmailReset } from '../../actions';
-import CenterCard121 from '../centerCard121';
 
 let INITIAL_STATE = {
     recaptchaGood: false,
@@ -94,7 +93,7 @@ class SignupWithEmail extends React.Component {
                 {this.renderAlert()}
                 <div>
                     <div style={{'margin': '20px auto'}}>
-                        {dirty&&<Recaptcha verify={this.recaptchaVerifyCallback.bind(this)} />}
+                        {dirty&&<RecaptchaComponent verify={this.recaptchaVerifyCallback.bind(this)} />}
                     </div>
                     <button type='submit' disabled={submitting} className='btn btn-lg btn-success btn-block'>Send Me Activation</button>
                 </div>

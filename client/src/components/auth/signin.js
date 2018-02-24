@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import {signUserIn,signinReset} from '../../actions';
-import CenterCard121 from '../centerCard121';
+import { CenterCard121 } from '../utils';
 
 class Signin extends Component {
     componentWillMount(){

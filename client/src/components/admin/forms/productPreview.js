@@ -4,8 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 
-import CenterCard121 from '../../centerCard121';
-import {SquareLoader} from '../../loader';
+import { CenterCard121, SquareLoader } from '../../utils';
 import { adminDashboardReset, fetchProductPreviewByProductPendingId, createOneProduct } from '../../../actions';
 
 class productPreviewForm extends React.Component {

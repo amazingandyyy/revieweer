@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import qs from 'qs';
 
 import {signUserUp,verifyEmailToken,signupEmailReset} from '../../actions';
-import CenterCard121 from '../centerCard121';
+import { CenterCard121 } from '../utils';
 
 class SignupVerification extends Component {
     constructor(){

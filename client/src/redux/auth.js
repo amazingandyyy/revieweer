@@ -6,8 +6,8 @@ export const AUTH_ADMIN = 'AUTH_ADMIN';
 export const signUserOut = () => (dispatch) => dispatch({type: UNAUTH_USER});
 
 let INITIAL_STATE = {
-    authenticated: true,
-    isAdmin: true
+    authenticated: false,
+    isAdmin: false
 }
 
 export function authReducer(state=INITIAL_STATE, action) {
