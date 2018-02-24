@@ -1,6 +1,6 @@
 {
   "name": "revieweer",
-  "version": "2.1.36",
+  "version": "2.1.37",
   "description": "www.revieweer.com Official Website and Server",
   "main": "server/build/server.js",
   "engines": {
