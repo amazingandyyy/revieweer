@@ -2,7 +2,7 @@
     <img height='20px' src='https://github.com/amazingandyyy/revieweer/blob/master/client/src/assets/svgs/logo-long.png?raw=true'/>
 </div>
 
-# Revieweer[![Build Status](https://travis-ci.com/amazingandyyy/revieweer.svg?token=C7NJ8bT8vb8dmq7fMDsa&branch=master)](https://travis-ci.com/amazingandyyy/revieweer)
+# Revieweer [![Build Status](https://travis-ci.com/amazingandyyy/revieweer.svg?token=C7NJ8bT8vb8dmq7fMDsa&branch=master)](https://travis-ci.com/amazingandyyy/revieweer)
 
 revieweer.com Official Resource for Website and Server
 
