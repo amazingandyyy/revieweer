@@ -98,7 +98,7 @@ export default {
   },
   fetchAll: (req, res, next) => {
     Product.find({})
-    .sort({updatedAt: -1})
+    .sort({createdAt: -1})
     .then(list=>{
       res.send({
         total: list.length,

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { loadingBarMiddleware } from 'react-redux-loading-bar';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, HashRouter } from 'react-router-dom';
 import reduxMiddlewares from './redux/middlewares';
 
 import Layout from './components/layout';
@@ -38,7 +38,7 @@ export const store = createStore(
 );
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter hashType='noslash'>
+    <HashRouter hashType='noslash'>
       <Switch>
         <Route exact path='/homescreen' component= {Homescreen} />
         <Layout>
@@ -63,6 +63,6 @@ ReactDOM.render(
           <Route path='/admin/launch/preview/:productPendingId' component= {LaunchPreview} />
         </Layout>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   </Provider>
   , document.getElementById('root'));

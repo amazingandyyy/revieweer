@@ -29,7 +29,7 @@ class Product extends Component {
     if(details && benefits){
       return <div>
         <div className='text-center'>
-            <img style={{'width': '70%', 'margin':'auto'}} className='card-img-top' src={details.imageURL} alt={details.title}/>
+            <img style={{'width': '40%', 'margin':'auto', 'paddingBottom': '20px'}} className='card-img-top' src={details.imageURL} alt={details.title}/>
             <ul className="list-group list-group-flush text-left">
                 <li className="list-group-item">
                     <label><b>Title:</b></label>

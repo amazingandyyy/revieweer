@@ -1,4 +1,5 @@
 import React from 'react';
+import {SquareLoader} from '../loader';
 
 class Feature extends React.Component {
   render() {
@@ -25,7 +26,7 @@ class Feature extends React.Component {
     if(<img src={`../../assets/svgs/${f.icon}`}/>){
       return <img className='item-image' src={`../../assets/svgs/${f.icon}`}/>
     }
-    return (<div><i className='fa fa-spin fa-spinner'></i></div>);
+    return (<SquareLoader/>);
   }
 }
 

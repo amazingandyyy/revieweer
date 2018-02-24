@@ -34,7 +34,7 @@ nav.navbar {
       }
       @media (max-width: 543px) {
           padding: 0.05rem;
-          margin-right: 0.3rem;
+          margin-right: 0.6rem;
           margin-top: -0.3rem;
       }
   }
@@ -118,8 +118,5 @@ nav.navbar {
             margin: 0px;
         }
       }
-  }
-  .dropdown-toggle::after {
-    //   transform: rotate(0deg);
   }
 }

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 
 import CenterCard121 from '../../centerCard121';
+import {SquareLoader} from '../../loader';
 import { adminDashboardReset, fetchProductPreviewByProductPendingId, createOneProduct } from '../../../actions';
 
 class productPreviewForm extends React.Component {
@@ -131,11 +132,8 @@ class productPreviewForm extends React.Component {
                     </ul>
                 </div>
             )
-        }else{
-            return(<div style={{'textAlign': 'center', 'margin': '30px'}}>
-                <i style={{'fontSize': '2rem', 'opacity': '0.7'}}className='fa fa-spin fa-sync'></i>
-            </div>)
         }
+        return(<SquareLoader/>)
     }
 }
 
