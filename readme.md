@@ -2,18 +2,17 @@
     <img height='20px' src='https://github.com/amazingandyyy/revieweer/blob/master/client/src/assets/svgs/logo-long.png?raw=true'/>
 </div>
 
-# Revieweer
+# Revieweer[![Build Status](https://travis-ci.com/amazingandyyy/revieweer.svg?token=C7NJ8bT8vb8dmq7fMDsa&branch=master)](https://travis-ci.com/amazingandyyy/revieweer)
 
-[![Build Status](https://travis-ci.com/amazingandyyy/revieweer.svg?token=C7NJ8bT8vb8dmq7fMDsa&branch=master)](https://travis-ci.com/amazingandyyy/revieweer)
-[Revieweer](http://www.revieweer.com) Official Resource for Website and Server
+revieweer.com Official Resource for Website and Server
 
 ## What is Revieweer
 
 Review, Explore, Earn
 
-- Explore products
-- Order, recieve and review
-- Earn money and compensation
+- Order, unpackage and review
+- Explore more new products
+- Earn more cashback + bonus
 
 ## Feature
 
@@ -32,12 +31,19 @@ Review, Explore, Earn
   - [x] create
     - [x] fetch product details api
     - [x] create new product
-  - [ ] read
-    - [ ] list at client
+  - [x] read
+    - [x] list at client
   - [ ] update
     - [x] update detials by admin
-    - [ ] add new order number from user
   - [ ] delete
+- [ ] caseCRUD
+  - [ ] create
+  - [ ] update
+    - [ ] add new order number from user
+    - [ ] update progress
+- Payment system
+  - link bank account
+  - admin payout
 - Advance Features
   - [ ] admin dashboard design
     - [ ] product
