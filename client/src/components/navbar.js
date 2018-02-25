@@ -33,9 +33,9 @@ class Navbar extends Component {
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                             <NavLink className='dropdown-item' to="/user/settings">My Account</NavLink>
                             <NavLink className='dropdown-item' to="/user/reviews">My Reviews</NavLink>
-                            {isAdmin && <NavLink className="dropdown-item" to="/admin/insight">Admin</NavLink>}
+                            {isAdmin && <NavLink className="dropdown-item" to="/admin/insight">Admin Portal</NavLink>}
                             <div className="dropdown-divider"></div>
-                            <NavLink className="dropdown-item" to="/signout">Log out</NavLink>
+                            <NavLink className="dropdown-item" to="/signout">Log Out</NavLink>
                         </div>
                     </li>
                 </span>
