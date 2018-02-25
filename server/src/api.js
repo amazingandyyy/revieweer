@@ -1,6 +1,6 @@
 import user from './user/router';
 import product from './product/router';
-import caseRouter from './case/router';
+import reviewRouter from './review/router';
 // import admin from './admin';
 // import Middleware from './middlewares';
 
@@ -10,7 +10,7 @@ router.get('/', (req, res)=>res.json({ "message": "/api connected" }));
 
 router.use('/user', user)
 router.use('/product', product)
-router.use('/case', caseRouter)
+router.use('/review', reviewRouter)
 
 // router.use(`/admin`, Middleware.loginRequired, Middleware.adminReuired, admin);
 

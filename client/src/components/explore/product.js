@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { getOneproduct,startOneCase } from '../../actions';
+import { getOneproduct,startOneReview } from '../../actions';
 import { Image, CenterCard121 } from '../utils';
 
 class Product extends Component {
@@ -66,7 +66,7 @@ class Product extends Component {
                     ${benefits.rewards}
                 </li>
                 <li className="list-group-item">
-                  <button onClick={this.createOneNewCase.bind(this,product_Id)} className='btn btn-lg btn-success btn-block'>Unlock This Review</button>
+                  <button onClick={this.createOneNewReview.bind(this,product_Id)} className='btn btn-lg btn-success btn-block'>Unlock This Review</button>
                 </li>
                 {isAdmin && <li className="list-group-item">
                   <Link to={`/edit/pd/${productId}`} className='btn btn-lg btn-light btn-block'>Edit This Item</Link>
@@ -80,8 +80,8 @@ class Product extends Component {
       </div>
     }
   }
-  createOneNewCase(productId){
-    this.props.startOneCase(productId);
+  createOneNewReview(productId){
+    this.props.startOneReview(productId);
   }
 }
 
@@ -109,4 +109,4 @@ function mapStateToProps({ auth,product,profile }) {
   }
 }
 
-export default connect(mapStateToProps, {getOneproduct,startOneCase})(Product);
+export default connect(mapStateToProps, {getOneproduct,startOneReview})(Product);

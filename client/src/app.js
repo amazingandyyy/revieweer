@@ -25,7 +25,7 @@ import SearchProduct from './components/admin/forms/searchProduct';
 import LaunchPreview from './components/admin/forms/productPreview';
 import RequireAdmin from './components/admin/requireAdmin';
 import RequireAuth from './components/auth/requireAuth';
-import Case from './components/case';
+import Review from './components/review';
 import reducers from './reducers';
 import {serverConnect} from './actions';
 
@@ -52,7 +52,7 @@ ReactDOM.render(
           
           <Route path='/pd/:productId' component= {Product} />
           <Route path='/edit/pd/:productId' component= {ProductEdit} />
-          <Route path='/case/:caseId' component= {Case} />
+          <Route path='/review/:reviewId' component= {Review} />
           
           <Route path='/signup' component= {SignupWithEmail} />
           <Route path='/user' component= {RequireAuth(User)} />

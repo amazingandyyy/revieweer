@@ -36,8 +36,8 @@ Review, Explore, Earn
   - [ ] update
     - [x] update detials by admin
   - [ ] delete
-- [ ] caseCRUD
-  - [ ] create
+- [ ] review CRUD
+  - [x] create
   - [ ] update
     - [ ] add new order number from user
     - [ ] update progress

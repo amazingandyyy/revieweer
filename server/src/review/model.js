@@ -28,7 +28,7 @@ const payloadSchema = new mongoose.Schema({
 })
 
 // Define the model
-const caseSchema = new mongoose.Schema({
+const reviewSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.ObjectId,
         ref: 'User'
@@ -50,4 +50,4 @@ const caseSchema = new mongoose.Schema({
 })
 
 // Export the model
-export default mongoose.model('Case', caseSchema);
+export default mongoose.model('Review', reviewSchema);
