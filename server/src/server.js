@@ -5,7 +5,6 @@ import morgan from 'morgan';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import Raven from 'raven';
-import path from 'path';
 
 import routers from './routers';
 import config from './config';
@@ -27,12 +26,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', routers);
 app.use(errorHandler);
-if(process.env.NODE_ENV == 'production'){
-    app.use(express.static(path.resolve(__dirname, '../../docs')));
-    app.get('/*', function (req, res) {
-        res.sendFile(path.join('index.html'));
-    });
-}
 
 function errorHandler (err, req, res, next) {
     console.log('errrrr', err)
