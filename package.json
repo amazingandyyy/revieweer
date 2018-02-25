@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "NODE_ENV=production node ./server/build/server.js",
-    "deploy:server": "git push azure master",
+    "deploy:azure": "git push azure master",
     "test": "eslint .",
     "precommit": "npm run test",
     "prepush": "npm run test",
@@ -40,7 +40,8 @@
     "url": "https://github.com/amazingandyyy/revieweer/issues"
   },
   "homepage": "https://github.com/amazingandyyy/revieweer#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
     "eslint": "^4.14.0",
     "eslint-config-logux": "^17.0.0",
     "eslint-config-standard": "^10.2.1",
@@ -55,6 +56,5 @@
     "husky": "^0.14.3",
     "webpack": "^3.11.0",
     "webpack-bundle-analyzer": "^2.10.0"
-  },
-  "dependencies": {}
+  }
 }
