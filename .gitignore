@@ -9,6 +9,5 @@ npm-debug.log
 .passport.js
 .DS_Store
 
-build/
 note.txt
 .deprecated/
