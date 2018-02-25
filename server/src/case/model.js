@@ -1,41 +1,49 @@
 import mongoose from 'mongoose';
+import {progressStatus} from './progress';
+
+const payloadSchema = new mongoose.Schema({
+	viewed: {
+		type: Number,
+		default: 1
+	},
+	started: {
+		at: Date
+	},
+	ordered: {
+		at: Date,
+		screenshot: String,
+		orderNumber: {
+				type: String
+		}
+	},
+	reviewed: {
+		at: Date
+	},
+	payouted: {
+		at: Date
+	},
+	finished: {
+		at: Date
+	}
+})
 
 // Define the model
 const caseSchema = new mongoose.Schema({
     user: {
         type: mongoose.Schema.ObjectId,
-        ref: 'User',
-        unique: true
+        ref: 'User'
     },
     product: {
         type: mongoose.Schema.ObjectId,
-        ref: 'Product',
-        unique: true
+        ref: 'Product'
     },
-    timestamps: {
-        visit: {
-            at: Date
-        },
-        startAt: {
-            at: Date
-        },
-        ordered: {
-            at: Date,
-            screenshot: String
-        },
-        reviewed: {
-            at: Date
-        },
-        payout: {
-            at: Date
-        },
-        finished: {
-            at: Date
-        },
-    },
+    payload: payloadSchema,
     progress: {
-        type : String, 
-        enum : [ 'visit', 'start', 'ordered', 'reviewed', 'payout', 'finished' ] 
+        type : String,
+        required: true, 
+        default: 'viewed',
+        enum : Object.values(progressStatus) 
+        // ["viewed", "started", "ordered", "reviewed", "payouted", "finished"]
     }
 },{
     timestamps: true

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { getOneproduct } from '../../actions';
-import {Image, CenterCard121} from '../utils';
+import { getOneproduct,startOneCase } from '../../actions';
+import { Image, CenterCard121 } from '../utils';
 
 class Product extends Component {
   componentDidMount(){
@@ -29,7 +29,7 @@ class Product extends Component {
     );
   }
   renderProduct(){
-    const {details, benefits, isAdmin, productId, currenUser} = this.props;
+    const {details, benefits, isAdmin, productId,product_Id} = this.props;
     if(details && benefits){
       return <div>
         <div className='text-center'>
@@ -66,7 +66,7 @@ class Product extends Component {
                     ${benefits.rewards}
                 </li>
                 <li className="list-group-item">
-                  <Link to={`/case/${currenUser._id}/${productId}`} className='btn btn-lg btn-success btn-block'>Claim Now</Link>
+                  <button onClick={this.createOneNewCase.bind(this,product_Id)} className='btn btn-lg btn-success btn-block'>Unlock This Review</button>
                 </li>
                 {isAdmin && <li className="list-group-item">
                   <Link to={`/edit/pd/${productId}`} className='btn btn-lg btn-light btn-block'>Edit This Item</Link>
@@ -80,17 +80,21 @@ class Product extends Component {
       </div>
     }
   }
+  createOneNewCase(productId){
+    this.props.startOneCase(productId);
+  }
 }
 
 Product.contextTypes = {
   router: PropTypes.object
 }
 
-function mapStateToProps({auth,product,profile}) {
+function mapStateToProps({ auth,product,profile }) {
   const {item} = product;
   if(item){
     return {
       productId: item.productId,
+      product_Id: item._id,
       details: item.details,
       benefits: item.benefits,
       isAdmin: auth.isAdmin,
@@ -105,4 +109,4 @@ function mapStateToProps({auth,product,profile}) {
   }
 }
 
-export default connect(mapStateToProps, {getOneproduct})(Product);
+export default connect(mapStateToProps, {getOneproduct,startOneCase})(Product);

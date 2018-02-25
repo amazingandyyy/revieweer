@@ -10,6 +10,7 @@ import { signupWithEmailReducer as signupWithEmail } from './redux/signupWithEma
 import { signupVerificationReducer as signupVerification } from './redux/signupVerification';
 import { adminReducer as adminDashboard } from './redux/admin';
 import { productReducer as product } from './redux/product';
+import { caseReducer as caseReducer } from './redux/case';
 
 export default combineReducers({
   loadingBar: loadingBarReducer,
@@ -21,5 +22,6 @@ export default combineReducers({
   signupWithEmail,
   signupVerification,
   adminDashboard,
-  product
+  product,
+  case: caseReducer
 });
