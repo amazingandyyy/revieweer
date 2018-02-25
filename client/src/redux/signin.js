@@ -17,7 +17,7 @@ export function signUserIn(data) {
         loader.end(500);
         dispatch({type: AUTH_USER, payload: res.data});
         dispatch({type: AUTH_ADMIN, payload: res.data.isAdmin})
-        window.location = '/#account';
+        window.location = '/#user/settings';
       })
       .catch(err => {
         loader.end(500);
