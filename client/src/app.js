@@ -11,7 +11,9 @@ import Landing from './components/landing';
 import Explore from './components/explore/browser';
 import Product from './components/explore/product';
 import ProductEdit from './components/explore/product.edit';
-import Account from './components/account';
+import User from './components/user';
+import Settings from './components/user/settings';
+import Reviews from './components/user/reviews';
 import Signin from './components/auth/signin';
 import SignupWithEmail from './components/auth/signupWithEmail';
 import SignupVerification from './components/auth/signupVerification';
@@ -53,7 +55,9 @@ ReactDOM.render(
           <Route path='/case/:caseId' component= {Case} />
           
           <Route path='/signup' component= {SignupWithEmail} />
-          <Route path='/account' component= {RequireAuth(Account)} />
+          <Route path='/user' component= {RequireAuth(User)} />
+          <Route path='/user/settings' component= {RequireAuth(Settings)} />
+          <Route path='/user/reviews' component= {RequireAuth(Reviews)} />
           <Route path='/signupVerification' component= {SignupVerification} />
           <Route path='/signin' component= {Signin} />
           <Route path='/signout' component= {Signout} />

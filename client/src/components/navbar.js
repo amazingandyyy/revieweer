@@ -31,7 +31,8 @@ class Navbar extends Component {
                             {profile.name.first}
                         </a>
                         <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <NavLink className='dropdown-item' to="/account">Account</NavLink>
+                            <NavLink className='dropdown-item' to="/user/settings">My Account</NavLink>
+                            <NavLink className='dropdown-item' to="/user/reviews">My Reviews</NavLink>
                             {isAdmin && <NavLink className="dropdown-item" to="/admin/insight">Admin</NavLink>}
                             <div className="dropdown-divider"></div>
                             <NavLink className="dropdown-item" to="/signout">Log out</NavLink>

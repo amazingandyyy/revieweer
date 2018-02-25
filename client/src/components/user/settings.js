@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
-import {serverConnect, getUserProfile, updateUserProfile} from '../actions';
-import { CenterCard121 } from './utils';
+import {serverConnect, getUserProfile, updateUserProfile} from '../../actions';
+import { CenterCard121 } from '../utils';
 
-class Account extends React.Component {
+class Settings extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -21,7 +21,7 @@ class Account extends React.Component {
       <CenterCard121>
         <div className='card'>
         <h4 className="card-header">
-          Account
+          Settings
         </h4>
         <div className='card-body'>
         <p className="text-muted">Server status: {status} ☀</p>
@@ -138,4 +138,4 @@ function mapStateToProps({server, profile, auth}) {
 
 export default connect(mapStateToProps, {serverConnect, getUserProfile, updateUserProfile})(reduxForm({
   form: 'profileUpdate',
-})(Account));
+})(Settings));
