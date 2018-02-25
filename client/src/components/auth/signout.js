@@ -20,8 +20,8 @@ class Signout extends React.Component {
           </div>
           <div  className='button-container'>
           <div>
-            <Link style={{'cursor': 'pointer'}} className='btn btn-light btn-block btn-lg' to='company/contacts'>Any Feedback?</Link>
             <Link style={{'cursor': 'pointer'}} className='btn btn-success btn-block btn-lg' to='signin'>Sign Back In Now</Link>
+            <Link style={{'cursor': 'pointer'}} className='btn btn-light btn-block btn-lg' to='company/contacts'>Any Feedback?</Link>
           </div>
           </div>
         </div>

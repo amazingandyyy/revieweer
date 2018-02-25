@@ -4,7 +4,7 @@ npm-debug.log
 
 /.idea
 /public
-
+build/
 .env
 .passport.js
 .DS_Store
