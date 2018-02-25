@@ -12,7 +12,7 @@
     "test": "eslint .",
     "precommit": "npm run test",
     "prepush": "npm run test",
-    "postinstall": "NPM_CONFIG_PRODUCTION=false npm install --prefix server && npm run build:server",
+    "postinstall": "NPM_CONFIG_PRODUCTION=false npm install --prefix server",
     "rl": "npm run release",
     "release": "git pull && npm run test && npm run build && git add . && git commit -m 'deploy' && git push origin master && npm version patch",
     "build": "npm run test && npm run build:server && npm run build:client",
