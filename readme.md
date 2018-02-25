@@ -26,7 +26,7 @@ Review, Explore, Earn
     - [x] basic name
     - [ ] reset password
     - [ ] change password
-  - [ ] delete
+  - [ ] delete account
 - [ ] product CRUD
   - [x] create
     - [x] fetch product details api
@@ -35,9 +35,13 @@ Review, Explore, Earn
     - [x] list at client
   - [ ] update
     - [x] update detials by admin
+    - [ ] end/active by admin
   - [ ] delete
 - [ ] review CRUD
   - [x] create
+  - [ ] read
+    - [ ] read one(need style)
+    - [ ] read user's own list(need style)
   - [ ] update
     - [ ] add new order number from user
     - [ ] update progress
