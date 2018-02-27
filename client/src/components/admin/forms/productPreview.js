@@ -34,10 +34,13 @@ class productPreviewForm extends React.Component {
     render() {
         return (
             <CenterCard121>
-                <div className='card' style={{'marginBottom': '50px'}}>
+                <div className='card'>
                     <h4 className='card-header'>
-                        Product Preview
+                        Launch New Product (Step 2/2)
                     </h4>
+                    <h6 className='card-header'>
+                        Product Preview
+                    </h6>
                     {this.renderForm()}
                 </div>
             </CenterCard121>

@@ -63,7 +63,6 @@ class Signin extends Component {
                             <Link to='/signup' className='btn btn-link btn-block'>{`Don't have an account? Signup here.`}</Link>
                         </div>
                     </form>
-                    <div className='card-bottom-balancer'></div>
                     </div>
                 </div>
             </CenterCard121>

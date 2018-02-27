@@ -59,12 +59,10 @@ export default {
     .catch(next)
   },
   fetchOwnList: (req, res, next) => {
-    console.log(req.user._id);
     Review.find({ user: req.user._id })
     .sort({createdAt: -1})
     .populate('product')
     .then(r=>{
-      console.log(r);
       res.send(r);
     })
     .catch(next)

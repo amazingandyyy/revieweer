@@ -16,10 +16,8 @@ const Email = {
       SESserver.sendEmail({
         from: AWS_SES_SENDER, 
         ...obj
-      }, function(err, data) {
+      },(err, data) => {
         if (err) return reject(err);
-        // console.log('ses', data);
-        
         // Error { 
         //  Type: 'Sender',
         //  Code: 'MessageRejected',

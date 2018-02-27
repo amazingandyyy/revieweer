@@ -9,9 +9,7 @@ test('can use', done => {
   }
   
   handler.itemLookUp(eventMock, {}, function(err, res) {
-    console.log(err);
     if(!err){
-      console.log(res);
       done();
     }
   })  

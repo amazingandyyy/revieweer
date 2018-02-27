@@ -30,17 +30,3 @@ export default function itemLookUp(productId, cb){
         .catch(err=>cb(err))
     }
 }
-
-// For information about migrating to our APIs refer to our 
-// Marketplace APIs at https://developer.amazonservices.com/ref=rm_c_sv
-// our Product Advertising API at https://affiliate-program.amazon.com/gp/advertising/api/detail/main.html/ref=rm_c_ac for advertising use cases.
-
-//
-//
-// Testing //
-// itemLookUp('https://www.amazon.com/Drive-Converter-FIDECO-Adapter-External/dp/B077N2KK27/ref=sr_1_1?ie=UTF8&qid=1518249729&sr=8-1&keywords=B077N2KK27')
-//   .then(product=>{
-//     console.log('product', product)
-//   }).catch(e=>console.log(e));
-//
-//

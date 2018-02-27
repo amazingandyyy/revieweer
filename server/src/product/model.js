@@ -30,7 +30,6 @@ const productSchema = new mongoose.Schema({
 })
 
 productSchema.statics.findOneByProductId = (productId) => {
-    console.log('productId')
     return Product.findOne({
         productId: productId
     })

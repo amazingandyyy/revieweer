@@ -43,12 +43,10 @@ function lookUp(productId, cb, result) {
       result.price = Number(whole) + 0.01 * Number(fact);
       result.seller = $(sellStepTwo).html();
       result.productId = productId;
-      console.log('count')
       setTimeout(function(){
         return lookUp(productId, cb, result);
       }, 50 + Math.round(Math.random() * 250))
   }).catch(function(err){
-    console.log('err')
     setTimeout(function(){
       return lookUp(productId, cb, result);
     }, 50 + Math.round(Math.random() * 250))

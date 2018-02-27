@@ -91,7 +91,6 @@ export default {
   },
   fetchProductPreview: (req, res, next) => {
     const {productPendingId} = req.query;
-    console.log(productPendingId);
     axios.get(`https://api.apify.com/v1/execs/${productPendingId}/results`)
         .then(p=>res.send(p.data[0].pageFunctionResult))
         .catch(next)
