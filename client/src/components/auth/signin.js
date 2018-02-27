@@ -29,7 +29,7 @@ class Signin extends Component {
                     <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signinReset}>
                         <div className='form-group'>
                             <label>
-                                Email: {emailStateError&&<span className='danger-hint'>{emailStateError}</span>}
+                                Email: {emailStateError&&<span className='danger-hint'><i className='fas fa-exclamation-circle'></i>{emailStateError}</span>}
                             </label>
                             <Field
                                 type= 'email'
@@ -42,7 +42,7 @@ class Signin extends Component {
                         </div>
                         <div className='form-group'>
                             <label>
-                                Password: {passwordError&&<span className='danger-hint'>{passwordError}</span>}
+                                Password: {passwordError&&<span className='danger-hint'><i className='fas fa-exclamation-circle'></i>{passwordError}</span>}
                             </label>
                             <Field
                                 type= 'password'

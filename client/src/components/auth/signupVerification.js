@@ -59,7 +59,6 @@ class SignupVerification extends Component {
         return (
             <CenterCard121>
                 <div className={this.renderBorder()}>
-                    <h4 className="card-header" />
                     <div className='card-body'>
                         {this.renderLoading()}
                     </div>
@@ -80,7 +79,7 @@ class SignupVerification extends Component {
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signupEmailReset}>
                     <div className='form-group'>
                         <Field
-                            name='emailAddressShow'
+                            name='username'
                             type='text'
                             component='input'
                             className='form-control form-control-lg original-disable'
@@ -174,7 +173,7 @@ function mapStateToProps({signupVerification}) {
             emailTokenGood,
             authUserError,
             initialValues: {
-                emailAddressShow: address
+                username: address
             }
         }
     }else{

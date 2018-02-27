@@ -151,7 +151,6 @@ productPreviewForm.contextTypes = {
 
 function mapStateToProps({adminDashboard}) {
     const {produdtPreviewData} = adminDashboard;
-    console.log(produdtPreviewData);
     if(produdtPreviewData){
         return {
             produdtPreviewData: produdtPreviewData,

@@ -28,7 +28,6 @@ export default {
             }
           })
           .then(p=>{
-            console.log(p)
             return res.send(review._id);
           })
         })

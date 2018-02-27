@@ -77,7 +77,8 @@ export default {
   },
 
   updateProfile: (req, res, next) => {
-    req.user.comparedPassword(req.body.password, (err, good) => {
+    const { password } = req.body;
+    req.user.comparedPassword(password, (err, good) => {
       if (err) return next(err);
       if (!good) return next('401:Incorrect Password');
       
@@ -91,7 +92,7 @@ export default {
       delete newProfile.password;
 
       User.findByIdAndUpdate(userId, newProfile, { new: true })
-      .then(newUser => res.sendStatus(200))
+      .then(newUser => res.send())
       .catch(next)
     })
   }

@@ -79,7 +79,7 @@ class SignupWithEmail extends React.Component {
             return(<form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={this.resetStateAndProps.bind(this)}>
                 <div className='form-group'>
                     <label>
-                        Email: {emailStateError&&<span className='danger-hint'>{emailStateError}</span>}
+                        Email: {emailStateError&&<span className='danger-hint'><i className='fas fa-exclamation-circle'></i>{emailStateError}</span>}
                     </label>
                     <Field
                         type= 'email'

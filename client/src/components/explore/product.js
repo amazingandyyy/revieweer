@@ -29,7 +29,7 @@ class Product extends Component {
     );
   }
   renderProduct(){
-    const {details, benefits, isAdmin, productId,product_Id} = this.props;
+    const {details, benefits, isAdmin, productId} = this.props;
     if(details && benefits){
       return <div>
         <div className='text-center'>
@@ -65,9 +65,7 @@ class Product extends Component {
                     <br/>
                     ${benefits.rewards}
                 </li>
-                <li className="list-group-item">
-                  <button onClick={this.createOneNewReview.bind(this,product_Id)} className='btn btn-lg btn-success btn-block'>Unlock This Review</button>
-                </li>
+                {this.renderCheck()}
                 {isAdmin && <li className="list-group-item">
                   <Link to={`/edit/pd/${productId}`} className='btn btn-lg btn-light btn-block'>Edit This Item</Link>
                 </li>}
@@ -78,6 +76,18 @@ class Product extends Component {
       return <div className='text-center'>
         <div>No Product</div>
       </div>
+    }
+  }
+  renderCheck(){
+    const {product_Id, product} = this.props;
+    if(product.reviews && product.reviews.indexOf(this.props.currenUser._id) > -1){
+      return (<li className="list-group-item">
+        <button onClick={this.createOneNewReview.bind(this,product_Id)} className='btn btn-lg btn-success btn-block'>Check My Progress</button>
+      </li>)
+    }else{
+      return (<li className="list-group-item">
+        <button onClick={this.createOneNewReview.bind(this,product_Id)} className='btn btn-lg btn-success btn-block'>Unlock This Review</button>
+      </li>)
     }
   }
   createOneNewReview(productId){
@@ -93,6 +103,7 @@ function mapStateToProps({ auth,product,profile }) {
   const {item} = product;
   if(item){
     return {
+      product: product.item,
       productId: item.productId,
       product_Id: item._id,
       details: item.details,

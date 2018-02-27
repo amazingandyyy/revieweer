@@ -57,7 +57,7 @@ class SearchProductForm extends React.Component {
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={adminDashboardReset}>
                 <div className='form-group'>
                     <label>
-                        Amazon Product Link: {errorMsg&&<span className='danger-hint'>{errorMsg}</span>}
+                        Amazon Product Link: {errorMsg&&<span className='danger-hint'><i className='fas fa-exclamation-circle'></i>{errorMsg}</span>}
                     </label>
                     <Field
                         type='url'

@@ -37,11 +37,14 @@ class Browser extends Component {
             {this.renderImage(p)}
           </div>
           <div className='product-body product-info'>
-            <div className='claims bubble-tag'>
-              <div>{20+Math.floor(Math.random()*50)} claims</div>
+            <div className='bubble-tag highlight'>
+              <div><i className='fas fa-dollar-sign' />{p.benefits.cashback} cashback</div>
             </div>
-            <div className='reviews bubble-tag'>
-              <div>{5+Math.floor(Math.random()*20)} reviews</div>
+            <div className='bubble-tag highlight-highlight'>
+              <div><i className='fas fa-dollar-sign' />{p.benefits.rewards} bonus</div>
+            </div>
+            <div className='bubble-tag'>
+              <div><i className='fas fa-unlock' />{p.reviews.length}</div>
             </div>
             <div className='createdAt'>
               <div>{timeAgo(p.createdAt)}</div>
@@ -81,7 +84,7 @@ class Browser extends Component {
 }
 
 function mapStateToProps({product}) {
-  console.log(product.items);
+  console.log('items', product.items);
   return {
     products: product.items
   }

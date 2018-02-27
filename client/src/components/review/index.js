@@ -10,7 +10,7 @@ class Review extends Component {
     this.props.fetchOneReview(reviewId);
   }
   render(){
-    console.log(this.props.review);
+    console.log('review', this.props.review);
     return <div className='admin-component'>
     </div>
   }

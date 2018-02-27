@@ -39,12 +39,15 @@ body {
             width: 100%;
         }
         span.danger-hint {
-            width: 60%;
-            display: inline-block;
             margin-top: .25rem;
-            font-size: .875rem;
+            font-size: .85rem;
+            opacity: 0.85;
             color: #dc3545;
             text-align: right;
+            float: right;
+            .fa-exclamation-circle{
+                margin-right: 2.5px;
+            }
         }
         input.form-control:not(.original-disable):disabled, textarea.form-control:not(.original-disable):disabled {
             border-color: rgba(0,0,0,0);

@@ -38,7 +38,7 @@ class Reviews extends Component {
 }
 
 function mapStateToProps(props) {
-  console.log(props.review.ownList);
+  console.log('ownList', props.review.ownList);
   return {
     reviews: props.review.ownList
   }

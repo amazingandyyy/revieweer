@@ -63,12 +63,10 @@
     }
     .product-image{
       text-align: center;
-      padding: 30px 10px;
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding: 20px 10px 30px;
       box-shadow: inset 0px -1px 0px rgba(#e6e6e6, 0.5);
       img{
-        width: 250px;
+        width: 225px;
         margin: auto;
       }
     }
@@ -89,11 +87,30 @@
         background: rgba(#e6e6e6, 0.7);
         display: inline-block;
         padding: 5px 15px;
-        border-radius: 50px;
+        border-radius: 20px;
         margin: 0px 8px 5px 0px;
         font-size: 0.8rem;
         font-weight: 600; 
-        opacity: 0.7;
+        opacity: 1;
+
+        &:hover{
+          opacity: 0.7;
+        }
+
+        &.highlight{
+          background: $brand-color;
+          color: white;
+        }
+
+        &.highlight-highlight{
+          background: lighten($brand-color, 5%);
+          color: white;
+        }
+
+      }
+
+      i.fas{
+        margin-right: 4px;
       }
     }
   }
