@@ -16,9 +16,7 @@ export default function Admin(props) {
           </ul>
         </div>
     </nav>
-    <div style={{'paddingTop': '20px'}}>
-      {props.children}
-    </div>
+    {props.children}
   </div>
 }
 

@@ -24,7 +24,15 @@ const productSchema = new mongoose.Schema({
     productId: {
         type: String,
         unique: true
-    }
+    },
+    createBy: {
+        type: mongoose.Schema.ObjectId,
+        ref: 'User'
+    },
+    reviews: [{
+        type: mongoose.Schema.ObjectId,
+        ref: 'Review'
+    }]
 },{
     timestamps: true
 })

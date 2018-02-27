@@ -1,4 +1,5 @@
 import Review from './model';
+import Product from '../product/model';
 import {progressStatus} from './progress';
 
 export default {
@@ -20,9 +21,18 @@ export default {
           payload: {
             viewed: 1
           }
-        }).then(r=>{
-          return res.send(r._id);
-        }).catch(next)
+        }).then(review=>{
+          Product.findByIdAndUpdate(productId, {
+            $addToSet: {
+              reviews: review._id
+            }
+          })
+          .then(p=>{
+            console.log(p)
+            return res.send(review._id);
+          })
+        })
+        .catch(next)
       }else{
         // not the first visit AND not started yet
         if(r.progress == progressStatus['viewed']){

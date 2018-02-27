@@ -3,8 +3,9 @@ import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
+import Img from 'react-image';
 
-import { CenterCard121, SquareLoader } from '../../utils';
+import { CenterCard121, SquareLoader,CircleLoader } from '../../utils';
 import { adminDashboardReset, fetchProductPreviewByProductPendingId, createOneProduct } from '../../../actions';
 
 class productPreviewForm extends React.Component {
@@ -51,7 +52,11 @@ class productPreviewForm extends React.Component {
         if(produdtPreviewData){
             return (
                 <div className='text-center'>
-                    <img style={{'width': '70%', 'margin':'auto'}} className='card-img-top' src={produdtPreviewData.imageURL} alt={produdtPreviewData.title}/>
+                    <Img 
+                        style={{'width': '180px', 'margin':'30px auto'}} 
+                        className='card-img-top'
+                        src={produdtPreviewData.imageURL} 
+                        loader={<CircleLoader/>} />
                     <ul className="list-group list-group-flush text-left">
                         <li className="list-group-item">
                             <label><b>*Title:</b></label>
@@ -127,7 +132,7 @@ class productPreviewForm extends React.Component {
                             />
                         </li>
                         <div className='card-body'>
-                            <button type='submit' disabled={submitting} className='btn btn-lg btn-primary btn-block'>Confirm to Publish</button>
+                            <button type='submit' disabled={submitting} className='btn btn-lg btn-success btn-block'>Confirm to Publish</button>
                             <Link disabled={submitting} className="btn-lg btn btn-secondary btn-block" to='/admin/launch/search'>Cancel</Link>
                         </div>
                     </form>

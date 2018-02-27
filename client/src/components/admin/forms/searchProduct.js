@@ -37,18 +37,16 @@ class SearchProductForm extends React.Component {
     }
     render() {
         return (
-            <div className='container-fluid'>
-                <CenterCard121>
-                    <div className='card'>
-                        <h4 className='card-header'>
-                            Launch New Product (Step 1/2)
-                        </h4>
-                        <div className='card-body'>
-                            {this.renderForm()}
-                        </div>
+            <CenterCard121>
+                <div className='card'>
+                    <h4 className='card-header'>
+                        Launch New Product (Step 1/2)
+                    </h4>
+                    <div className='card-body'>
+                        {this.renderForm()}
                     </div>
-                </CenterCard121>
-            </div>
+                </div>
+            </CenterCard121>
         );
     }
     renderForm(){

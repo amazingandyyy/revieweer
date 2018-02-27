@@ -27,7 +27,8 @@ export default {
           notes: obj.notes || '',
           rewards: obj.rewards,
       },
-      productId: obj.productId
+      productId: obj.productId,
+      createdBy: req.user._id  // must be admin
     }
     Product.findOneByProductId(obj.productId)
     .then(p=>{
