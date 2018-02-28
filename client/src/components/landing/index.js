@@ -5,7 +5,7 @@ import Footer from './footer';
 
 const Landing= ()=> {
   return (
-    <div>
+    <div className='landing-component'>
       <Welcome />
       <Feature />
       <Footer />

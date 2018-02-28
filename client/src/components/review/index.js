@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 
 import { fetchOneReview } from '../../actions';
+import ProductPreview from '../explore/product.preview';
+import Started from './started';
 
 class Review extends Component {
   componentDidMount(){
@@ -10,19 +12,24 @@ class Review extends Component {
     this.props.fetchOneReview(reviewId);
   }
   render(){
-    console.log('review', this.props.review);
-    return <div className='admin-component'>
-      {this.renderProgress()}
+    return <div className='review-component container-fluid'>
+      {this.props.review&&this.renderProgress()}
     </div>
   }
   renderProgress(){
     return(<div className='row'>
-      <div className='col-sm-2'></div>
-      <div className='col-sm-10'>
-        
+      <div className='col-sm-12 col-md-4'>
+        <ProductPreview data={this.props.review.product}/>
       </div>
-      <div className='col-sm-2'></div>
-    </div>)
+      <div className='col-sm-12 col-md-8'>
+        <Started/>
+        <Started/>
+        <Started/>
+        <Started/>
+        <Started/>
+        <Started/>
+      </div>
+      </div>)
   }
 }
 

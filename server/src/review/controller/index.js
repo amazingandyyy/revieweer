@@ -18,7 +18,7 @@ export default {
         // in order to analyze how many times users check but not yet start.
         Review.findByIdAndUpdate(r._id, {
           $inc : { 'payload.viewed' : 1 }
-        }).then(r=>res.send(r))
+        }).populate('product').then(r=>res.send(r))
       }else{
         res.send(r);
       }

@@ -1,8 +1,13 @@
+.landing-component{
+  background: white;
+}
+
 .welcome {
   background: #F2F4F5;
   // min-height: 60vh;
   text-align: center;
   &.logout{
+    background: #f8f9fa;
     img{
       margin: 20px 0px;
       height: 200px;

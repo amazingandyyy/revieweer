@@ -1,117 +1,117 @@
 .browser-component {
   padding: 0px;
-  background: #f8f9fa;
-  .product-list .product-item{
-    background: white;
-    display: block;
-    margin: 10px;
-    // box-shadow: 0px 2px 5px rgba(black, 0.03);
-    padding: 0px;
-    cursor: pointer;
-    border-radius: .25rem;
-    border: 1px solid rgba(#e6e6e6, 0.5);
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
-    user-select: none;
+}
 
-    // &:hover{
-    //   transform: scale(1.05);
-    //   box-shadow: 0px 3px 30px -3px rgba(black, 0.15);
-    //   transition: .1s all ease-in-out;
-    // }
-    &:active{
-      opacity: 0.7;
-    }
-    @media (max-width: 543px) {
-        margin: 5px -1px;
-        border-radius: 0px;
-        border: 0px solid #e6e6e6;
-        box-shadow: 0px 0px 10px rgba(black, 0.1);
-    }
-    .product-header{
-      padding: 12px;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      box-shadow: inset 0px -1px 0px rgba(#e6e6e6, 0.5);
-      .left-part .avatar{
-        height: 38px;
-        width: 38px;
-        border-radius: 100px;
-        overflow: hidden;
-        text-align: center;
-        line-height: 38px;
-        font-size: 1.5rem;
-        margin: 0px;
-        // background: radial-gradient(lighten($brand-color, 5%), $brand-color);
-        background: rgba(#232f3e, 0.9);
-        .fa-amazon{
-          color: white;
-        }
-      }
-      .right-part {
-        height: 38px;
-        font-size: 0.8rem;
-        padding: 3px 10px;
-        color: black;
-        line-height: 1.1rem;
-        .seller {
-          font-weight: 700;
-          letter-spacing: 0.01rem;
-          line-height: 0.95rem;
-        }
-      }
-    }
-    .product-image{
+.product-item{
+  background: white;
+  display: block;
+  margin: 10px;
+  // box-shadow: 0px 2px 5px rgba(black, 0.03);
+  padding: 0px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 0px solid #e6e6e6;
+  box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+  user-select: none;
+
+  // &:hover{
+  //   transform: scale(1.05);
+  //   box-shadow: 0px 3px 30px -3px rgba(black, 0.15);
+  //   transition: .1s all ease-in-out;
+  // }
+  &:active{
+    opacity: 0.7;
+  }
+  @media (max-width: 543px) {
+    box-shadow: 0px 0px 10px rgba(black, 0.1);
+    margin: 5px -1px;
+    border-radius: 0px;
+    border: 0px solid #e6e6e6;
+  }
+  .product-header{
+    padding: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    box-shadow: inset 0px -1px 0px rgba(#e6e6e6, 0.5);
+    .left-part .avatar{
+      height: 38px;
+      width: 38px;
+      border-radius: 100px;
+      overflow: hidden;
       text-align: center;
-      padding: 20px 10px 30px;
-      box-shadow: inset 0px -1px 0px rgba(#e6e6e6, 0.5);
-      img{
-        width: 225px;
-        margin: auto;
+      line-height: 38px;
+      font-size: 1.5rem;
+      margin: 0px;
+      // background: radial-gradient(lighten($brand-color, 5%), $brand-color);
+      background: rgba(#232f3e, 0.9);
+      .fa-amazon{
+        color: white;
       }
     }
-    .product-body{
-      padding: 12px;
-      .title{
-        font-weight: 300;
-        font-size: 0.9rem;
-        line-height: 1.3rem;
+    .right-part {
+      height: 38px;
+      font-size: 0.8rem;
+      padding: 3px 10px;
+      color: black;
+      line-height: 1.1rem;
+      .seller {
+        font-weight: 700;
+        letter-spacing: 0.01rem;
+        line-height: 0.95rem;
       }
-      .createdAt{
-        color: rgba(0,0,0,0.5);
-        font-size: 0.7rem;
-        margin-top: 5px;
-        text-transform: uppercase;
+    }
+  }
+  .product-image{
+    text-align: center;
+    padding: 20px 10px 30px;
+    box-shadow: inset 0px -1px 0px rgba(#e6e6e6, 0.5);
+    img{
+      width: 225px;
+      margin: auto;
+    }
+  }
+  .product-body{
+    padding: 12px;
+    .title{
+      font-weight: 300;
+      font-size: 0.9rem;
+      line-height: 1.3rem;
+    }
+    .createdAt{
+      color: rgba(0,0,0,0.5);
+      font-size: 0.7rem;
+      margin-top: 5px;
+      text-transform: uppercase;
+    }
+    .bubble-tag{
+      background: rgba(#e6e6e6, 0.7);
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      margin: 0px 8px 8px 0px;
+      font-size: 0.8rem;
+      font-weight: 600; 
+      opacity: 1;
+
+      &:hover{
+        opacity: 0.7;
       }
-      .bubble-tag{
-        background: rgba(#e6e6e6, 0.7);
-        display: inline-block;
-        padding: 5px 15px;
-        border-radius: 20px;
-        margin: 0px 8px 5px 0px;
-        font-size: 0.8rem;
-        font-weight: 600; 
-        opacity: 1;
 
-        &:hover{
-          opacity: 0.7;
-        }
-
-        &.highlight{
-          background: $brand-color;
-          color: white;
-        }
-
-        &.highlight-highlight{
-          background: lighten($brand-color, 5%);
-          color: white;
-        }
-
+      &.highlight{
+        background: $brand-color;
+        color: white;
       }
 
-      i.fas{
-        margin-right: 4px;
+      &.highlight-highlight{
+        background: lighten($brand-color, 5%);
+        color: white;
       }
+
+    }
+
+    i.fas{
+      margin-right: 4px;
     }
   }
 }

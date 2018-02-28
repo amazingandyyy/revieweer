@@ -1,0 +1,16 @@
+.review-component.container-fluid{
+  margin-top: 10px;
+  padding-left: 0px;
+  padding-right: 0px;
+  max-width: 936px;
+  @media (max-width: 543px) {
+    margin: 0px;
+  }
+  .card{
+    margin: 10px;
+    @media (max-width: 543px) {
+      margin: 0px;
+      box-shadow: 0px 0px 10px rgba(black, 0.1);
+    }
+  }
+}
