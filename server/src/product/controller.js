@@ -1,7 +1,7 @@
 import Product from './model';
 import itemLookUp from './itemLookUp';
 import axios from 'axios';
-
+import {dotNotate} from '../services';
 export default {
   searchAmazonByProductId: (req, res, next) => {
     const {productId} = req.query;
@@ -118,22 +118,6 @@ export default {
     //     2018-02-21T07:13:26.372Z out
   },
 }
-
-function dotNotate(obj,target,prefix) {
-  target = target || {},
-  prefix = prefix || "";
-
-  Object.keys(obj).forEach(function(key) {
-    if ( typeof(obj[key]) === "object" ) {
-      dotNotate(obj[key],target,prefix + key + ".");
-    } else {
-      return target[prefix + key] = obj[key];
-    }
-  });
-
-  return target;
-}
-
 
 // let larger = new Date(list[0].createdAt); // younger is bigger, have passed more time
 // let smaller = new Date(2018, 1, 20, 23, 15, 33);

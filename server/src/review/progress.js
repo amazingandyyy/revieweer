@@ -1,7 +1,7 @@
 export const progressStatus = {
   viewed: 'viewed',
   started: 'started', 
-  ordered: 'ordered', 
+  ordered: 'ordered',
   reviewed: 'reviewed', 
   payouted: 'payouted', 
   finished: 'finished'

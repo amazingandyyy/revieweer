@@ -12,18 +12,18 @@ const payloadSchema = new mongoose.Schema({
 	ordered: {
 		at: Date,
 		screenshot: String,
-		orderNumber: {
-				type: String
-		}
+		orderNumber: String
 	},
 	reviewed: {
 		at: Date
 	},
 	payouted: {
-		at: Date
+		at: Date,
+		venmoId: String
 	},
 	finished: {
-		at: Date
+		at: Date,
+		feedback: Number
 	}
 })
 
@@ -42,7 +42,7 @@ const reviewSchema = new mongoose.Schema({
         type : String,
         required: true, 
         default: 'viewed',
-        enum : Object.values(progressStatus) 
+        enum : Object.values(progressStatus)
         // ["viewed", "started", "ordered", "reviewed", "payouted", "finished"]
     }
 },{
