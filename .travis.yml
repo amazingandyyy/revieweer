@@ -13,3 +13,12 @@ install:
 script:
   - npm run test
   - npm run build
+deploy:
+  - provider: pages
+  - local-dir: docs
+  - repo: https://github.com/revieweer/revieweer.com.git
+  - skip-cleanup: true
+  - github-token: $GITHUB_TOKEN
+  - keep-history: true
+  - on:
+    - branch: master
