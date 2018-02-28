@@ -6,6 +6,10 @@ cache:
     - "node_modules"
     - "server/node_modules"
     - "client/node_modules"
+install:
+    - npm install
+    - npm install --prefix client
+    - npm install --prefix server
 script:
   - npm run test
   - npm run build
