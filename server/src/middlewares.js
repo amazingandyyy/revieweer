@@ -12,7 +12,6 @@ export function loginRequired(req, res, next){
     .then(user => {
       if (!user) return next('404:User not found!');
       req.user = user;
-      req.user.password = null;
       next();
     })
     .catch(next)

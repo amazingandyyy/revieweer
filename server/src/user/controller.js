@@ -77,8 +77,7 @@ export default {
   },
 
   updateProfile: (req, res, next) => {
-    const { password } = req.body;
-    req.user.comparedPassword(password, (err, good) => {
+    req.user.comparedPassword(req.body.password, (err, good) => {
       if (err) return next(err);
       if (!good) return next('401:Incorrect Password');
       
@@ -89,14 +88,11 @@ export default {
           last: req.body.lastName
         }
       };
-      delete newProfile.password;
-
       User.findByIdAndUpdate(userId, newProfile, { new: true })
-      .then(newUser => res.send())
+      .then(newUser => res.sendStatus(200))
       .catch(next)
     })
   }
-
 }
 
 const activationEmailTemplate = (deepLink) => {
