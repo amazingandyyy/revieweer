@@ -16,7 +16,7 @@ script:
 deploy:
   provider: pages
   local-dir: docs
-  repo: https://github.com/revieweer/revieweer.com.git
+  repo: revieweer/revieweer.com
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
   keep-history: false
