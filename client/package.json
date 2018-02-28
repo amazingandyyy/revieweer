@@ -10,7 +10,8 @@
     "copy-files": "npm run create-cname && npm run copy-manifest && npm run copy-googlesearch",
     "create-cname": "touch ../docs/CNAME && echo \"https://www.revieweer.com\" >> ../docs/CNAME ",
     "copy-manifest": "cp src/manifest.json ../docs",
-    "copy-googlesearch": "cp src/google6bffb4290b82fd5e.html ../docs"
+    "copy-googlesearch": "cp src/google6bffb4290b82fd5e.html ../docs",
+    "copy-readme": "cp ./readme.md ../docs"
   },
   "author": "amazingandyyy",
   "license": "MIT",

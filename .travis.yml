@@ -23,4 +23,5 @@ deploy:
   on:
     branch: master
   target-branch: master
-  name: Travis Worker
+  name: Revieweer Travis Helper
+  email: team@revieweer.com
