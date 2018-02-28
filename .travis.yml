@@ -7,16 +7,18 @@ cache:
     - "server/node_modules"
     - "client/node_modules"
 install:
-    - npm install
-    - npm install --prefix client
-    - npm install --prefix server
+  - npm install
+  - npm install --prefix client
+  - npm install --prefix server
 script:
   - npm run test
   - npm run build
 deploy:
-  - provider: pages
-  - local-dir: docs
-  - repo: https://github.com/revieweer/revieweer.com.git
-  - skip-cleanup: true
-  - github-token: $GITHUB_TOKEN
-  - keep-history: true
+  provider: pages
+  local-dir: docs
+  repo: https://github.com/revieweer/revieweer.com.git
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  on:
+    branch: master
