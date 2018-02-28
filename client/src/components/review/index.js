@@ -12,7 +12,17 @@ class Review extends Component {
   render(){
     console.log('review', this.props.review);
     return <div className='admin-component'>
+      {this.renderProgress()}
     </div>
+  }
+  renderProgress(){
+    return(<div className='row'>
+      <div className='col-sm-2'></div>
+      <div className='col-sm-10'>
+        
+      </div>
+      <div className='col-sm-2'></div>
+    </div>)
   }
 }
 

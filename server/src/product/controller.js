@@ -1,4 +1,5 @@
 import Product from './model';
+import Review from '../review/model';
 import itemLookUp from './itemLookUp';
 import axios from 'axios';
 import {dotNotate} from '../services';
@@ -86,7 +87,24 @@ export default {
     const {id} = req.query;
     id
     ?Product.findByIdAndRemove(id)
-    .then(_=>res.send())
+    .then(_=>{
+      return Review.find({})
+    })
+    .then(rr=>{
+      const list = rr.map(r=> ({ reviewId: r._id, productId: r.product }));
+      return Promise.all(list.map(l=>{
+        return Product.findById(l.productId).then(p=>{
+          if(p==null){
+            return l.reviewId
+          }
+        });
+      }));
+    })
+    .then(p=>{
+      const list = p.filter(p=>p);
+      Promise.all(list.map(l=> Review.findByIdAndRemove(l) ))
+    })
+    .then(good=>res.send())
     .catch(next)
     :next('404:No Id')
   },

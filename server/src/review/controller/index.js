@@ -37,7 +37,6 @@ export default {
   updateReview
 }
 
-
 // switch (type) {
 //   case progressStatus['started']:
 //     break;
