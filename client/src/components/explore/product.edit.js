@@ -40,7 +40,7 @@ class ProductEdit extends Component {
     this.props.updateOneProduct(this.props._id,finalObj);
   }
   deleteProduct(){
-    let r = window.confirm(`Are sure to delete product(${this.props.productId})? It cannot undo.`)
+    let r = window.confirm(`Are you sure to delete product(${this.props.productId})? It's not reversible.`)
     if(r==true){
       this.props.deleteOneProduct(this.props._id);
     }else{

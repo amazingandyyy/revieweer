@@ -7,20 +7,160 @@
     margin: 0px;
   }
   .card{
-    margin: 10px;
+    margin: 10px 10px 20px;
+    padding-bottom: 0px;
     transition: .1s all ease-in-out;
-    cursor: pointer;
-    &:hover{
-      // background: rgba(darken(#f8f9fa,10%), .01);
-      margin-bottom: 10px;
-      box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0 6px 18px 0 rgba(0,0,0,0.1);
+
+    .card-body{
+      padding-top: 10px;
     }
-    &:active{
-      opacity: 0.8;
+    &:hover{
+      box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0 6px 18px 0 rgba(0,0,0,0.08);
     }
     @media (max-width: 543px) {
-      margin: 10px;
+      margin: 5px 0px;
       box-shadow: 0px 0px 10px rgba(black, 0.1);
+    }
+    
+    .bubble-tag, a.bubble-tag{
+      user-select: none;
+      background: rgba(#e6e6e6, 0.7);
+      display: inline-block;
+      padding: 5px 15px;
+      border-radius: 20px;
+      margin: 4px 4px;
+      font-size: 0.8rem;
+      font-weight: 600; 
+      opacity: 1;
+
+      &.highlight{
+        background: $brand-color;
+        color: white;
+        &:hover{
+          background: lighten($brand-color, 5%);
+        }
+        &:active{
+          background: lighten($brand-color, 2%);
+        }
+      }
+
+      &.highlight-highlight{
+        background: lighten($brand-color, 5%);
+        color: white;
+      }
+      
+      i.fas{
+        margin-right: 4px;
+      }
+
+    }
+    
+    .review-step{
+      background: rgba(0,0,0,0);
+      letter-spacing: -0.5px;
+      display: inline;
+      padding: 12px 20px 0px;
+      font-weight: 900;
+      text-transform: capitalize;
+      font-size: 2rem;
+      color: rgba(0,0,0,1);
+      .completion{
+        font-size: 0.9rem;
+        margin-left: 10px;
+        font-weight: 300;
+        color: $brand-color;
+        text-transform: lowercase;
+
+        &.not-yet{
+          color: rgba(0,0,0,0.4);
+        }
+        .fas{
+          margin-right: 5px;
+        }
+
+        .timestamp{
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    &.reviewCardForm{
+      .form-group{
+        margin-bottom: 0px;
+        .form-control{
+          display: inline-block;
+          border: 0px;
+          box-shadow: none;
+          outline: none;
+          background: rgba(#e6e6e6, 0.7);
+          border-radius: 5px;
+          padding: 5px 10px;
+          width: 100%;
+          max-width: 320px;
+          letter-spacing: 1px;
+          font-weight: 400;
+          color: black;
+
+          &:disabled{
+            background: rgba(0,0,0,0);
+            font-weight: 700;
+          }
+
+          &:focus{
+            background: rgba(0,0,0,0.03);
+          }
+
+          @media (max-width: 700px) {
+            width: 100%;
+            max-width: 100%;
+            margin: 5px 0px 10px;
+            margin-left: 0px;
+            padding: 8px 10px;
+          }
+        }
+      }
+      .btn{
+        user-select: none;
+        display: inline-block;
+        padding: 5px 15px;
+        border-radius: 20px;
+        margin: 4px 4px 4px 0px;
+        font-size: 0.8rem;
+        font-weight: 600; 
+        opacity: 1;
+        border: none;
+        cursor: pointer;
+
+        @media (max-width: 700px) {
+          width: 100%;
+          margin: 0px 0px 10px;
+          margin-left: 0px;
+          padding: 8px 10px;
+        }
+
+        &.btn-success{
+          background: $brand-color;
+          color: white;
+          &:hover{
+            background: lighten($brand-color, 5%);
+          }
+          &:active{
+            background: lighten($brand-color, 2%);
+          }
+          &:disabled{
+            opacity: 0.7;
+            cursor: default;
+            &:hover{
+              background: $brand-color;
+            }
+            &:active{
+              background: $brand-color;
+            }
+          }
+        }
+        &.btn-secondary{
+        }
+      }
     }
   }
 }

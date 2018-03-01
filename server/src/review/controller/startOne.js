@@ -32,7 +32,7 @@ export default function(req,res,next) {
         })
         .catch(next)
       }else{
-        // not the first visit AND not started yet
+        // not the first visit AND not visited yet
         res.send(r._id);
       }
     })

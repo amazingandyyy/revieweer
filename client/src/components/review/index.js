@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import { fetchOneReview } from '../../actions';
 import ProductPreview from '../explore/product.preview';
-import Started from './started';
+import Visited from './visited';
+import Ordered from './ordered';
 
 class Review extends Component {
   componentDidMount(){
@@ -22,21 +23,24 @@ class Review extends Component {
         <ProductPreview data={this.props.review.product}/>
       </div>
       <div className='col-sm-12 col-md-8'>
-        <Started/>
-        <Started/>
-        <Started/>
-        <Started/>
-        <Started/>
-        <Started/>
+        <Visited/>
+        <Ordered/>
       </div>
       </div>)
   }
+
 }
 
 function mapStateToProps(props) {
+  console.log('review: ', props.review.details);
   return {
     review: props.review.details
   }
 }
 
 export default connect(mapStateToProps, {fetchOneReview})(Review);
+
+
+export const progressStatus = [
+  'viewed','visited', 'ordered','reviewed', 'payouted', 'finished'
+];

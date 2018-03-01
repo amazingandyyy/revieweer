@@ -13,19 +13,23 @@
   .card-header:first-child {
       border-radius: 0px;
   }
+
   .card-header{
       background-color: rgba(#f8f9fa, 0.5);
       border-bottom: 1px solid rgba(#e6e6e6, 0.5);
       padding: 1.25rem 1.25rem;
       font-weight: 700;
   }
+
   .card-body{
-      padding: 12px;
+      padding: 1.25rem;
   }
+
   h6.card-header{
       padding: 0.8rem 1.25rem;
       font-weight: 400;
   }
+  
 }
 
 .centercard121-component{

@@ -11,7 +11,7 @@ export default {
     Review.findOne({
       _id: reviewId,
       user: req.user._id
-    }).then(r=>{
+    }).populate('product').then(r=>{
       if(!r) return next('500:No Review For You')
       if(r.progress == progressStatus['viewed']){
         // update viewing counts
@@ -38,7 +38,7 @@ export default {
 }
 
 // switch (type) {
-//   case progressStatus['started']:
+//   case progressStatus['visited']:
 //     break;
 //   case progressStatus['ordered']:
 //     break;

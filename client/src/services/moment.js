@@ -1,3 +1,4 @@
+import React from 'react';
 
 const epochs = [
   ['year', 31536000],
@@ -32,9 +33,23 @@ const timeAgo = (date) => {
 
 const getTimeAndDate = (t, options={}) => {
   const time = new Date(t);
-  const opts = { minute:'2-digit', hour:'2-digit' , day: '2-digit',month: 'short', ...options };
-  const result = time.toLocaleDateString('en-US', opts);
-  return result.split(',')[1] + ', ' + result.split(',')[0];
+  // docs: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString
+  const opts = { 
+    minute:'2-digit', 
+    hour:'2-digit', 
+    day: '2-digit',
+    month: 'short', 
+    ...options 
+  };
+  const timeString = time.toLocaleDateString('en-US', opts);
+  const result = timeString.split(',');
+  return (
+  <span className='timeAndDate-component'>
+    <span className='times'>{result[1].trim()}</span>
+    {`, `}
+    <span className='dates'>{result[0].trim()}</span>
+  </span>
+  )
 }
 
 export {

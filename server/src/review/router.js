@@ -6,6 +6,6 @@ router.get('/', (req, res)=>res.json({ "message": "/api/review connected" }));
 router.get('/startOne', Controller.startOne); // req.query.type
 router.get('/fetchOne', Controller.fetchOne);
 router.get('/fetchOwnList', Controller.fetchOwnList);
-router.get('/updateReview', Controller.updateReview);
+router.post('/updateReview', Controller.updateReview);
 
 export default router;

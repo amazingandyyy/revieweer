@@ -6,8 +6,9 @@ const payloadSchema = new mongoose.Schema({
 		type: Number,
 		default: 1
 	},
-	started: {
-		at: Date
+	visited: {
+		at: Date,
+		last: Date
 	},
 	ordered: {
 		at: Date,
@@ -43,7 +44,7 @@ const reviewSchema = new mongoose.Schema({
         required: true, 
         default: 'viewed',
         enum : Object.values(progressStatus)
-        // ["viewed", "started", "ordered", "reviewed", "payouted", "finished"]
+        // ["viewed", "visited", "ordered", "reviewed", "payouted", "finished"]
     }
 },{
     timestamps: true

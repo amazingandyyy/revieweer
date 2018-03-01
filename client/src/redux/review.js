@@ -46,6 +46,18 @@ export function fetchOwnReviewsList(reviewId) {
 			});
 	}
 }
+export function updateReviewProgress(reviewId, data) {
+	return function (dispatch) {
+		request
+			.post(`/api/review/updateReview/?reviewId=${reviewId}`, data)
+			.then(res => {
+				window.location.reload(true)
+			})
+			.catch(error => {
+				console.log(error);
+			});
+	}
+}
 
 let INITIAL_STATE = {
 	details: null,
