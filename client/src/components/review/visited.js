@@ -20,8 +20,8 @@ class Visited extends Component {
   renderCompletion(){
     const {review} = this.props;
     const {visited} = review.payload;
-    if(visited){
-      const time = new Date(visited.last) || new Date(visited.at);
+    if(visited && (visited.at || visited.last)){
+      const time = visited.last || visited.at;
       return (<span className='completion'>
         <i className="fas fa-check"></i>visited at 
         <span>{getTimeAndDate(time)}</span>

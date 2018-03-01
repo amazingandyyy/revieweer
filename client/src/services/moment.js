@@ -43,13 +43,17 @@ const getTimeAndDate = (t, options={}) => {
   };
   const timeString = time.toLocaleDateString('en-US', opts);
   const result = timeString.split(',');
-  return (
-  <span className='timeAndDate-component'>
-    <span className='times'>{result[1].trim()}</span>
-    {`, `}
-    <span className='dates'>{result[0].trim()}</span>
-  </span>
-  )
+  if(result){
+    return (
+      <span className='timeAndDate-component'>
+        <span className='times'>{result[1].trim()}</span>
+        {`, `}
+        <span className='dates'>{result[0].trim()}</span>
+      </span>
+    )
+  }else{
+    return <span></span>
+  }
 }
 
 export {

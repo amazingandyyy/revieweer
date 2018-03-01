@@ -50,7 +50,7 @@ class Ordered extends Component {
   renderContent(){
     const {handleSubmit,submitting, review} = this.props;
     const {editting} = this.state;
-    if(review.payload && review.payload.ordered.at){
+    if(review.payload && review.payload.ordered && review.payload.ordered.at){
       return(<form onChange={this.resetError.bind(this)} onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
         <div className='form-group' style={{'marginBottom': '6px'}}>
         <span style={{'marginRight': '10px'}}>Your order number:</span>
