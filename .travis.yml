@@ -19,7 +19,7 @@ deploy:
   repo: revieweer/revieweer.com
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
-  keep-history: false
+  keep-history: true
   on:
     branch: master
   target-branch: master
