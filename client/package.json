@@ -7,7 +7,7 @@
     "start": "serve ../docs",
     "dev": "webpack-dev-server --open --config webpack.dev.js",
     "build": "rm -rf ../docs && webpack -p --config webpack.prod.js --optimize-minimize && npm run copy-files",
-    "copy-files": "npm run create-cname && npm run copy-manifest && npm run copy-googlesearch && copy-readme",
+    "copy-files": "npm run create-cname && npm run copy-manifest && npm run copy-googlesearch && npm run copy-readme",
     "create-cname": "touch ../docs/CNAME && echo \"https://www.revieweer.com\" >> ../docs/CNAME ",
     "copy-manifest": "cp src/manifest.json ../docs",
     "copy-googlesearch": "cp src/google6bffb4290b82fd5e.html ../docs",
