@@ -7,7 +7,7 @@
     "node": "8.1.0"
   },
   "scripts": {
-    "start": "NODE_ENV=production node ./server/build/server.js",
+    "start": "NPM_CONFIG_PRODUCTION=false npm i --prefix server && npm run build:server && NODE_ENV=production node ./server/build/server.js",
     "test": "eslint .",
     "precommit": "npm run test",
     "prepush": "npm run test",
