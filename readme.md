@@ -26,6 +26,9 @@ Review, Explore, Earn
     - [x] basic name
     - [ ] reset password
     - [ ] change password
+    - [ ] login amazon
+    - [ ] phone number verification
+    - [ ] venmo verification
   - [ ] delete account
 - [ ] product CRUD
   - [x] create
@@ -35,19 +38,20 @@ Review, Explore, Earn
     - [x] list at client
   - [ ] update
     - [x] update detials by admin
-    - [ ] end/active by admin
+    - [ ] deactive/active by admin
   - [ ] delete
 - [ ] review CRUD
   - [x] create
   - [ ] read
-    - [ ] read one(need style)
+    - [x] read one(need style)
     - [ ] read user's own list(need style)
-  - [ ] update
-    - [ ] add new order number from user
-    - [ ] update progress
+  - [x] update
+    - [x] add new order number from user
+    - [x] update progress
 - Payment system
-  - link bank account
+  - link to venmo
   - admin payout
+    - venmo rqcode
 - Advance Features
   - [ ] admin dashboard design
     - [ ] product
