@@ -41,7 +41,6 @@ class Ordered extends Component {
     }
   }
   resetError(){
-    console.log('resetError')
     this.setState({
       errorMsg: null,
       loading: false
@@ -123,9 +122,9 @@ class Ordered extends Component {
       )
     }else{
       if(errorMsg){
-        return <button className='btn btn-warning'>{errorMsg}</button>
+        return <div className='btn btn-warning'>{errorMsg}</div>
       }else{
-        return <button disabled={true} className='btn btn-success'>Updating...</button>
+        return <div disabled={true} className='btn btn-success'>Updating...</div>
       }
     }
   }
@@ -164,15 +163,15 @@ class Ordered extends Component {
           orderNumber: orderNumber
         }
       }
-      return this.props.updateReviewProgress(reviewId,data);
-    }else{
-      this.setState({
-        loading: true
-      })
+      this.setState({ loading: true })
       setTimeout(()=>{
-        this.setState({
-          errorMsg: 'Order Number is Not Valid'
-        })
+        this.props.reset();
+        return this.props.updateReviewProgress(reviewId,data);
+      }, 800)
+    }else{
+      this.setState({ loading: true })
+      setTimeout(()=>{
+        this.setState({ errorMsg: 'Order Number is Not Valid' })
         this.props.reset();
       }, 800)
     }

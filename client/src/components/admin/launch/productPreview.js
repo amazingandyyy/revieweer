@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import Img from 'react-image';
 
 import { CenterCard121, SquareLoader,CircleLoader } from '../../utils';
-import { adminDashboardReset, fetchProductPreviewByProductPendingId, createOneProduct } from '../../../actions';
+import { adminLaunchReset, fetchProductPreviewByProductPendingId, createOneProduct } from '../../../actions';
 
 class productPreviewForm extends React.Component {
     constructor(){
@@ -68,7 +68,7 @@ class productPreviewForm extends React.Component {
                             <br/>
                             {produdtPreviewData.seller}
                         </li>
-                        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={adminDashboardReset}>
+                        <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={adminLaunchReset}>
                         <li className="list-group-item">
                             <label><b>*Price(USD):</b><br/>
                                 <small>Be aware of the <b>potential discounts</b></small>
@@ -149,8 +149,8 @@ productPreviewForm.contextTypes = {
 }
 
 
-function mapStateToProps({adminDashboard}) {
-    const {produdtPreviewData} = adminDashboard;
+function mapStateToProps({adminLaunch}) {
+    const {produdtPreviewData} = adminLaunch;
     if(produdtPreviewData){
         return {
             produdtPreviewData: produdtPreviewData,
@@ -168,7 +168,7 @@ function mapStateToProps({adminDashboard}) {
 }
 
 export default connect(mapStateToProps, {
-    fetchProductPreviewByProductPendingId, adminDashboardReset,createOneProduct
+    fetchProductPreviewByProductPendingId, adminLaunchReset,createOneProduct
 })(reduxForm({
     form: 'productPreviewForm'
 })(productPreviewForm));

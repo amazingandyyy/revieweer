@@ -52,6 +52,9 @@ let INITIAL_STATE = {
 export function profileReducer(state=INITIAL_STATE, action) {
     switch (action.type) {
         case GET_USER_PROFILE:
+        console.log(action.payload)
+            window.gtag('set', {'user_id': action.payload._id});
+            window.ga('set', 'userId', action.payload._id);
             return { ...state, ...action.payload }
         case UPDATE_USER_PROFILE_GOOD:
             return { ...state, updateProfileFailMsg: '' }

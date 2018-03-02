@@ -26,6 +26,10 @@ class Visited extends Component {
         <i className="fas fa-check"></i>visited at 
         <span>{getTimeAndDate(time)}</span>
       </span>)
+    }else{
+      return (<span className='completion not-yet'>
+        <i className="fas fa-minus"></i>Not completed yet
+      </span>)
     }
   }
   renderContent(){

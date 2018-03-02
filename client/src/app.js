@@ -18,11 +18,14 @@ import Signin from './components/auth/signin';
 import SignupWithEmail from './components/auth/signupWithEmail';
 import SignupVerification from './components/auth/signupVerification';
 import Signout from './components/auth/signout';
+
 import Admin from './components/admin';
-import Insight from './components/admin/insight';
 import Launch from './components/admin/launch';
-import SearchProduct from './components/admin/forms/searchProduct';
-import LaunchPreview from './components/admin/forms/productPreview';
+import Insight from './components/admin/insight';
+import ProductsInsight from './components/admin/insight/product';
+import ReviewInsight from './components/admin/insight/review';
+import SearchProduct from './components/admin/launch/searchProduct';
+import LaunchPreview from './components/admin/launch/productPreview';
 import RequireAdmin from './components/admin/requireAdmin';
 import RequireAuth from './components/auth/requireAuth';
 import Review from './components/review';
@@ -68,6 +71,9 @@ ReactDOM.render(
           <Route path='/admin/launch' component= {Launch} />
           <Route path='/admin/launch/search' component= {SearchProduct} />
           <Route path='/admin/launch/preview/:productPendingId' component= {LaunchPreview} />
+          <Route path='/admin/insight' component= {Insight} />
+          <Route path='/admin/insight/products' component= {ProductsInsight} />
+          <Route path='/admin/insight/reviews' component= {ReviewInsight} />
         </Layout>
       </Switch>
     </HashRouter>

@@ -1,9 +1,9 @@
-import request from './request';
+import request from '../request';
 export const ADMIN_SEARCH_FOR_ONE_PRODUCT = 'ADMIN_SEARCH_FOR_ONE_PRODUCT';
 export const ADMIN_DASHBOARD_REST = 'ADMIN_DASHBOARD_REST';
 export const ADMIN_FETCH_ONE_PRODUCT_FROM_APIFY = 'ADMIN_FETCH_ONE_PRODUCT_FROM_APIFY';
 
-export const adminDashboardReset = () => (dispatch) => dispatch({type: ADMIN_DASHBOARD_REST});
+export const adminLaunchReset = () => (dispatch) => dispatch({type: ADMIN_DASHBOARD_REST});
 
 export function searchOneProductByURL(url) {
     return function (dispatch) {
@@ -80,7 +80,7 @@ let INITIAL_STATE = {
   productId: null
 }
 
-export function adminReducer(state=INITIAL_STATE, action) {
+export function adminLaunchReducer(state=INITIAL_STATE, action) {
     switch (action.type) {
       case ADMIN_SEARCH_FOR_ONE_PRODUCT:
         return { 
