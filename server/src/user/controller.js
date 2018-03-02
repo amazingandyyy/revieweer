@@ -17,7 +17,7 @@ export default {
       const mailObj = {
         to: email,
         subject: '[Revieweer]Welcome and Account Activation.',
-        message: activationEmailTemplate(deepLink)
+        message: accessRequestEmailTemplate(deepLink)
       };
       Email.send(mailObj).then(email=>{
         res.send({email});
@@ -95,30 +95,12 @@ export default {
   }
 }
 
-const activationEmailTemplate = (deepLink) => {
-  return `<b>Welcome to Revieweer,</b>
+const accessRequestEmailTemplate = (deepLink) => {
+  return `<b>Welcome to Revieweer</b>
   <br/>
-  <br/>
-  If you requested this activation, please go to the following URL to confirm this email and continue to use this email address as your account username,
-  <br/>
-  <br/>
-  <a href='${deepLink}' target='_blank'>${deepLink}</a>
-  <br/> 
-  <br/> 
-  <p>--------------</p>
-  <br/> 
-  Enjoy the benefits of being a revieweer:
-  <br/>
-  <ul>
-    <li><b>Explore:</b> explore new products to try.</li>
-    <li><b>Review:</b> amazing review with photo to help business grow</li>
-    <li><b>Earn:</b> we pay you up to 100% cashback + cash rewards</li>
-  </ul>
-  <br/>
-  We are looking forward to <b>your experience</b>. 
+  You are in line to Beta Access!
   <br/>
   Please feel free to reply this email or reach out to us via team@revieweer.com anytime.
-  <br/>
   <br/>
   <br/>
   Regards,
@@ -126,3 +108,35 @@ const activationEmailTemplate = (deepLink) => {
   <b>The Revieweer team</b>
   `
 }
+
+// const activationEmailTemplate = (deepLink) => {
+//   return `<b>Welcome to Revieweer,</b>
+//   <br/>
+//   <br/>
+//   If you requested this activation, please go to the following URL to confirm this email and continue to use this email address as your account username,
+//   <br/>
+//   <br/>
+//   <a href='${deepLink}' target='_blank'>${deepLink}</a>
+//   <br/> 
+//   <br/> 
+//   <p>--------------</p>
+//   <br/> 
+//   Enjoy the benefits of being a revieweer:
+//   <br/>
+//   <ul>
+//     <li><b>Explore:</b> explore new products to try.</li>
+//     <li><b>Review:</b> amazing review with photo to help business grow</li>
+//     <li><b>Earn:</b> we pay you up to 100% cashback + cash rewards</li>
+//   </ul>
+//   <br/>
+//   We are looking forward to <b>your experience</b>. 
+//   <br/>
+//   Please feel free to reply this email or reach out to us via team@revieweer.com anytime.
+//   <br/>
+//   <br/>
+//   <br/>
+//   Regards,
+//   <br/>
+//   <b>The Revieweer team</b>
+//   `
+// }

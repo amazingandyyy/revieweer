@@ -1,5 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
+import Launch from './launch';
+import Insight from './insight';
 
 export default function Admin(props) {
   return <div className='admin-component'>
@@ -19,6 +21,10 @@ export default function Admin(props) {
           </ul>
         </div>
     </nav>
-    {props.children}
+
+    <Switch>
+      <Route path='/admin/insight' component= {Insight} />
+      <Route path='/admin/launch' component= {Launch} />
+    </Switch>
   </div>
 }

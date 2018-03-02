@@ -13,11 +13,11 @@ class ReviewInsight extends Component {
       this.props.fetchInsightReviews()
     }
     render(){
-      return(<div>
+      return(<div className='review-componant'>
           Reviews
           <br/>
           {this.renderList()}
-      </div>)
+        </div>)
     }
     renderList(){
         const {reviewList} = this.props;

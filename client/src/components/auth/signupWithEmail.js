@@ -69,7 +69,13 @@ class SignupWithEmail extends React.Component {
     }
     renderForm(){
         const {handleSubmit,emailStateError,emailSentTo, submitting,dirty} = this.props;
-        if(emailSentTo && emailSentTo.length > 1){
+        const isBetaOnly = true;
+        if(isBetaOnly && emailSentTo && emailSentTo.length > 1) {
+            return (<div className='alert alert-success'>
+                <h4 className='alert-heading'>You are in line!</h4>
+                Notification email will be sent to <b>{emailSentTo}</b> when {`it's`} publicly available.            
+                </div>)
+        }else if(emailSentTo && emailSentTo.length > 1) {
             return(<div className='alert alert-success'>
                 <h4 className='alert-heading'>Almost there!</h4>
                 Verification email is sent to <b>{emailSentTo}</b>
@@ -98,7 +104,7 @@ class SignupWithEmail extends React.Component {
                     <button type='submit' disabled={submitting} className='btn btn-lg btn-success btn-block'>Send Me Activation</button>
                 </div>
                 <div style={{'paddingTop': '20px'}}>
-                    <Link to='/signin' className='btn btn-link btn-block'>Have an account? Signin here</Link>
+                    <Link to='/signin' className='btn btn-link btn-block'>Have an account? Sign in here</Link>
                 </div>
             </form>)
         }
