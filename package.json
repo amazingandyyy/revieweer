@@ -1,10 +1,10 @@
 {
   "name": "revieweer",
-  "version": "2.1.45",
-  "description": "www.revieweer.com Official Website and Server",
+  "version": "2.1.46",
+  "description": "www.revieweer.com and server.revieweer.com",
   "main": "server/build/server.js",
   "engines": {
-    "node": "8.1.0"
+    "node": "8.9.4"
   },
   "scripts": {
     "start": "NPM_CONFIG_PRODUCTION=false npm i --prefix server && npm run build:server && NODE_ENV=production node ./server/build/server.js",
