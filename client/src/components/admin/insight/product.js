@@ -13,7 +13,7 @@ class ProductInsight extends Component {
       this.props.fetchInsightProducts()
     }
     render(){
-      return(<div>
+      return(<div className='products-componant'>
           Products
           <br/>
           {this.renderList()}
@@ -22,6 +22,7 @@ class ProductInsight extends Component {
     renderList(){
         const {productList} = this.props;
         if(productList){
+            console.log(productList[2])
             return productList.map(p=>{
                 return(<div key={p._id}>
                     {p.productId}

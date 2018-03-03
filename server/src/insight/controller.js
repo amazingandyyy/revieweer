@@ -49,6 +49,14 @@ function fetchProductPromise(query={}, options=null, config={}){
       createdAt: {$gt: generateDay(config.days)}
     }
     Product.find(query, options)
+    .populate({
+      path: 'reviews',
+      populate: {
+        path: 'user',
+        model: 'User',
+        select: 'name.first'
+      }
+    })
     .sort({createdAt: -1})  // latest is first
     .then(list=>resolve(list))
     .catch(err=>reject(err))
@@ -62,6 +70,8 @@ function fetchReviewsPromise(query={}, options=null, config={}){
     }
     Review.find(query, options)
     .sort({createdAt: -1})  // latest is first
+    .populate('product')
+    .populate('user')
     .then(list=>resolve(list))
     .catch(err=>reject(err))
   })

@@ -51,6 +51,7 @@
     "preact": "^8.2.7",
     "preact-compat": "^3.18.0",
     "prop-types": "^15.6.0",
+    "qrcode": "^1.2.0",
     "qs": "^6.5.1",
     "querystring": "^0.2.0",
     "react": "^16.2.0",

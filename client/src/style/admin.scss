@@ -1,9 +1,11 @@
 .admin-component{
-  .container-fluid{
-    padding-right: 0px;
-    padding-left: 0px;
-  }
-  .review-componant{
-
+  .insight-component{
+    .reviews-componant, .products-componant{
+      margin: auto;
+      padding: 10px 0px;
+      @media (max-width: 543px) {
+          padding: 10px 15px;
+      }
+    }
   }
 }
