@@ -23,7 +23,10 @@ const userSchema = new mongoose.Schema({
             message: 'Name must be longer than 2 characters.'
           }
         }
-      },
+    },
+    venmoId: {
+        type: String
+    },
     email: {
         type: String,
         unique: true,
@@ -45,7 +48,8 @@ const userSchema = new mongoose.Schema({
             type: Boolean,
             default: false
         }
-    }
+    },
+    avatar: String
 }, {
     timestamps: true
 })

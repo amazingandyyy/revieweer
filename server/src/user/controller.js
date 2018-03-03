@@ -2,6 +2,8 @@ import Email from './email';
 import User from './model';
 import config from '../config';
 import JWT from './jwt';
+import s3 from './s3';
+// import uuid from './uuid';
 
 export default {
   signupWithEmail: (req, res, next) => {
@@ -86,10 +88,40 @@ export default {
         name: {
           first: req.body.firstName,
           last: req.body.lastName
-        }
+        },
+        venmoId: req.body.venmoId || null
       };
       User.findByIdAndUpdate(userId, newProfile, { new: true })
       .then(newUser => res.sendStatus(200))
+      .catch(next)
+    })
+  },
+
+  updateProfileAvatar: (req, res, next) => {
+    const file = req.file;
+    const userId = req.user._id;
+    console.log(req.file);
+    if(!file) return next('500:image bad');
+    let filenameParts = file.originalname.split('.');
+    let ext;
+    if (filenameParts.length > 1) {
+      ext = "." + filenameParts.pop();
+    } else {
+      ext = '';
+    }
+
+    const uuidKey = `users/${userId}/avatar${ext}`;
+    s3.putObject({
+      Bucket: 'revieweer',
+      Key: uuidKey, 
+      Body: file.buffer,
+      ACL: 'public-read'
+    }, (err, result) => { 
+      if (err) return next('500:Uploading Photo Failed');
+
+      const avatarURL = `https://s3-us-west-1.amazonaws.com/revieweer/${uuidKey}`
+      User.findByIdAndUpdate(userId, {avatar: avatarURL}, { new: true })
+      .then(_ => res.sendStatus(200))
       .catch(next)
     })
   }

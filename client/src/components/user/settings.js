@@ -1,7 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
-import {serverConnect, getUserProfile, updateUserProfile} from '../../actions';
+import Dropzone from 'react-dropzone'
+
+import {serverConnect, getUserProfile, updateUserProfile, updateProfileAvatar} from '../../actions';
 import { CenterCard121 } from '../utils';
 
 class Settings extends React.Component {
@@ -15,21 +17,63 @@ class Settings extends React.Component {
     this.props.serverConnect();
     this.props.getUserProfile();
   }
+  onDrop(acceptedFiles, rejectedFiles) {
+    acceptedFiles.forEach(file => {
+      this.props.updateProfileAvatar(file);
+      // const reader = new FileReader();
+      //   reader.onload = () => {
+      //       const fileAsBinaryString = reader.result;
+      //       this.props.updateProfileAvatar(fileAsBinaryString);
+      //   };
+      //   reader.onabort = () => console.log('file reading was aborted');
+      //   reader.onerror = () => console.log('file reading has failed');
+
+      //   reader.readAsBinaryString(file);
+    });
+  }
   render() {
-    let {status, profile} = this.props;
+    let {profile} = this.props;
+    console.log(profile);
     return (
-      <CenterCard121>
+      <CenterCard121 className='settings-component'>
         <div className='card'>
         <h4 className="card-header">
           Settings
         </h4>
+        {this.renderDropzone(profile)}
         <div className='card-body'>
-        <p className="text-muted">Server status: {status} ☀</p>
           {profile && this.renderProfileForm()}
         </div>
         </div>
       </CenterCard121>
     );
+  }
+  renderDropzone(profile){
+    if(profile.avatar){
+      return (<div className='card-body profile-avatar-dropzone with-avatar-image'>
+      <Dropzone
+        accept="image/jpeg, image/png"
+        onDrop={this.onDrop.bind(this)}
+      >
+        <img className='avatar-image' src={profile.avatar} />
+        <div className='hint'>
+          <i className="fas fa-camera"></i>
+          Update Photo
+        </div>
+        <div className='overflow'></div>
+      </Dropzone>
+    </div>)
+    }else{
+      return (
+        <div className='card-body profile-avatar-dropzone without-avatar-image'>
+          <Dropzone
+            accept="image/jpeg, image/png"
+            onDrop={this.onDrop.bind(this)}
+          >
+          <p>No photo!<br/>Drop or select your profile photo</p>
+          </Dropzone>
+        </div>)
+    }
   }
   handleFormSubmit(d){
     this.props.updateUserProfile(d)
@@ -86,15 +130,27 @@ class Settings extends React.Component {
       <div className="form-group">
         <label>Email:</label>
         <Field
-            disabled
-            readOnly='true'
-            type= 'email'
-            name="email"
-            component="input"
-            className="form-control form-control-lg"
-            placeholder="your email adddress"
-            required
-            />
+          disabled
+          readOnly='true'
+          type= 'email'
+          name="email"
+          component="input"
+          className="form-control form-control-lg"
+          placeholder="your email adddress"
+          required
+          />
+      </div>
+      <div className="form-group">
+        <label>venmo ID:</label>
+        <Field
+          disabled={!editting}
+          type= 'string'
+          name="venmoId"
+          component="input"
+          className="form-control form-control-lg"
+          placeholder="your venmo ID"
+          required
+          />
       </div>
       {dirty && <div className="form-group">
         <label>Password:</label>
@@ -119,23 +175,22 @@ class Settings extends React.Component {
 
 function mapStateToProps({server, profile, auth}) {
   return profile.name?{
-      status: server.connection,
       profile: profile,
       initialValues: {
         email: profile.email,
         firstName: profile.name.first,
-        lastName: profile.name.last
+        lastName: profile.name.last,
+        venmoId: profile.venmoId
       },
       updateProfileFailMsg: profile.updateProfileFailMsg,
       isLoggedin: auth.authentication
     }:{
-      status: server.connection,
       profile: profile,
       isLoggedin: auth.authentication
   }
 }
 
 
-export default connect(mapStateToProps, {serverConnect, getUserProfile, updateUserProfile})(reduxForm({
+export default connect(mapStateToProps, {serverConnect, getUserProfile, updateUserProfile,updateProfileAvatar})(reduxForm({
   form: 'profileUpdate',
 })(Settings));

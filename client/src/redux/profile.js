@@ -1,10 +1,12 @@
 import request from './request';
 import { UNAUTH_USER } from './auth';
 import loader from './loader';
+import superagent from 'superagent';
 
 const GET_USER_PROFILE = 'GET_USER_PROFILE';
 const UPDATE_USER_PROFILE_GOOD = 'UPDATE_USER_PROFILE_GOOD';
 const UPDATE_USER_PROFILE_FAIL = 'UPDATE_USER_PROFILE_FAIL';
+const UPDATE_USER_PROFILE_PHOTO_GOOD = 'UPDATE_USER_PROFILE_PHOTO_GOOD';
 
 export function getUserProfile() {
     return function (dispatch) {
@@ -42,6 +44,20 @@ export function updateUserProfile(profile) {
             });
     }
 }
+export function updateProfileAvatar(avatar) {
+    return function (dispatch) {
+        const baseURL = process.env.SERVERURI || 'http://localhost:8000'
+        superagent
+            .post(`${baseURL}/api/user/profile/avatar`)
+            .set('Authorization', localStorage.getItem('auth_jwt_token') || 'Unauthorized')
+            .attach('avatar', avatar)
+            .end((err, res) => {
+                if (err) return console.log(err);
+                dispatch({ type: UPDATE_USER_PROFILE_PHOTO_GOOD })
+                window.location.reload(true);
+            })
+    }
+}
 
 let INITIAL_STATE = {
     updateProfileFailMsg: '',
@@ -52,7 +68,6 @@ let INITIAL_STATE = {
 export function profileReducer(state=INITIAL_STATE, action) {
     switch (action.type) {
         case GET_USER_PROFILE:
-        console.log(action.payload)
             window.gtag('set', {'user_id': action.payload._id});
             window.ga('set', 'userId', action.payload._id);
             return { ...state, ...action.payload }
@@ -60,6 +75,8 @@ export function profileReducer(state=INITIAL_STATE, action) {
             return { ...state, updateProfileFailMsg: '' }
         case UPDATE_USER_PROFILE_FAIL:
             return { ...state, updateProfileFailMsg: 'Incorrect Password' }
+        case UPDATE_USER_PROFILE_PHOTO_GOOD:
+            return { ...state }
         default:
             return state;
   }
