@@ -2,10 +2,11 @@
   .insight-component{
     overflow: hidden;
     overflow-x: scroll;
+    user-select: text;
     .reviews-componant, .products-componant{
       margin: auto;
       padding: 10px 0px;
-      min-width: 700px;
+      min-width: 900px;
       @media (max-width: 543px) {
           padding: 10px 15px;
       }
@@ -15,37 +16,148 @@
       }
       .product-list{
         padding: 0px;
-        .product-item{
-          background: white;
-          margin: 3px 0px;
-          padding: 10px 15px;
-          line-height: 40px;
-
-          .product-avatar{
-            .loader-component{
-              padding: 10.5px;
-              opacity: 0.8;
-              .circle-spinner {
-                height: 21px;
-                width: 21px;
-                margin: 0px;
-              }
+      }
+      .product-item{
+        user-select: text;
+        background: white;
+        margin: 3px 0px;
+        padding: 0px;
+        line-height: 40px;
+        &.card{
+          transition: .2s all ease-in-out;
+          box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, .05);
+          border: 1px solid rgba(0,0,0,0.03);
+        }
+        &:hover{
+          box-shadow: 0 0.2rem 2rem rgba(0, 0, 0, .1);
+        }
+        &.list-title{
+          line-height: 30px;
+          height: 30px;
+          padding: 0px;
+          .list-title-item{
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding-left: 15px;
+            letter-spacing: 0.2px;
+            text-transform: lowercase;
+          }
+        }
+        .column.product-avatar.avatar{
+          &.column{
+            background: white;
+          }
+        }
+        .product-detail{
+          .column{
+            &:hover{
+              background: white;
             }
           }
-          .product-createAt{
-            padding-top: 5px;
-            .timeDate,.timeAgo{
-              align-self: center;
-              padding: 0px;
-              font-size: 0.8rem;
-              line-height: 1rem;
+        }
+        .avatar{
+          width: 60px;
+          img{
+            width: 100%;
+          }
+        }
+        .createAt{
+          width: 150px;
+        }
+        .seller{
+          width: 100px;
+        }
+        .viewed{
+          width: 75px;
+        }
+        .visited{
+          width: 75px;
+        }
+        .ordered{
+          width: 120px;
+        }
+        .reviewed{
+          width: 75px;
+        }
+        .finished{
+          width: 75px;
+        }
+        .column{
+          padding: 10px 15px;
+          border: none;
+          outline: none;
+          float: left;
+          &:hover{
+            background: rgba(darken($brand-color, 50%), 0.0175);
+          }
+        }
+
+        .product-reviews .column{
+          padding: 10px 15px 12px;
+        }
+
+        .product-avatar{
+          padding: 10px 15px 0px 10px;
+          .loader-component{
+            padding: 10.5px;
+            opacity: 0.8;
+            .circle-spinner {
+              height: 21px;
+              width: 21px;
+              margin: 0px;
             }
-            .timeAndDate-component{
-              padding: 0px;
-            }
-            .timeAgo{
-              opacity: 0.6;
-            }
+          }
+        }
+        .column.product-createAt{
+          padding: 15px 0px 0px 10px;
+          .timeDate,.timeAgo{
+            align-self: center;
+            padding: 0px;
+            font-size: 0.8rem;
+            line-height: 1rem;
+          }
+          .timeAndDate-component{
+            padding: 0px;
+          }
+          .timeAgo{
+            opacity: 0.6;
+          }
+        }
+        .product-seller{
+          white-space: nowrap;
+        }
+
+        &.expanded{
+          transition: .1s all ease-in-out;
+          // .avatar{
+          //   width: 120px;
+          //   transition: .1s all ease-in-out;
+          //   img{
+          //     transition: .1s all ease-in-out;
+          //     height: 100px;
+          //     width: 100px;
+          //   }
+          // }
+          .createAt{
+            width: 150px;
+          }
+          .seller{
+            width: 100px;
+          }
+          .viewed{
+            width: 75px;
+          }
+          .visited{
+            width: 75px;
+          }
+          .ordered{
+            width: 120px;
+          }
+          .reviewed{
+            width: 75px;
+          }
+          .finished{
+            width: 75px;
           }
         }
       }

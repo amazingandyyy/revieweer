@@ -26,6 +26,7 @@ Review, Explore, Earn
     - [x] basic name
     - [ ] reset password
     - [ ] change password
+    - [x] update avatar image and save on aws s3
     - [ ] login amazon
     - [ ] phone number verification
     - [ ] venmo verification
@@ -48,11 +49,11 @@ Review, Explore, Earn
   - [x] update
     - [x] add new order number from user
     - [x] update progress
-- Payment system
-  - link to venmo
-  - admin payout
-    - venmo rqcode
-- Advance Features
+- [ ] Payment system
+  - [ ] link to venmo
+  - [ ] admin payout
+    - [ ] venmo rqcode
+- [ ] Advance Features
   - [ ] admin dashboard design
     - [ ] product
     - [ ] orders
