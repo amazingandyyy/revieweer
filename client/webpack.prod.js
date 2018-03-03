@@ -8,8 +8,8 @@ module.exports = merge(common, {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': 'production',
-                'SERVERURI': 'https://server.revieweer.com'
+                'NODE_ENV': JSON.stringify('production'),
+                'SERVERURI': JSON.stringify('https://server.revieweer.com')
             }
         }),
         new NoConsolePlugin({

@@ -48,14 +48,14 @@ export function updateProfileAvatar(avatar) {
     return function (dispatch) {
         const baseURL = process.env.SERVERURI || 'http://localhost:8000'
         superagent
-            .post(`${baseURL}/api/user/profile/avatar`)
-            .set('Authorization', localStorage.getItem('auth_jwt_token') || 'Unauthorized')
-            .attach('avatar', avatar)
-            .end((err, res) => {
-                if (err) return console.log(err);
-                dispatch({ type: UPDATE_USER_PROFILE_PHOTO_GOOD })
-                window.location.reload(true);
-            })
+        .post(`${baseURL}/api/user/profile/avatar`)
+        .set('Authorization', localStorage.getItem('auth_jwt_token') || 'Unauthorized')
+        .attach('avatar', avatar)
+        .end((err, res) => {
+            if (err) return console.log(err);
+            dispatch({ type: UPDATE_USER_PROFILE_PHOTO_GOOD })
+            window.location.reload(true);
+        })
     }
 }
 

@@ -101,8 +101,8 @@ export default {
   updateProfileAvatar: (req, res, next) => {
     const file = req.file;
     const userId = req.user._id;
-    const fieldname = file.fieldname;
     if(!file) return next('500:image bad');
+    const fieldname = file.fieldname;
     let filenameParts = file.originalname.split('.');
     let ext;
     if (filenameParts.length > 1) {
