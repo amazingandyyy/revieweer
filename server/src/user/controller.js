@@ -119,9 +119,8 @@ export default {
       ACL: 'public-read'
     }, (err, result) => { 
       if (err) return next('500:Uploading Photo Failed');
-
       const avatarURL = `https://s3-us-west-1.amazonaws.com/revieweer/${uuidKey}`
-      User.findByIdAndUpdate(userId, {avatar: avatarURL}, { new: true })
+      User.findByIdAndUpdate(userId, { $set:{avatar: avatarURL} }, { new: true })
       .then(_ => res.sendStatus(200))
       .catch(next)
     })
