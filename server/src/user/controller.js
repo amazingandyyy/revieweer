@@ -19,7 +19,7 @@ export default {
       const mailObj = {
         to: email,
         subject: '[Revieweer]Welcome and Account Activation.',
-        message: (process.env.version=='public' || process.env.version=='internal')?activationEmailTemplate(deepLink):accessRequestEmailTemplate(deepLink)
+        message: (config.version=='public' || config.version=='internal')?activationEmailTemplate(deepLink):accessRequestEmailTemplate(deepLink)
       };
       Email.send(mailObj).then(email=>{
         res.send({email});
@@ -111,7 +111,7 @@ export default {
       ext = '';
     }
 
-    const uuidKey = `${process.env.NODE_ENV}/users/${userId}/${fieldname}${ext}`;
+    const uuidKey = `${config.environment}/users/${userId}/${fieldname}${ext}`;
     s3.putObject({
       Bucket: 'revieweer',
       Key: uuidKey, 

@@ -24,5 +24,7 @@ export default {
   },
   apifyToken: {
     itemLookUp: process.env.apifyToken_itemLookUp
-  }
+  },
+  version: process.env.version || 'closed',
+  environment: process.env.NODE_ENV
 }
