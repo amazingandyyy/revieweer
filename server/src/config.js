@@ -11,11 +11,8 @@ export default {
   mongoose: {
     uri: process.env.MONGODB_URI || 'mongodb://localhost/revieweer'
   },
-  AWSAccessKeyId: process.env.AWSAccessKeyId || 'AWSAccessKeyId',
-  AmzSecretKey: process.env.AmzSecretKey || 'AmzSecretKey',
   sentryDSN: process.env.SentryDSN || '',
   admin: {
-    passcode: process.env.adminKey,
     list: ['amazingandyyy@gmail.com']
   },
   aws: {
