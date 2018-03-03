@@ -29,6 +29,31 @@
       padding: 0.8rem 1.25rem;
       font-weight: 400;
   }
+  .signup-title{
+      padding: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      opacity: 0.5;
+      text-align: center;
+      font-weight: 700;
+  }
+  .form-group-row.row{
+      text-align: center;
+      padding: 10px 0px;
+      img{
+          width: 50%;
+          margin: auto;
+          &:hover{
+              cursor: pointer;
+              box-shadow: 0px 0px 0px 5px white, 0px 0px 0px 8px $brand-color;
+              border-radius: 0.4px;
+            }
+            &:active, &.true{
+                box-shadow: 0px 0px 0px 5px white, 0px 0px 0px 8px lighten($brand-color, 5%);
+                border-radius: 0.4px;
+          }
+      }
+  }
   
 }
 

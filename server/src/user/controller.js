@@ -19,7 +19,7 @@ export default {
       const mailObj = {
         to: email,
         subject: '[Revieweer]Welcome and Account Activation.',
-        message: accessRequestEmailTemplate(deepLink)
+        message: (process.env.version=='public' || process.env.version=='internal')?activationEmailTemplate(deepLink):accessRequestEmailTemplate(deepLink)
       };
       Email.send(mailObj).then(email=>{
         res.send({email});
@@ -35,7 +35,7 @@ export default {
     })
   },
   signup: (req, res, next) => {
-    const { email, password, firstName, lastName } = req.body;
+    const { email, password, firstName, lastName, avatar } = req.body;
     JWT.verifyEmailToken(req.params.token, (err, address) => {
       if (err || (address !== email) || (!email || !password)) return res.sendStatus(401);
       User
@@ -48,7 +48,8 @@ export default {
             last: lastName
           },
           email,
-          password
+          password,
+          avatar
         })
         
         newUser.save()
@@ -141,34 +142,34 @@ const accessRequestEmailTemplate = (deepLink) => {
   `
 }
 
-// const activationEmailTemplate = (deepLink) => {
-//   return `<b>Welcome to Revieweer,</b>
-//   <br/>
-//   <br/>
-//   If you requested this activation, please go to the following URL to confirm this email and continue to use this email address as your account username,
-//   <br/>
-//   <br/>
-//   <a href='${deepLink}' target='_blank'>${deepLink}</a>
-//   <br/> 
-//   <br/> 
-//   <p>--------------</p>
-//   <br/> 
-//   Enjoy the benefits of being a revieweer:
-//   <br/>
-//   <ul>
-//     <li><b>Explore:</b> explore new products to try.</li>
-//     <li><b>Review:</b> amazing review with photo to help business grow</li>
-//     <li><b>Earn:</b> we pay you up to 100% cashback + cash rewards</li>
-//   </ul>
-//   <br/>
-//   We are looking forward to <b>your experience</b>. 
-//   <br/>
-//   Please feel free to reply this email or reach out to us via team@revieweer.com anytime.
-//   <br/>
-//   <br/>
-//   <br/>
-//   Regards,
-//   <br/>
-//   <b>The Revieweer team</b>
-//   `
-// }
+const activationEmailTemplate = (deepLink) => {
+  return `<b>Welcome to Revieweer,</b>
+  <br/>
+  <br/>
+  If you requested this activation, please go to the following URL to confirm this email and continue to use this email address as your account username,
+  <br/>
+  <br/>
+  <a href='${deepLink}' target='_blank'>${deepLink}</a>
+  <br/> 
+  <br/> 
+  <p>--------------</p>
+  <br/> 
+  Enjoy the benefits of being a revieweer:
+  <br/>
+  <ul>
+    <li><b>Explore:</b> explore new products to try.</li>
+    <li><b>Review:</b> amazing review with photo to help business grow</li>
+    <li><b>Earn:</b> we pay you up to 100% cashback + cash rewards</li>
+  </ul>
+  <br/>
+  We are looking forward to <b>your experience</b>. 
+  <br/>
+  Please feel free to reply this email or reach out to us via team@revieweer.com anytime.
+  <br/>
+  <br/>
+  <br/>
+  Regards,
+  <br/>
+  <b>The Revieweer team</b>
+  `
+}

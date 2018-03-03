@@ -15,7 +15,9 @@ class SignupVerification extends Component {
             email: '',
             loading: true,
             token: '',
-            address: ''
+            address: '',
+            avatarChosen: null, // 0 for man or 1 for woman
+            localError: ''
         }
     }
     componentWillUnmount(){
@@ -36,13 +38,27 @@ class SignupVerification extends Component {
         })
     }
     handleFormSubmit(data) {
-        const {token, address} = this.state;
+        const {token, address, avatarChosen} = this.state;
+        const avatarchoices = [
+            'https://s3-us-west-1.amazonaws.com/revieweer/users/mascot/mascot-m.jpg',
+            'https://s3-us-west-1.amazonaws.com/revieweer/users/mascot/mascot-w.jpg'
+        ]
         data.email = address;
-        if (data.password == data.password2) {
-            this.props.signUserUp(token, data);
+        data.avatar = avatarchoices[avatarChosen];
+        if(data.avatar){
+            if (data.password == data.password2) {
+                this.props.signUserUp(token, data);
+            }else{
+                this.renderAlert('Please Verify Passwords');
+            }
         }else{
-            this.renderAlert('password does not matched');
+            this.renderAlert('Choose One Avatar');
         }
+    }
+    renderAlert(msg){
+        this.setState({
+            localError: msg
+        });
     }
     renderBorder(){
         const {emailTokenGood} = this.props;
@@ -67,7 +83,7 @@ class SignupVerification extends Component {
         );
     }
     renderLoading(){
-        const {address} = this.state;
+        const {address,localError} = this.state;
         const {handleSubmit, emailTokenGood, authUserError,signupEmailReset} = this.props;
         if(this.state.loading){
             return <div>Loading</div>
@@ -75,7 +91,7 @@ class SignupVerification extends Component {
             return <div>
                 {emailTokenGood?(<div>
                 <h3 className='card-title text-center text-success'>Email Verified</h3>
-                <p>Please complete Information to create.</p>
+                <div className='signup-title'>Account Information</div>
                 <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))} onChange={signupEmailReset}>
                     <div className='form-group'>
                         <Field
@@ -125,14 +141,28 @@ class SignupVerification extends Component {
                             placeholder='your password again'
                             required/>
                     </div>
+                    <div>
+                        <div className='signup-title'>Choose Your Avatar</div>
+                        <div className='form-group-row row'>
+                            <div className='col'>
+                                <img className={(this.state.avatarChosen==0)} onClick={this.chooseAvatar.bind(this,0)} src='../../assets/icons/mascot-m.jpg'/>
+                            </div>
+                            <div className='col'>
+                                <img  className={(this.state.avatarChosen==1)} onClick={this.chooseAvatar.bind(this,1)} src='../../assets/icons/mascot-w.jpg'/>
+                            </div>
+                        </div>
+                    </div>
+                    <div style={{'padding': '15px 0px'}}>
+                        <button type='submit' className='btn btn-lg btn-success btn-block'>Join Revieweer!</button>
+                    </div>
                     {authUserError && <div className='alert alert-warning'>
                         {authUserError}
                     </div>}
-                    <div style={{'paddingTop': '30px'}}>
-                        <button type='submit' className='btn btn-lg btn-success btn-block'>Join Revieweer!</button>
-                    </div>
+                    {localError && <div className='alert alert-warning'>
+                        {localError}
+                    </div>}
                     <div className='form-group' style={{'fontSize': '0.7rem', 'opacity': '0.7', 'textAlign': 'center'}}>
-                        <hr style={{'margin': '30px auto 25px'}}/>
+                        <hr style={{'margin': '10px 0px 20px'}}/>
                         To signup, you promise that:
                         1. You are <b>older than 18 years</b> old.&nbsp;
                         2. You have read and agreed with the <a><b>terms of use</b></a>&nbsp;
@@ -154,15 +184,20 @@ class SignupVerification extends Component {
             </div>
         }
     }
+    chooseAvatar(num){
+        this.setState({
+            avatarChosen: num
+        })
+    }
 }
 
-function validate(formProps) {
-    const errors = {}
-    if(formProps.password !== formProps.password2){
-        errors.password = 'Password must match';
-    }
-    return errors;
-}
+// function validate(formProps) {
+//     const errors = {}
+//     if(formProps.password !== formProps.password2){
+//         errors.password = 'Password must match';
+//     }
+//     return errors;
+// }
 
 function mapStateToProps({signupVerification}) {
     const params = qs.parse(window.location.href.split('?')[1]);
@@ -189,6 +224,5 @@ SignupVerification.contextTypes = {
   }
 
 export default connect(mapStateToProps, {signUserUp, verifyEmailToken,signupEmailReset})(reduxForm({
-    form: 'signup',
-    validate 
+    form: 'signup'
 })(SignupVerification));
