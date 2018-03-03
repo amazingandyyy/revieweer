@@ -101,7 +101,7 @@ export default {
   updateProfileAvatar: (req, res, next) => {
     const file = req.file;
     const userId = req.user._id;
-    console.log(req.file);
+    const fieldname = file.fieldname;
     if(!file) return next('500:image bad');
     let filenameParts = file.originalname.split('.');
     let ext;
@@ -111,7 +111,7 @@ export default {
       ext = '';
     }
 
-    const uuidKey = `users/${userId}/avatar${ext}`;
+    const uuidKey = `${process.env.NODE_ENV}/users/${userId}/${fieldname}${ext}`;
     s3.putObject({
       Bucket: 'revieweer',
       Key: uuidKey, 
