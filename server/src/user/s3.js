@@ -8,9 +8,8 @@ const AWS_SECRET = config.aws.secretKey || process.env.AWSSecretKey;
 
 AWS.config.update({
   accessKeyId: AWS_KEY_ID,
-  secretAccessKey: AWS_SECRET
+  secretAccessKey: AWS_SECRET,
+  subregion: 'us-west-1'
 });
-
-// subregion: 'us-west-2',
 
 export default s3;

@@ -1,8 +1,9 @@
+import AWS from 'aws-sdk';
+
 import Email from './email';
 import User from './model';
 import config from '../config';
 import JWT from './jwt';
-import s3 from './s3';
 // import uuid from './uuid';
 
 export default {
@@ -111,10 +112,17 @@ export default {
       ext = '';
     }
 
-    const uuidKey = `${config.environment}/users/${userId}/${fieldname}${ext}`;
     const AWS_KEY_ID = config.aws.accessKeyId || process.env.AWSAccessKeyId;
     const AWS_SECRET = config.aws.secretKey || process.env.AWSSecretKey;
-    console.log(AWS_KEY_ID, AWS_SECRET);
+
+    const uuidKey = `${config.environment}/users/${userId}/${fieldname}${ext}`;
+    AWS.config.update({
+      accessKeyId: AWS_KEY_ID,
+      secretAccessKey: AWS_SECRET,
+      subregion: 'us-west-1'
+    });
+    const s3 = new AWS.S3();
+
     s3.putObject({
       Bucket: 'revieweer',
       Key: uuidKey, 
