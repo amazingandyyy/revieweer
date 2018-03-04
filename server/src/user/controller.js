@@ -112,6 +112,9 @@ export default {
     }
 
     const uuidKey = `${config.environment}/users/${userId}/${fieldname}${ext}`;
+    const AWS_KEY_ID = config.aws.accessKeyId || process.env.AWSAccessKeyId;
+    const AWS_SECRET = config.aws.secretKey || process.env.AWSSecretKey;
+    console.log(AWS_KEY_ID, AWS_SECRET);
     s3.putObject({
       Bucket: 'revieweer',
       Key: uuidKey, 
