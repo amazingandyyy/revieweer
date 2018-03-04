@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {reduxForm, Field} from 'redux-form';
 import Dropzone from 'react-dropzone'
 
-import {serverConnect, getUserProfile, updateUserProfile, updateProfileAvatar} from '../../actions';
+import { updateUserProfile, updateProfileAvatar } from '../../actions';
 import { CenterCard121 } from '../utils';
 
 class Settings extends React.Component {
@@ -14,21 +14,11 @@ class Settings extends React.Component {
     }
   }
   componentWillMount(){
-    this.props.serverConnect();
-    this.props.getUserProfile();
+    // this.props.getUserProfile();
   }
   onDrop(acceptedFiles, rejectedFiles) {
     acceptedFiles.forEach(file => {
       this.props.updateProfileAvatar(file);
-      // const reader = new FileReader();
-      //   reader.onload = () => {
-      //       const fileAsBinaryString = reader.result;
-      //       this.props.updateProfileAvatar(fileAsBinaryString);
-      //   };
-      //   reader.onabort = () => console.log('file reading was aborted');
-      //   reader.onerror = () => console.log('file reading has failed');
-
-      //   reader.readAsBinaryString(file);
     });
   }
   render() {
@@ -191,6 +181,6 @@ function mapStateToProps({server, profile, auth}) {
 }
 
 
-export default connect(mapStateToProps, {serverConnect, getUserProfile, updateUserProfile,updateProfileAvatar})(reduxForm({
+export default connect(mapStateToProps, { updateUserProfile, updateProfileAvatar })(reduxForm({
   form: 'profileUpdate',
 })(Settings));
