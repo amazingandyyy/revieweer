@@ -23,7 +23,6 @@ class Settings extends React.Component {
   }
   render() {
     let {profile} = this.props;
-    console.log(profile);
     return (
       <CenterCard121 className='settings-component'>
         <div className='card'>
@@ -43,9 +42,10 @@ class Settings extends React.Component {
       return (<div className='card-body profile-avatar-dropzone with-avatar-image'>
       <Dropzone
         accept="image/jpeg, image/png"
-        onDrop={this.onDrop.bind(this)}
-      >
-        <img className='avatar-image' src={profile.avatar} />
+        onDrop={this.onDrop.bind(this)}>
+        <div className='image-container'>
+          <img className='avatar-image' src={profile.avatar} />
+        </div>
         <div className='hint'>
           <i className="fas fa-camera"></i>
           Update Photo

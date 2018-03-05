@@ -16,12 +16,12 @@ export default {
     list: ['amazingandyyy@gmail.com']
   },
   aws: {
-    accessKeyId: process.env.AWSAccessKeyId,
-    secretKey: process.env.AWSSecretKey
+    accessKeyId: process.env.AWSAccessKeyId || '',
+    secretKey: process.env.AWSSecretKey || ''
   },
   apifyToken: {
     itemLookUp: process.env.apifyToken_itemLookUp
   },
   version: process.env.version || 'closed',
-  environment: process.env.NODE_ENV
+  environment: process.env.NODE_ENV || 'development'
 }

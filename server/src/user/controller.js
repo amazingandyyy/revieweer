@@ -4,7 +4,7 @@ import Email from './email';
 import User from './model';
 import config from '../config';
 import JWT from './jwt';
-// import uuid from './uuid';
+import uuid from './uuid';
 
 export default {
   signupWithEmail: (req, res, next) => {
@@ -115,24 +115,20 @@ export default {
     const AWS_KEY_ID = config.aws.accessKeyId || process.env.AWSAccessKeyId;
     const AWS_SECRET = config.aws.secretKey || process.env.AWSSecretKey;
 
-    const uuidKey = `${config.environment}/users/${userId}/${fieldname}${ext}`;
+    const uuidKey = `${config.environment}/users/${userId}/${fieldname}/${uuid()}${ext}`;
     AWS.config.update({
       accessKeyId: AWS_KEY_ID,
       secretAccessKey: AWS_SECRET,
       subregion: 'us-west-1'
     });
     const s3 = new AWS.S3();
-
     s3.putObject({
       Bucket: 'revieweer',
       Key: uuidKey, 
       Body: file.buffer,
       ACL: 'public-read'
-    }, (err, result) => { 
-      if (err) {
-        console.log(err);
-        return next('500:Uploading Photo Failed')
-      }
+    }, (err, result) => {
+      if (err) return next('500:Uploading Photo Failed');
       const avatarURL = `https://s3-us-west-1.amazonaws.com/revieweer/${uuidKey}`
       User.findByIdAndUpdate(userId, { $set:{avatar: avatarURL} }, { new: true })
       .then(_ => res.sendStatus(200))
