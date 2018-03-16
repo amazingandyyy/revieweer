@@ -11,9 +11,23 @@ class Detail extends Component {
     console.log(p);
       return(<div className='row product-detail'>
       <div className='column'>
-        <h1>{p._id}</h1>
+        <div className='reviewer-list'>
+            {this.renderReviewers(p.reviews)}
+        </div>
       </div>
     </div>)
+    }
+    renderReviewers(reviews){
+        return reviews.map(r=>{
+            return(<div key={r._id} className='reviewer-item'>
+                <div className='reviewer-profile'>
+                    <img src={r.user.avatar} />
+                </div>
+                <div className='review-details' onClick={()=>this.context.router.history.push(`/review/${r._id}`)}>
+                
+                </div>
+            </div>)
+        })
     }
 }
 

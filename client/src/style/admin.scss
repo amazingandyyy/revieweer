@@ -53,6 +53,23 @@
             &:hover{
               background: white;
             }
+
+            .reviewer-list{
+              .reviewer-profile{
+                border-radius: 50px;
+                overflow: hidden;
+                width: 40px;
+                height: 40px;
+                position: relative;
+                img{
+                  position: absolute;
+                  top: 0px;
+                  left: 0px;
+                  width: 40px;
+                  height: 40px;
+                }
+              }
+            }
           }
         }
         .avatar{

@@ -3,8 +3,8 @@ import Review from '../review/model';
 
 export default {
   fetchProducts: (req, res, next) => {
-    const {query, options} = req.body;
-    fetchProductPromise(query, options)
+    const {query, options, config} = req.body;
+    fetchProductPromise(query, options,config)
     .then(list=>{
       res.send(list);
     })
@@ -54,7 +54,7 @@ function fetchProductPromise(query={}, options=null, config={}){
       populate: {
         path: 'user',
         model: 'User',
-        select: 'name.first'
+        select: 'name.first avatar'
       }
     })
     .sort({createdAt: -1})  // latest is first
@@ -77,7 +77,7 @@ function fetchReviewsPromise(query={}, options=null, config={}){
   })
 }
 
-function generateDay(days=14){
+function generateDay(days=30){
     let d = new Date(); // now
     d.setDate(d.getDate() - days);
     return d.toISOString();

@@ -4,7 +4,11 @@ export const ADMIN_INSIGHT_FETCH_REVIEWS_SUCCESS = 'ADMIN_INSIGHT_FETCH_REVIEWS_
 
 export function fetchInsightProducts(url) {
     return function (dispatch) {
-      request.get(`/api/insight/fetchProducts`)
+      request.put(`/api/insight/fetchProducts`, {
+        config: {
+          days: 30
+        }
+      })
       .then(p=>{
         dispatch({type: ADMIN_INSIGHT_FETCH_PRODUCTS_SUCCESS, payload: p.data})
       })

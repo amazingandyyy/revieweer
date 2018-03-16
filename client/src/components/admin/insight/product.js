@@ -3,6 +3,7 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Img from 'react-image';
+import { Link } from 'react-router-dom';
 
 import { SquareLoader,CircleLoader } from '../../utils';
 import { fetchInsightProducts } from '../../../actions';
@@ -58,7 +59,7 @@ class ProductInsight extends Component {
 						{this.renderList(productList)}
           </div>
       </div>)
-    }
+		}
     renderList(productList){
         if(productList){
             return productList.map(p=>{
@@ -69,7 +70,7 @@ class ProductInsight extends Component {
 									<Img src={p.details.imageURL} loader={<CircleLoader/>} />
 									</a>
 									</div>
-										<div className='column product-createAt createAt'>
+										<div onClick={()=>this.context.router.history.push(`/pd/${p.productId}`)} className='column product-createAt createAt'>
 											<div className='timeDate'>{getTimeAndDate(p.createdAt, {second: '2-digit'})}</div>
 											<div className='timeAgo'>{timeAgo(p.createdAt)}</div>
 										</div>
@@ -113,8 +114,25 @@ class ProductInsight extends Component {
 				finished: []
 			};
 			reviews.forEach(r=>{
-				count += r.payload.viewed;
-				review[r.progress].push(r);
+				if(r && r.progress && review[r.progress]) {
+					count += r.payload.viewed;
+					switch (r.progress) {
+						case 'visited':
+							review[r.progress].push(r);
+							break;
+						case 'ordered':
+							if(r.user){review[r.progress].push(r);}
+							break;
+						case 'reviewed':
+							if(r.user){review[r.progress].push(r);}
+							break;
+						case 'finished':
+							if(r.user){review[r.progress].push(r);}
+							break;
+						default:
+							review[r.progress].push(r);
+					}
+				}
 			})
 			return (<div>
 					<div className='column reviews-viewed viewed'>
