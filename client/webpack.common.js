@@ -50,10 +50,10 @@ module.exports = {
                 use: [
                     'file-loader',
                     {
-                    loader: 'image-webpack-loader',
-                    options: {
-                        bypassOnDebug: true,
-                    },
+                        loader: 'image-webpack-loader',
+                        options: {
+                            bypassOnDebug: true,
+                        },
                     },
                 ],
             },

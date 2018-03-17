@@ -3,7 +3,6 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Img from 'react-image';
-import { Link } from 'react-router-dom';
 
 import { SquareLoader,CircleLoader } from '../../utils';
 import { fetchInsightProducts } from '../../../actions';

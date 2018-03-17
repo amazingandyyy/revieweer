@@ -19,7 +19,8 @@ class Detail extends Component {
     }
     renderReviewers(reviews){
         return reviews.map(r=>{
-            return(<div key={r._id} className='reviewer-item'>
+            if(r && r.user && r.user.avatar){
+                return(<div key={r._id} className='reviewer-item'>
                 <div className='reviewer-profile'>
                     <img src={r.user.avatar} />
                 </div>
@@ -27,6 +28,7 @@ class Detail extends Component {
                 
                 </div>
             </div>)
+            }
         })
     }
 }
