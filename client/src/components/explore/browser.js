@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { fetchProducts } from '../../actions';
 import { CenterCard121,SquareLoader } from '../utils';
-
+import ProductLaunch from '../admin/launch/searchProduct';
 import ProductPreivew from './product.preview';
 
 class Browser extends Component {
@@ -14,6 +14,7 @@ class Browser extends Component {
   render() {
     return (
       <div className='browser-component'>
+        {this.props.isAdmin && <ProductLaunch />}
         <CenterCard121>
         <div className='product-list'>
           {this.renderList(this.props.products)}
@@ -39,10 +40,11 @@ class Browser extends Component {
   }
 }
 
-function mapStateToProps({product}) {
-  console.log('items', product.items);
+function mapStateToProps({product, auth}) {
+  // console.log('items', product.items);
   return {
-    products: product.items
+    products: product.items,
+    isAdmin: auth.isAdmin
   }
 }
 

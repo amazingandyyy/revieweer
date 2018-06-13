@@ -36,7 +36,7 @@ class Visited extends Component {
     const {review} = this.props;
     const {product} = review;
     return(<div>
-      <span>{`Visit product on `}</span><a onClick={this.takeAction.bind(this)} href={product.details.link} target='_blank'><div className='bubble-tag highlight'><i className="fas fa-link"></i>website</div></a>
+      {product.details && product.details.link && <div><span>{`Visit product on `}</span><a onClick={this.takeAction.bind(this)} href={product.details.link} target='_blank'><div className='bubble-tag highlight'><i className="fas fa-link"></i>website</div></a></div>}
       {product.benefits.notes && <div><span>{`Follow instructions: `}</span><span className='bubble-tag'>{product.benefits.notes}</span></div>}
     </div>)
   }

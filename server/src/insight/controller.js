@@ -4,7 +4,7 @@ import Review from '../review/model';
 export default {
   fetchProducts: (req, res, next) => {
     const {query, options, config} = req.body;
-    fetchProductPromise(query, options,config)
+    fetchProductPromise(query, options, config)
     .then(list=>{
       res.send(list);
     })

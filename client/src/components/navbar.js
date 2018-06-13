@@ -67,6 +67,9 @@ class Navbar extends Component {
                         <li className="nav-item">
                             <NavLink className={this.renderClass('nav-link', 'explore')} to="/explore">Explore</NavLink>
                         </li>
+                        {this.props.isAdmin && <li className="nav-item">
+                            <NavLink className={this.renderClass('nav-link', 'admin')} to="/admin/insight/products">Admin</NavLink>
+                        </li>}
                     </ul>
                     <ul className="navbar-nav">
                         {this.renderSignButton()}

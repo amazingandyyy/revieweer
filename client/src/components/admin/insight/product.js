@@ -23,11 +23,11 @@ class ProductInsight extends Component {
         const {productList} = this.props;
       return(<div className='products-componant'>
           <div className='products-list-info'>
-            {productList && productList.length} products posted in the past 30 days
+            {productList && productList.length} products posted in the past 90 days
             {!productList && <div>0 Products</div>}
           </div>
 					<div className='card product-item list-title' onClick={this.resetExpandItem.bind(this)}>
-						<div className='row'>
+						<div style={{'display': 'flex'}}>
 							<div className='list-title-item avatar'>
 								Item
 							</div>
@@ -50,7 +50,7 @@ class ProductInsight extends Component {
 								reviews
 							</div>
 							<div className='list-title-item finished'>
-								finish%
+								completion
 							</div>
 						</div>
 					</div>

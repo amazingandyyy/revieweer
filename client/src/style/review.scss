@@ -1,25 +1,26 @@
-.review-component.container-fluid{
+.review-component.container-fluid, .container-fluid{
   margin-top: 10px;
   padding-left: 0px;
   padding-right: 0px;
   max-width: 936px;
   @media (max-width: 543px) {
     margin: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
   .card{
-    margin: 10px 10px 20px;
-    padding-bottom: 0px;
+    margin: 10px;
     transition: .1s all ease-in-out;
-
-    .card-body{
-      padding-top: 10px;
-    }
     &:hover{
       box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.05), 0 6px 18px 0 rgba(0,0,0,0.08);
     }
     @media (max-width: 543px) {
       margin: 5px 0px;
       box-shadow: 0px 0px 10px rgba(black, 0.1);
+    }
+
+    .card-body {
+      padding-top: 0px;
     }
     
     .bubble-tag, a.bubble-tag{
@@ -59,10 +60,11 @@
       background: rgba(0,0,0,0);
       letter-spacing: -0.5px;
       display: inline;
-      padding: 12px 20px 0px;
+      padding: 20px;
+      padding-bottom: 0px;
       font-weight: 900;
       text-transform: capitalize;
-      font-size: 2rem;
+      font-size: 1.7rem;
       color: rgba(0,0,0,1);
       .completion{
         font-size: 0.9rem;

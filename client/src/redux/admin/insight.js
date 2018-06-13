@@ -6,7 +6,7 @@ export function fetchInsightProducts(url) {
     return function (dispatch) {
       request.put(`/api/insight/fetchProducts`, {
         config: {
-          days: 30
+          days: 90
         }
       })
       .then(p=>{
