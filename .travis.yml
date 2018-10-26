@@ -9,14 +9,13 @@ cache:
 install:
   - npm install
   - npm install --prefix client
-  - npm install --prefix server
 script:
   - npm run test
   - npm run build
 deploy:
   provider: pages
   local-dir: docs
-  repo: revieweer/revieweer.com
+  repo: revieweer/revieweer.github.io
   skip-cleanup: true
   github-token: $GITHUB_TOKEN
   keep-history: true
