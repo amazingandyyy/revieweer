@@ -20,7 +20,7 @@ export default {
     secretKey: process.env.AWSSecretKey || ''
   },
   apifyToken: {
-    itemLookUp: process.env.apifyToken_itemLookUp
+    itemLookUp: process.env.apifyToken_itemLookUp || ''
   },
   version: process.env.version || 'closed',
   environment: process.env.NODE_ENV || 'development'
