@@ -69,7 +69,6 @@ class SignupWithEmail extends React.Component {
     }
     renderForm(){
         const {handleSubmit,emailStateError,emailSentTo, submitting,dirty} = this.props;
-        const {recaptchaGood} = this.state;
         const isBetaOnly = true;
         if(isBetaOnly && emailSentTo && emailSentTo.length > 1) {
             return (<div className='alert alert-success'>
