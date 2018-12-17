@@ -28,6 +28,7 @@ class productPreviewForm extends React.Component {
     }
     componentDidMount(){
         const {productPendingId} = this.context.router.route.match.params;
+        console.log(productPendingId);
         if(productPendingId){
             this.props.fetchProductPreviewByProductPendingId(productPendingId)
         }

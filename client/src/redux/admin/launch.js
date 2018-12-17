@@ -7,7 +7,7 @@ export const adminLaunchReset = () => (dispatch) => dispatch({type: ADMIN_DASHBO
 
 export function searchOneProductByURL(url) {
     return function (dispatch) {
-      let productId = 'B0' + url.split('/B0')[1].split('/')[0];
+      let productId = 'B0' + url.split('/B0')[1].split('?')[0];
       request.get(`/api/product/getOneByProductId?productId=${productId}`)
       .then(p=>{
         if(p.productId){
@@ -36,6 +36,7 @@ export function fetchProductPreviewByProductPendingId(productPendingId) {
       .then(res=>{
         dispatch({ type: ADMIN_FETCH_ONE_PRODUCT_FROM_APIFY, payload: res.data })
         const productId = res.data.productId;
+        console.log(res);
         request.get(`/api/product/getOneByProductId?productId=${productId}`)
         .then(p=>{
           if(p.productId){

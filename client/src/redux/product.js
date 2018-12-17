@@ -4,6 +4,7 @@ const PRODUCT_GET_ONE_PRODUCT = 'PRODUCT_GET_ONE_PRODUCT';
 const PRODUCT_GET_ALL_PRODUCTS = 'PRODUCT_GET_ALL_PRODUCTS';
 
 export function getOneproduct(productId){
+    console.log(productId);
   return function (dispatch) {
     request
         .get(`/api/product/getOneByProductId?productId=${productId}`)
